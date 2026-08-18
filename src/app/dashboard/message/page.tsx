@@ -2,7 +2,7 @@ import DashboardMessage from "@/components/dashboard/message";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Dashboard Message HOZN - Real Estate React Next js",
+   title: "Messages | VELMORA",
 };
 const index = () => {
    return (

@@ -14,12 +14,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={isDev}>
       <head>
-        <meta name="keywords" content="Real estate, Property sale, Property buy" />
-        <meta name="description" content="HOZN is a beautiful website designed for Real Estate Agency." />
-        <meta property="og:site_name" content="HOZN" />
-        <meta property="og:url" content="https://creativegigstf.com" />
+        <meta name="keywords" content="Real estate, Property sale, Property buy, Premium homes, India" />
+        <meta name="description" content="Discover premium homes, luxury residences, investment properties and exceptional addresses across India's leading cities with VELMORA." />
+        <meta property="og:site_name" content="VELMORA" />
+        <meta property="og:url" content="https://velmora.example" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="HOZN - Real Estate React Next js" />
+        <meta property="og:title" content="VELMORA | Premium Real Estate in India" />
         <meta name='og:image' content='images/assets/ogg.png' />
         {/* For IE  */}
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

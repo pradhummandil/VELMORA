@@ -2,7 +2,7 @@ import DashboardProfile from "@/components/dashboard/profile";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Profile HOZN - Real Estate React Next js",
+   title: "User Profile | VELMORA",
 };
 
 const ProfilePage = () => {

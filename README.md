@@ -1,4 +1,4 @@
-# Hozn - Real Estate 🏡🚀
+# VELMORA - Premium Real Estate in India 🏡🚀
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/AHMAD-JX/Hozn-RealEstate-Fullstack?style=for-the-badge)
 ![GitHub stars](https://img.shields.io/github/stars/AHMAD-JX/Hozn-RealEstate-Fullstack?style=for-the-badge)
@@ -19,15 +19,16 @@
 
 
 ## 🌟 Overview
-**Hozn - Real Estate** is a **Full-Stack** real estate website built with **React, Next.js, TypeScript**, and a **Node.js (Express) backend**. The platform allows users to browse, list, and manage properties seamlessly.
+**VELMORA** is a **Full-Stack** premium real estate platform connecting discerning homeowners, investors, and agents across India's most desirable locations. Built with **React, Next.js, TypeScript**, and a **Node.js (Express) backend**, VELMORA provides an elevated experience for property discovery, listing, and management.
 
 ## 🎯 Features
-- 🔥 **Modern UI/UX** with smooth animations
-- 🏠 **Property listing & management**
-- 🏠 **BUY & Sell Property listing **
-- 🔒 **User authentication** (Signup/Login)
-- 📊 **Admin Dashboard** for managing users & listings
-- 📡 **Backend API** built with Express & Sequelize
+- 🔥 **Elegant UI/UX** designed for premium real estate
+- 🏠 **Curated Property Discovery & Listing Management**
+- 🏢 **Buy, Rent & Invest** in premium properties
+- 🔒 **Secure User Authentication** (Signup/Login)
+- 👥 **Agent & Agency Management Dashboard**
+- 📊 **Advanced Analytics & Property Management Tools**
+- 📡 **Robust Backend API** built with Express & Sequelize
 - 🎨 **Fully Responsive** on all devices
 
   ### Backend:

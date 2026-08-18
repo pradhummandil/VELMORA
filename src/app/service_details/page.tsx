@@ -2,7 +2,7 @@ import ServiceDetails from "@/components/inner-pages/services/service-details";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Service Details HOZN - Real Estate React Next js ",
+   title: "Service Details | VELMORA",
 };
 const index = () => {
    return (

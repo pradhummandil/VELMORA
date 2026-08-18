@@ -2,7 +2,7 @@ import HomeTwo from "@/components/homes/home-two";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-  title: "Home Two HOZN - Real Estate React Next js",
+   title: "VELMORA | Premium Real Estate in India",
 };
 const index = () => {
   return (

@@ -2,7 +2,7 @@ import PricingTwo from "@/components/inner-pages/pricing/pricing-two";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Pricing Two HOZN - Real Estate React Next js ",
+   title: "Pricing Plans | VELMORA",
 };
 const index = () => {
    return (

@@ -2,7 +2,7 @@ import Agent from "@/components/inner-pages/agent/agent";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Agent HOZN - Real Estate React Next js",
+   title: "Real Estate Agents | VELMORA",
 };
 const index = () => {
    return (
