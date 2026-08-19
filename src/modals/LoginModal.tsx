@@ -1,20 +1,82 @@
+"use client"
 import Image from "next/image"
 import Link from "next/link"
 import LoginForm from "@/components/forms/LoginForm"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { toast } from "react-toastify"
+import { API_BASE_URL } from "@/utils/api"
 
 import loginIcon_1 from "@/assets/images/icon/google.png"
 import loginIcon_2 from "@/assets/images/icon/facebook.png"
 import RegisterForm from "@/components/forms/RegisterForm"
 
-const tab_title: string[] = ["Login", "Signup",];
+const tab_title: string[] = ["Login", "Signup"];
 
 const LoginModal = ({ loginModal, setLoginModal }: any) => {
-
+   const router = useRouter();
    const [activeTab, setActiveTab] = useState(0);
 
    const handleTabClick = (index: any) => {
       setActiveTab(index);
+   };
+
+   useEffect(() => {
+      // Load Google Identity Services script if not already present
+      if (typeof window !== "undefined" && !document.getElementById("google-gsi-client")) {
+         const script = document.createElement("script");
+         script.id = "google-gsi-client";
+         script.src = "https://accounts.google.com/gsi/client";
+         script.async = true;
+         script.defer = true;
+         document.head.appendChild(script);
+      }
+   }, []);
+
+   const handleGoogleSignIn = () => {
+      const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
+      if (!clientId) {
+         toast.info("Google Sign-In requires NEXT_PUBLIC_GOOGLE_CLIENT_ID in environment settings.", {
+            position: "top-center",
+         });
+         return;
+      }
+
+      if (typeof window !== "undefined" && (window as any).google?.accounts?.id) {
+         (window as any).google.accounts.id.initialize({
+            client_id: clientId,
+            callback: async (response: any) => {
+               try {
+                  const res = await fetch(`${API_BASE_URL}/api/auth/google`, {
+                     method: "POST",
+                     headers: { "Content-Type": "application/json" },
+                     body: JSON.stringify({ credential: response.credential }),
+                  });
+                  const data = await res.json();
+                  if (res.ok && data.token) {
+                     localStorage.setItem("token", data.token);
+                     toast.success("Google Sign-In successful!", { position: "top-center" });
+                     const closeBtn = document.querySelector("#loginModal .btn-close") as HTMLElement;
+                     if (closeBtn) closeBtn.click();
+                     router.push("/dashboard/dashboard-index");
+                  } else {
+                     toast.error(data.error || "Google Sign-In failed");
+                  }
+               } catch (e) {
+                  toast.error("Unable to complete Google authentication");
+               }
+            },
+         });
+
+         (window as any).google.accounts.id.prompt();
+      } else {
+         toast.error("Google authentication service is initializing. Please try again in a moment.");
+      }
+   };
+
+   const handleFacebookSignIn = () => {
+      toast.info("Facebook authentication is in preview mode. Please use Email or Google.", { position: "top-center" });
    };
 
    return (
@@ -57,16 +119,24 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                         </div>
                         <div className="row">
                            <div className="col-sm-6">
-                              <Link href="#" className="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10">
+                              <button 
+                                 type="button" 
+                                 onClick={handleGoogleSignIn}
+                                 className="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10 border-0 bg-transparent"
+                              >
                                  <Image src={loginIcon_1} alt="" />
-                                 <span className="ps-3">Signup with Google</span>
-                              </Link>
+                                 <span className="ps-3">Continue with Google</span>
+                              </button>
                            </div>
                            <div className="col-sm-6">
-                              <Link href="#" className="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10">
+                              <button 
+                                 type="button"
+                                 onClick={handleFacebookSignIn}
+                                 className="social-use-btn d-flex align-items-center justify-content-center tran3s w-100 mt-10 border-0 bg-transparent"
+                              >
                                  <Image src={loginIcon_2} alt="" />
-                                 <span className="ps-3">Signup with Facebook</span>
-                              </Link>
+                                 <span className="ps-3">Continue with Facebook</span>
+                              </button>
                            </div>
                         </div>
                      </div>
@@ -79,3 +149,4 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
 }
 
 export default LoginModal
+

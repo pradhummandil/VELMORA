@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.signup = void 0;
+exports.googleLogin = exports.login = exports.signup = void 0;
 const User_1 = require("../models/User");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -97,3 +97,55 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.login = login;
+// 📌 3️⃣ Google OAuth Sign-In / Sign-Up
+const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { credential, email: directEmail, name: directName } = req.body;
+        let email = directEmail;
+        let name = directName;
+        // If Google ID Token / credential is provided, decode payload
+        if (credential) {
+            try {
+                const decoded = jsonwebtoken_1.default.decode(credential);
+                if (decoded && decoded.email) {
+                    email = decoded.email;
+                    name = decoded.name || decoded.given_name || email.split("@")[0];
+                }
+            }
+            catch (err) {
+                console.error("Error decoding Google credential:", err);
+            }
+        }
+        if (!email) {
+            res.status(400).json({ error: "Valid Google account email is required" });
+            return;
+        }
+        // Find or create user
+        let user = yield User_1.User.findOne({ where: { email } });
+        if (!user) {
+            const randomPassword = yield bcryptjs_1.default.hash(Math.random().toString(36) + Date.now(), 10);
+            user = yield User_1.User.create({
+                name: name || email.split("@")[0],
+                email,
+                password: randomPassword,
+                termsAccepted: true,
+            });
+        }
+        // Issue VELMORA JWT
+        const token = jsonwebtoken_1.default.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
+        res.json({
+            message: "Google login successful!",
+            token,
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+            },
+        });
+    }
+    catch (error) {
+        console.error("Google Auth Error:", error);
+        res.status(500).json({ error: "Error authenticating with Google" });
+    }
+});
+exports.googleLogin = googleLogin;
