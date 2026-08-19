@@ -10,6 +10,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation"; 
 import { API_BASE_URL } from "@/utils/api";
 
+import { useAuth } from "@/context/AuthContext";
+
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 
 interface FormData {
@@ -21,6 +23,7 @@ interface FormData {
 
 const RegisterForm = () => {
   const router = useRouter(); 
+  const { login } = useAuth();
 
   const schema = yup
   .object({
@@ -56,12 +59,26 @@ const RegisterForm = () => {
       const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, data);
 
       if (response.status === 201) {
-        toast.success("Registration successful! Redirecting to login...", {
+        try {
+          const loginRes = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+            email: data.email,
+            password: data.password,
+          });
+          if (loginRes.data && loginRes.data.token) {
+            await login(loginRes.data.token, loginRes.data.user);
+          }
+        } catch (loginErr) {
+          console.warn("Auto-login error post-signup:", loginErr);
+        }
+
+        toast.success("Account created successfully! Welcome to VELMORA.", {
           position: "top-center",
         });
 
         reset();
-        setTimeout(() => router.push("/dashboard/dashboard-index"), 2000); 
+        const closeBtn = document.querySelector("#loginModal .btn-close") as HTMLElement;
+        if (closeBtn) closeBtn.click();
+        router.push("/dashboard/dashboard-index"); 
       }
     } catch (error: any) {
       toast.error(error.response?.data?.error || "Error during registration", {
@@ -71,6 +88,7 @@ const RegisterForm = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

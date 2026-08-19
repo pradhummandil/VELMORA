@@ -9,6 +9,7 @@ import icon_2 from "@/assets/images/dashboard/icon/icon_13.svg"
 import icon_3 from "@/assets/images/dashboard/icon/icon_14.svg"
 import icon_4 from "@/assets/images/dashboard/icon/icon_15.svg"
 import DashboardChart from "./DashboardChart"
+import { useAuth } from "@/context/AuthContext"
 
 interface DataType {
    id: number;
@@ -22,32 +23,32 @@ const dashboard_card_data: DataType[] = [
    {
       id: 1,
       icon: icon_1,
-      title: "All Properties",
-      value: "1.7k+",
+      title: "My Properties",
+      value: "0",
       class_name: "skew-none",
    },
    {
       id: 2,
       icon: icon_2,
-      title: "Total Pending",
-      value: "03",
+      title: "Active Inquiries",
+      value: "0",
    },
    {
       id: 3,
       icon: icon_3,
-      title: "Total Views",
-      value: "4.8k",
+      title: "Portfolio Views",
+      value: "0",
    },
    {
       id: 4,
       icon: icon_4,
-      title: "Total Favourites",
-      value: "07",
+      title: "Saved Favourites",
+      value: "0",
    },
 ]
 
 const DashboardBody = () => {
-
+   const { user } = useAuth();
    const selectHandler = (e: any) => { };
 
    return (
@@ -55,7 +56,13 @@ const DashboardBody = () => {
          <div className="position-relative">
             <DashboardHeaderTwo title="Dashboard" />
 
-            <h2 className="main-title d-block d-lg-none">Dashboard</h2>
+            <div className="d-flex align-items-center justify-content-between mb-25 mt-10">
+               <div>
+                  <h3 className="main-title m0">Welcome, {user?.name || "Member"}</h3>
+                  <p className="fs-15 text-muted m0 pt-1">Manage your VELMORA portfolio, inquiries, and saved luxury residences.</p>
+               </div>
+            </div>
+
             <div className="bg-white border-20">
                <div className="row">
                   {dashboard_card_data.map((item) => (

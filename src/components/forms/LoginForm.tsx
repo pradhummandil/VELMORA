@@ -10,6 +10,8 @@ import Image from "next/image";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 import { API_BASE_URL } from "@/utils/api";
+import { useAuth } from "@/context/AuthContext";
+
 
 interface FormData {
    email: string;
@@ -18,6 +20,7 @@ interface FormData {
 
 const LoginForm = () => {
    const router = useRouter(); 
+   const { login } = useAuth();
    const schema = yup
       .object({
          email: yup.string().required().email().label("Email"),
@@ -38,11 +41,11 @@ const LoginForm = () => {
          const result = await response.json();
 
          if (response.ok) {
-            if (result.token && typeof window !== "undefined") {
-               localStorage.setItem("token", result.token);
-            }
+            await login(result.token, result.user);
             toast.success("Login successful!", { position: "top-center" });
             reset();
+            const closeBtn = document.querySelector("#loginModal .btn-close") as HTMLElement;
+            if (closeBtn) closeBtn.click();
             router.push("/dashboard/dashboard-index"); 
          } else {
             toast.error(result.error || result.message || "Invalid email or password");
@@ -51,6 +54,7 @@ const LoginForm = () => {
          toast.error("Unable to connect to authentication service. Please try again.");
       }
    };
+
 
    const [isPasswordVisible, setPasswordVisibility] = useState(false);
    const togglePasswordVisibility = () => setPasswordVisibility(!isPasswordVisible);

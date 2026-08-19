@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { API_BASE_URL } from "@/utils/api"
 
+import { useAuth } from "@/context/AuthContext"
+
 import loginIcon_1 from "@/assets/images/icon/google.png"
 import loginIcon_2 from "@/assets/images/icon/facebook.png"
 import RegisterForm from "@/components/forms/RegisterForm"
@@ -15,6 +17,7 @@ const tab_title: string[] = ["Login", "Signup"];
 
 const LoginModal = ({ loginModal, setLoginModal }: any) => {
    const router = useRouter();
+   const { login } = useAuth();
    const [activeTab, setActiveTab] = useState(0);
 
    const handleTabClick = (index: any) => {
@@ -68,7 +71,7 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                            });
                            const data = await res.json();
                            if (res.ok && data.token) {
-                              localStorage.setItem("token", data.token);
+                              await login(data.token, data.user);
                               toast.success("Google Sign-In successful!", { position: "top-center" });
                               const closeBtn = document.querySelector("#loginModal .btn-close") as HTMLElement;
                               if (closeBtn) closeBtn.click();
@@ -107,7 +110,7 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                   });
                   const data = await res.json();
                   if (res.ok && data.token) {
-                     localStorage.setItem("token", data.token);
+                     await login(data.token, data.user);
                      toast.success("Google Sign-In successful!", { position: "top-center" });
                      const closeBtn = document.querySelector("#loginModal .btn-close") as HTMLElement;
                      if (closeBtn) closeBtn.click();
@@ -125,6 +128,7 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
          toast.error("Google authentication service is initializing. Please try again in a moment.");
       }
    };
+
 
    const handleFacebookSignIn = () => {
       toast.info("Facebook authentication is in preview mode. Please use Email or Google.", { position: "top-center" });

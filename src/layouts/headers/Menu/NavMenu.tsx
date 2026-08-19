@@ -6,9 +6,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 import logo from "@/assets/images/logo/logo_01.svg";
+import { useAuth } from "@/context/AuthContext";
 
 const NavMenu = () => {
     const pathname = usePathname();
+    const { isAuthenticated } = useAuth();
     const [navTitle, setNavTitle] = useState("");
 
     const openMobileMenu = (menu: any) => {
@@ -29,10 +31,17 @@ const NavMenu = () => {
                 </div>
             </li>
             <li className="nav-item dashboard-menu">
-                <Link className="nav-link" href="/dashboard/dashboard-index" target="_blank">
-                    Dashboard
-                </Link>
+                {isAuthenticated ? (
+                    <Link className="nav-link" href="/dashboard/dashboard-index">
+                        Dashboard
+                    </Link>
+                ) : (
+                    <Link className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        Dashboard
+                    </Link>
+                )}
             </li>
+
             {menu_data.map((menu: any) => (
                 <li
                     key={menu.id}

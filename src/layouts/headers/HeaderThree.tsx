@@ -8,9 +8,11 @@ import LoginModal from "@/modals/LoginModal"
 import Offcanvas from "./Menu/Offcanvas"
 
 import logo_1 from "@/assets/images/logo/logo_06.svg";
+import { useAuth } from "@/context/AuthContext";
 
 const HeaderThree = () => {
    const { sticky } = UseSticky();
+   const { isAuthenticated, user } = useAuth();
    const [offCanvas, setOffCanvas] = useState<boolean>(false);
 
    return (
@@ -28,14 +30,26 @@ const HeaderThree = () => {
                      <div className="right-widget ms-auto me-3 me-lg-0 order-lg-4">
                         <ul className="d-flex align-items-center style-none">
                            <li className="d-flex align-items-center login-btn-one">
-                              <i className="fa-regular fa-lock"></i><Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="fw-500 tran3s">Login <span className="d-none d-sm-inline-block">/ Sign up</span></Link>
+                              <i className={`fa-regular ${isAuthenticated ? "fa-user" : "fa-lock"}`}></i>
+                              {isAuthenticated ? (
+                                 <Link href="/dashboard/dashboard-index" className="fw-500 tran3s">
+                                    {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
+                                 </Link>
+                              ) : (
+                                 <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="fw-500 tran3s">
+                                    Login <span className="d-none d-sm-inline-block">/ Sign up</span>
+                                 </Link>
+                              )}
                            </li>
                            <li className="d-none d-md-inline-block ms-3 ms-xl-4 me-xl-4">
-                              <Link href="/dashboard/add-property" className="btn-five md rounded-0" target="_blank"><span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i></Link>
+                              <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-five md rounded-0">
+                                 <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
+                              </Link>
                            </li>
-                           <li className="d-none d-xl-block"><button onClick={() => setOffCanvas(true)} style={{ cursor: "pointer" }} className="sidenavbtn rounded-circle tran3s" type="button"><i className="fa-sharp fa-light fa-bars-filter"></i></button></li>
+                           <li className="d-none d-xl-block"><button onClick={() => setOffCanvas(true)} style={{ cursor: "pointer" }} className="sidenavbtn rounded-circle tran3s" type="button" aria-label="Open Menu"><i className="fa-sharp fa-light fa-bars-filter"></i></button></li>
                         </ul>
                      </div>
+
 
                      <div className="order-lg-2 d-none d-xxl-block">
                         <p className="m0 email-text ps-5 pe-5">Our Email <Link href="mailto:hello@velmora.example" className="tran3s fw-500 ms-2">hello@velmora.example</Link></p>

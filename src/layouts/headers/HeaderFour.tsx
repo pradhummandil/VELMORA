@@ -8,10 +8,11 @@ import LoginModal from "@/modals/LoginModal"
 import HeaderSearchbar from "./Menu/HeaderSearchbar"
 
 import logo_1 from "@/assets/images/logo/logo_06.svg";
+import { useAuth } from "@/context/AuthContext";
 
 const HeaderFour = () => {
-
    const { sticky } = UseSticky();
+   const { isAuthenticated } = useAuth();
    const [isSearch, setIsSearch] = useState<boolean>(false);
    
    return (
@@ -29,16 +30,23 @@ const HeaderFour = () => {
                      <div className="right-widget ms-auto me-3 me-lg-0 order-lg-3">
                         <ul className="d-flex align-items-center style-none">
                            <li className="d-none d-md-inline-block me-4">
-                              <Link href="/dashboard/add-property" className="btn-ten rounded-0" target="_blank"><span>List Property</span> <i className="bi bi-arrow-up-right"></i></Link>
+                              <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-ten rounded-0">
+                                 <span>List Property</span> <i className="bi bi-arrow-up-right"></i>
+                              </Link>
                            </li>
                            <li>
-                              <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="login-btn-two rounded-circle tran3s d-flex align-items-center justify-content-center"><i className="fa-regular fa-lock"></i></Link>
+                              {isAuthenticated ? (
+                                 <Link href="/dashboard/dashboard-index" className="login-btn-two rounded-circle tran3s d-flex align-items-center justify-content-center" title="Dashboard"><i className="fa-regular fa-user"></i></Link>
+                              ) : (
+                                 <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="login-btn-two rounded-circle tran3s d-flex align-items-center justify-content-center" title="Login"><i className="fa-regular fa-lock"></i></Link>
+                              )}
                            </li>
                            <li>
                               <a onClick={() => setIsSearch(true)} style={{ cursor: "pointer" }} className="search-btn-one rounded-circle tran3s d-flex align-items-center justify-content-center"><i className="bi bi-search"></i></a>
                            </li>
                         </ul>
                      </div>
+
 
                      <nav className="navbar navbar-expand-lg p0 ms-lg-5 order-lg-2">
                         <button className="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"

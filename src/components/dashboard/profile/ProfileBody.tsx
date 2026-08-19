@@ -1,53 +1,46 @@
 "use client"
 import { useState, useEffect } from "react";
 import DashboardHeaderTwo from "@/layouts/headers/dashboard/DashboardHeaderTwo";
-import Image from "next/image";
 import UserAvatarSetting from "./UserAvatarSetting";
 import AddressAndLocation from "./AddressAndLocation";
 import Link from "next/link";
 import SocialMediaLink from "./SocialMediaLink";
 import { API_BASE_URL } from "@/utils/api";
+import { useAuth } from "@/context/AuthContext";
+import { toast } from "react-toastify";
 
-import avatar_1 from "@/assets/images/dashboard/avatar_02.jpg";
+const getInitials = (name?: string) => {
+   if (!name) return "V";
+   const parts = name.trim().split(/\s+/);
+   if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+   }
+   return name.slice(0, 2).toUpperCase();
+};
 
 const ProfileBody = () => {
+   const { user, refreshProfile } = useAuth();
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
    const [firstName, setFirstName] = useState("");
    const [lastName, setLastName] = useState("");
    const [phoneNumber, setPhoneNumber] = useState("");
    const [about, setAbout] = useState("");
+   const [saving, setSaving] = useState(false);
 
    useEffect(() => {
-      const fetchUserData = async () => {
-         try {
-            const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-            const res = await fetch(`${API_BASE_URL}/api/profile`, {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-               },
-            });
-
-            if (!res.ok) {
-               throw new Error("Failed to fetch user data");
-            }
-
-            const userData = await res.json();
-            setName(userData.name);
-            setEmail(userData.email);
-            setFirstName(userData.firstName || "");
-            setLastName(userData.lastName || "");
-            setPhoneNumber(userData.phoneNumber || "");
-            setAbout(userData.about || "");
-         } catch (error) {
-            console.error("Error fetching user data:", error);
-         }
-      };
-
-      fetchUserData();
-   }, []);
+      if (user) {
+         setName(user.name || "");
+         setEmail(user.email || "");
+         setFirstName(user.firstName || "");
+         setLastName(user.lastName || "");
+         setPhoneNumber(user.phoneNumber || "");
+         setAbout(user.about || "");
+      }
+   }, [user]);
 
    const handleSave = async () => {
+      setSaving(true);
       try {
          const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
          const res = await fetch(`${API_BASE_URL}/api/profile`, {
@@ -69,9 +62,12 @@ const ProfileBody = () => {
             throw new Error(errorData.error || "Failed to update profile");
          }
 
-         alert("Profile updated successfully!");
-      } catch (error) {
-         console.error("Error updating profile:", error);
+         await refreshProfile();
+         toast.success("Profile updated successfully!", { position: "top-center" });
+      } catch (error: any) {
+         toast.error(error.message || "Error updating profile");
+      } finally {
+         setSaving(false);
       }
    };
 
@@ -83,12 +79,16 @@ const ProfileBody = () => {
 
             <div className="bg-white card-box border-20">
                <div className="user-avatar-setting d-flex align-items-center mb-30">
-                  <Image src={avatar_1} alt="" className="lazy-img user-img" />
-                  <div className="upload-btn position-relative tran3s ms-4 me-3">
-                     Upload new photo
-                     <input type="file" id="uploadImg" name="uploadImg" placeholder="" />
+                  <div 
+                     className="rounded-circle d-flex align-items-center justify-content-center fw-600 user-img"
+                     style={{ width: "70px", height: "70px", backgroundColor: "#0D1A1C", color: "#D4AF37", fontSize: "22px", letterSpacing: "1px" }}
+                  >
+                     {getInitials(name || user?.name)}
                   </div>
-                  <button className="delete-btn tran3s">Delete</button>
+                  <div className="ms-4">
+                     <h5 className="mb-5 color-dark">{name || user?.name}</h5>
+                     <p className="fs-14 text-muted m0">{email || user?.email}</p>
+                  </div>
                </div>
 
                <UserAvatarSetting
@@ -104,8 +104,10 @@ const ProfileBody = () => {
             <AddressAndLocation />
 
             <div className="button-group d-inline-flex align-items-center mt-30">
-               <button className="dash-btn-two tran3s me-3" onClick={handleSave}>Save</button>
-               <Link href="#" className="dash-cancel-btn tran3s">Cancel</Link>
+               <button className="dash-btn-two tran3s me-3" onClick={handleSave} disabled={saving}>
+                  {saving ? "Saving..." : "Save"}
+               </button>
+               <Link href="/dashboard/dashboard-index" className="dash-cancel-btn tran3s">Cancel</Link>
             </div>
          </div>
       </div>
@@ -113,3 +115,4 @@ const ProfileBody = () => {
 };
 
 export default ProfileBody;
+

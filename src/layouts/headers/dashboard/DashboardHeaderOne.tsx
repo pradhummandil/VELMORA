@@ -25,9 +25,11 @@ import dashboardIcon_9 from "@/assets/images/dashboard/icon/icon_9.svg";
 import dashboardIconActive_10 from "@/assets/images/dashboard/icon/icon_10_active.svg";
 import dashboardIcon_10 from "@/assets/images/dashboard/icon/icon_10.svg";
 import dashboardIcon_11 from "@/assets/images/dashboard/icon/icon_41.svg";
+import { useAuth } from "@/context/AuthContext";
 
 const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
    const pathname = usePathname();
+   const { logout, user } = useAuth();
 
    return (
       <aside className={`dash-aside-navbar ${isActive ? "show" : ""}`}>
@@ -86,19 +88,24 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
                   </Link></li>
                </ul>
             </nav>
-            <div className="profile-complete-status bottom-line pb-35 plr">
-               <div className="progress-value fw-500">82%</div>
-               <div className="progress-line position-relative">
-                  <div className="inner-line" style={{ width: "80%" }}></div>
+            {user && (
+               <div className="profile-complete-status bottom-line pb-25 pt-15 plr">
+                  <p className="fs-13 text-muted mb-5">Logged in as</p>
+                  <div className="fw-600 color-dark text-truncate">{user.name}</div>
+                  <div className="fs-12 text-muted text-truncate">{user.email}</div>
                </div>
-               <p>Profile Complete</p>
-            </div>
+            )}
 
-            <div className="plr">
-               <Link href="/" className="d-flex w-100 align-items-center logout-btn" aria-label="Logout">
+            <div className="plr pt-20">
+               <button 
+                  type="button" 
+                  onClick={logout} 
+                  className="d-flex w-100 align-items-center logout-btn border-0 bg-transparent" 
+                  aria-label="Logout"
+               >
                   <div className="icon tran3s d-flex align-items-center justify-content-center rounded-circle"><Image src={dashboardIcon_11} alt="" /></div>
                   <span>Logout</span>
-               </Link>
+               </button>
             </div>
          </div>
       </aside>
@@ -106,3 +113,4 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
 }
 
 export default DashboardHeaderOne;
+

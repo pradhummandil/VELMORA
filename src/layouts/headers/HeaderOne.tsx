@@ -7,9 +7,11 @@ import UseSticky from "@/hooks/UseSticky"
 import LoginModal from "@/modals/LoginModal"
 
 import logo_1 from "@/assets/images/logo/logo_01.svg";
+import { useAuth } from "@/context/AuthContext";
 
 const HeaderOne = ({ style }: any) => {
    const { sticky } = UseSticky();
+   const { isAuthenticated, user } = useAuth();
 
    return (
       <>
@@ -28,13 +30,22 @@ const HeaderOne = ({ style }: any) => {
                      <div className="right-widget ms-auto ms-lg-0 me-3 me-lg-0 order-lg-3">
                         <ul className="d-flex align-items-center style-none">
                            <li>
-                              <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="btn-one"><i className="fa-regular fa-lock"></i> <span>Login</span></Link>
+                              {isAuthenticated ? (
+                                 <Link href="/dashboard/dashboard-index" className="btn-one">
+                                    <i className="fa-regular fa-user"></i> <span>{user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}</span>
+                                 </Link>
+                              ) : (
+                                 <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="btn-one">
+                                    <i className="fa-regular fa-lock"></i> <span>Login</span>
+                                 </Link>
+                              )}
                            </li>
                            <li className="d-none d-md-inline-block ms-3">
-                              <Link href="/dashboard/add-property" className="btn-two" target="_blank"><span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i></Link>
+                              <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-two"><span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i></Link>
                            </li>
                         </ul>
                      </div>
+
                      <nav className="navbar navbar-expand-lg p0 order-lg-2">
                         <button className="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"

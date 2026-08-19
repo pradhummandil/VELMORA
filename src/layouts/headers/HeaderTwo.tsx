@@ -11,9 +11,11 @@ import HeaderSearchbar from "./Menu/HeaderSearchbar"
 import logo_1 from "@/assets/images/logo/logo_02.svg";
 import logo_2 from "@/assets/images/logo/logo_04.svg";
 import logo_3 from "@/assets/images/logo/logo_06.svg";
+import { useAuth } from "@/context/AuthContext";
 
 const HeaderTwo = ({ style_1, style_2 }: any) => {
    const { sticky } = UseSticky();
+   const { isAuthenticated, user } = useAuth();
    const [offCanvas, setOffCanvas] = useState<boolean>(false);
    const [isSearch, setIsSearch] = useState<boolean>(false);
 
@@ -31,13 +33,21 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
 
                      <div className="right-widget ms-auto me-3 me-lg-0 order-lg-3">
                         <ul className="d-flex align-items-center style-none">
-                           {!style_2 ? (<><li className="d-flex align-items-center login-btn-one">
-                              <i className="fa-regular fa-lock"></i>
-                              <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="fw-500 tran3s">
-                                 Login <span className="d-none d-sm-inline-block"> {""} / Sign up</span></Link>
-                           </li>
+                           {!style_2 ? (<>
+                              <li className="d-flex align-items-center login-btn-one">
+                                 <i className={`fa-regular ${isAuthenticated ? "fa-user" : "fa-lock"}`}></i>
+                                 {isAuthenticated ? (
+                                    <Link href="/dashboard/dashboard-index" className="fw-500 tran3s">
+                                       {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
+                                    </Link>
+                                 ) : (
+                                    <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="fw-500 tran3s">
+                                       Login <span className="d-none d-sm-inline-block"> {""} / Sign up</span>
+                                    </Link>
+                                 )}
+                              </li>
                               <li className="d-none d-md-inline-block ms-3 ms-xl-4 me-xl-4">
-                                 <Link href="dashboard/add-property" className={style_1 ? "btn-ten" : "btn-two rounded-0"} target="_blank">
+                                 <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className={style_1 ? "btn-ten" : "btn-two rounded-0"}>
                                     <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
                                  </Link>
                               </li>
@@ -48,10 +58,14 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                               </li></>) : (<>
                                  <li className="d-none d-md-flex align-items-center login-btn-one me-4 me-xxl-5">
                                     <i className="fa-regular fa-phone-volume"></i>
-                                    <Link href="tel:+919000000000" className="tran3s">+91 90000 00000</Link>
+                                    <Link href="tel:+912249876543" className="tran3s">+91 22 4987 6543</Link>
                                  </li>
                                  <li>
-                                    <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="login-btn-two rounded-circle tran3s d-flex align-items-center justify-content-center"><i className="fa-regular fa-lock"></i></Link>
+                                    {isAuthenticated ? (
+                                       <Link href="/dashboard/dashboard-index" className="login-btn-two rounded-circle tran3s d-flex align-items-center justify-content-center" title="Dashboard"><i className="fa-regular fa-user"></i></Link>
+                                    ) : (
+                                       <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="login-btn-two rounded-circle tran3s d-flex align-items-center justify-content-center" title="Login"><i className="fa-regular fa-lock"></i></Link>
+                                    )}
                                  </li>
                                  <li>
                                     <a onClick={() => setIsSearch(true)} style={{ cursor: "pointer" }} className="search-btn-one rounded-circle tran3s d-flex align-items-center justify-content-center"><i className="bi bi-search"></i></a>
@@ -59,6 +73,7 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                               </>)}
                         </ul>
                      </div>
+
 
                      <nav className="navbar navbar-expand-lg p0 ms-lg-5 order-lg-2">
                         <button className="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
