@@ -9,41 +9,46 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation"; 
 import { API_BASE_URL } from "@/utils/api";
-
-import { useAuth } from "@/context/AuthContext";
-
+import { useAuth, UserRole } from "@/context/AuthContext";
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 
 interface FormData {
   name: string;
   email: string;
   password: string;
+  role: UserRole;
   termsAccepted: boolean;
 }
 
 const RegisterForm = () => {
   const router = useRouter(); 
   const { login } = useAuth();
+  const [selectedRole, setSelectedRole] = useState<UserRole>("user");
 
   const schema = yup
-  .object({
-    name: yup.string().required("Name is required"),
-    email: yup.string().required("Email is required").email("Invalid email"),
-    password: yup.string().required("Password is required"),
-    termsAccepted: yup
-      .boolean()
-      .oneOf([true], "You must accept the terms and conditions") 
-      .required(),
-  })
-  .required();
+    .object({
+      name: yup.string().required("Name is required"),
+      email: yup.string().required("Email is required").email("Invalid email"),
+      password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+      role: yup.string().oneOf(["user", "agent", "property_owner"] as const).required(),
+      termsAccepted: yup
+        .boolean()
+        .oneOf([true], "You must accept the terms and conditions") 
+        .required(),
+    })
+    .required();
 
   const {
     register,
     handleSubmit,
+    setValue,
     reset,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as any,
+    defaultValues: {
+      role: "user",
+    },
   });
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
@@ -53,10 +58,23 @@ const RegisterForm = () => {
     setPasswordVisibility(!isPasswordVisible);
   };
 
+  const handleRoleSelect = (role: UserRole) => {
+    setSelectedRole(role);
+    setValue("role", role);
+  };
+
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, data);
+      const payload = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role: selectedRole,
+        termsAccepted: data.termsAccepted,
+      };
+
+      const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, payload);
 
       if (response.status === 201) {
         try {
@@ -89,20 +107,68 @@ const RegisterForm = () => {
     }
   };
 
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="row">
+        {/* Role Selection */}
+        <div className="col-12 mb-25">
+          <label className="fw-500 fs-15 color-dark mb-2 d-block">What are you joining VELMORA as?</label>
+          <div className="row g-2">
+            <div className="col-4">
+              <button
+                type="button"
+                onClick={() => handleRoleSelect("user")}
+                className={`w-100 p-2 text-center rounded-3 border tran3s d-flex flex-column align-items-center justify-content-center ${
+                  selectedRole === "user" ? "bg-dark text-white border-dark shadow-sm" : "bg-light text-dark border-light"
+                }`}
+                style={{ minHeight: "75px" }}
+              >
+                <i className="fa-regular fa-compass fs-16 mb-1"></i>
+                <span className="fw-600 fs-12 text-uppercase">Buyer / User</span>
+                <span className="fs-10 opacity-75 d-none d-sm-block mt-1">Discover homes</span>
+              </button>
+            </div>
+            <div className="col-4">
+              <button
+                type="button"
+                onClick={() => handleRoleSelect("agent")}
+                className={`w-100 p-2 text-center rounded-3 border tran3s d-flex flex-column align-items-center justify-content-center ${
+                  selectedRole === "agent" ? "bg-dark text-white border-dark shadow-sm" : "bg-light text-dark border-light"
+                }`}
+                style={{ minHeight: "75px" }}
+              >
+                <i className="fa-regular fa-briefcase fs-16 mb-1"></i>
+                <span className="fw-600 fs-12 text-uppercase">Agent</span>
+                <span className="fs-10 opacity-75 d-none d-sm-block mt-1">Manage listings</span>
+              </button>
+            </div>
+            <div className="col-4">
+              <button
+                type="button"
+                onClick={() => handleRoleSelect("property_owner")}
+                className={`w-100 p-2 text-center rounded-3 border tran3s d-flex flex-column align-items-center justify-content-center ${
+                  selectedRole === "property_owner" ? "bg-dark text-white border-dark shadow-sm" : "bg-light text-dark border-light"
+                }`}
+                style={{ minHeight: "75px" }}
+              >
+                <i className="fa-regular fa-house-chimney fs-16 mb-1"></i>
+                <span className="fw-600 fs-12 text-uppercase">Owner</span>
+                <span className="fs-10 opacity-75 d-none d-sm-block mt-1">List & manage</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="col-12">
           <div className="input-group-meta position-relative mb-25">
-            <label>Name*</label>
+            <label>Full Name*</label>
             <input type="text" {...register("name")} placeholder="Your Name" />
             <p className="form_error">{errors.name?.message}</p>
           </div>
         </div>
         <div className="col-12">
           <div className="input-group-meta position-relative mb-25">
-            <label>Email*</label>
+            <label>Email Address*</label>
             <input type="email" {...register("email")} placeholder="Youremail@gmail.com" />
             <p className="form_error">{errors.email?.message}</p>
           </div>
@@ -129,8 +195,8 @@ const RegisterForm = () => {
             <div>
               <input type="checkbox" id="termsAccepted" {...register("termsAccepted")} />
               <label htmlFor="termsAccepted">
-                By hitting the &quot;Register&quot; button, you agree to the{" "}
-                <Link href="#">Terms conditions</Link> & <Link href="#">Privacy Policy</Link>
+                By hitting &quot;Sign Up&quot;, you agree to the{" "}
+                <Link href="#">Terms & Conditions</Link> & <Link href="#">Privacy Policy</Link>
               </label>
               <p className="form_error">{errors.termsAccepted?.message}</p>
             </div>
@@ -138,7 +204,7 @@ const RegisterForm = () => {
         </div>
         <div className="col-12">
           <button type="submit" className="btn-two w-100 text-uppercase d-block mt-20" disabled={loading}>
-            {loading ? "Signing up..." : "SIGN UP"}
+            {loading ? "Creating Account..." : "SIGN UP"}
           </button>
         </div>
       </div>

@@ -14,10 +14,10 @@ const getJwtSecret = (): string => {
   return secret;
 };
 
-//📌 1️⃣ NEW USER SIGNUP 
+// 📌 1️⃣ NEW USER SIGNUP 
 export const signup = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { name, email, password, termsAccepted } = req.body;
+    const { name, email, password, termsAccepted, role } = req.body;
 
     if (!name || !email || !password) {
       res.status(400).json({ error: "Name, email and password are required" });
@@ -29,6 +29,10 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
+    // Role validation
+    const validRoles = ["user", "agent", "property_owner"];
+    const assignedRole = role && validRoles.includes(role) ? role : "user";
+
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       res.status(400).json({ error: "User already exists" });
@@ -37,14 +41,27 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({ name, email, password: hashedPassword, termsAccepted });
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      termsAccepted,
+      role: assignedRole,
+    });
+
+    // Issue JWT token on signup as well
+    const token = jwt.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
 
     res.status(201).json({ 
       message: "User created successfully!", 
+      token,
       user: {
         id: user.id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        role: user.role,
+        firstName: user.firstName,
+        lastName: user.lastName,
       }
     });
   } catch (error) {
@@ -54,53 +71,61 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 };
   
 
-// 📌 2️⃣ Login 
+// 📌 2️⃣ LOGIN 
 export const login = async (req: Request, res: Response): Promise<void> => {
-    try {
-      const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-      if (!email || !password) {
-        res.status(400).json({ error: "Email and password are required" });
-        return;
-      }
-  
-      // Search user
-      const user = await User.findOne({ where: { email } });
-      if (!user) {
-        res.status(401).json({ error: "Invalid credentials" });
-        return;
-      }
-  
-      // Check password
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-      if (!isPasswordValid) {
-        res.status(401).json({ error: "Invalid credentials" });
-        return;
-      }
-  
-      // ✅ Create JWT
-      const token = jwt.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
-  
-      res.json({ 
-        message: "Login successful!", 
-        token,
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email
-        }
-      });
-    } catch (error) {
-      console.error("Login Error:", error);
-      res.status(500).json({ error: "Error logging in" });
+    if (!email || !password) {
+      res.status(400).json({ error: "Email and password are required" });
+      return;
     }
-  };
+
+    // Search user
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      res.status(401).json({ error: "Invalid credentials" });
+      return;
+    }
+
+    // Check password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      res.status(401).json({ error: "Invalid credentials" });
+      return;
+    }
+
+    // Ensure user has a valid role (default to "user" if legacy user has null)
+    const userRole = user.role || "user";
+
+    // ✅ Create JWT
+    const token = jwt.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
+
+    res.json({ 
+      message: "Login successful!", 
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: userRole,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+        about: user.about,
+      }
+    });
+  } catch (error) {
+    console.error("Login Error:", error);
+    res.status(500).json({ error: "Error logging in" });
+  }
+};
   
 
-// 📌 3️⃣ Google OAuth Sign-In / Sign-Up
+// 📌 3️⃣ GOOGLE OAUTH SIGN-IN / SIGN-UP
 export const googleLogin = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { credential, email: directEmail, name: directName } = req.body;
+    const { credential, email: directEmail, name: directName, role } = req.body;
 
     let email = directEmail;
     let name = directName;
@@ -123,6 +148,9 @@ export const googleLogin = async (req: Request, res: Response): Promise<void> =>
       return;
     }
 
+    const validRoles = ["user", "agent", "property_owner"];
+    const assignedRole = role && validRoles.includes(role) ? role : "user";
+
     // Find or create user
     let user = await User.findOne({ where: { email } });
     if (!user) {
@@ -132,8 +160,11 @@ export const googleLogin = async (req: Request, res: Response): Promise<void> =>
         email,
         password: randomPassword,
         termsAccepted: true,
+        role: assignedRole,
       });
     }
+
+    const userRole = user.role || "user";
 
     // Issue VELMORA JWT
     const token = jwt.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
@@ -145,6 +176,11 @@ export const googleLogin = async (req: Request, res: Response): Promise<void> =>
         id: user.id,
         name: user.name,
         email: user.email,
+        role: userRole,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+        about: user.about,
       },
     });
   } catch (error) {
@@ -152,4 +188,3 @@ export const googleLogin = async (req: Request, res: Response): Promise<void> =>
     res.status(500).json({ error: "Error authenticating with Google" });
   }
 };
-

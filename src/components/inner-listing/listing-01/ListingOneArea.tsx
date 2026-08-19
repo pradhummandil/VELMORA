@@ -1,6 +1,8 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useRef } from "react"
+import { useSearchParams } from "next/navigation"
 import ReactPaginate from "react-paginate"
 import NiceSelect from "@/ui/NiceSelect"
 import UseShortedProperty from "@/hooks/useShortedProperty"
@@ -27,6 +29,8 @@ const ListingOneArea = () => {
 
    const itemsPerPage = 8;
    const page = "listing_1";
+   const searchParams = useSearchParams();
+   const didInit = useRef(false);
 
    const {
       itemOffset,
@@ -47,6 +51,19 @@ const ListingOneArea = () => {
       handleStatusChange,
       handleTypeChange,
    } = UseShortedProperty({ itemsPerPage, page });
+
+   // Pre-populate location filter from URL ?location= param (from homepage search)
+   useEffect(() => {
+      if (didInit.current) return;
+      const locationParam = searchParams.get("location");
+      if (locationParam) {
+         const syntheticEvent = {
+            target: { value: locationParam }
+         } as React.ChangeEvent<HTMLSelectElement>;
+         handleLocationChange(syntheticEvent);
+      }
+      didInit.current = true;
+   }, [searchParams, handleLocationChange]);
 
    const handleResetFilter = () => {
       resetFilters();

@@ -11,6 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const Property_1 = require("./Property");
+const Inquiry_1 = require("./Inquiry");
+const ViewingRequest_1 = require("./ViewingRequest");
+const Favorite_1 = require("./Favorite");
 let User = class User extends sequelize_typescript_1.Model {
 };
 exports.User = User;
@@ -46,6 +50,14 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
+        allowNull: false,
+        defaultValue: "user",
+    }),
+    __metadata("design:type", String)
+], User.prototype, "role", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: true,
     }),
     __metadata("design:type", String)
@@ -71,6 +83,22 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], User.prototype, "about", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => Property_1.Property, "ownerId"),
+    __metadata("design:type", Array)
+], User.prototype, "ownedProperties", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => Inquiry_1.Inquiry, "userId"),
+    __metadata("design:type", Array)
+], User.prototype, "inquiries", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => ViewingRequest_1.ViewingRequest, "userId"),
+    __metadata("design:type", Array)
+], User.prototype, "viewingRequests", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => Favorite_1.Favorite, "userId"),
+    __metadata("design:type", Array)
+], User.prototype, "favorites", void 0);
 exports.User = User = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "users" })
+    (0, sequelize_typescript_1.Table)({ tableName: "users", timestamps: true })
 ], User);

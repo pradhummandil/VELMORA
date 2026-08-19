@@ -4,10 +4,13 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import { useRouter } from "next/navigation";
 import { API_BASE_URL } from "@/utils/api";
 
+export type UserRole = "user" | "agent" | "property_owner" | "admin";
+
 export interface UserProfile {
   id: number;
   name: string;
   email: string;
+  role: UserRole;
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
@@ -65,6 +68,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       const profileData: UserProfile = await res.json();
+      if (!profileData.role) {
+        profileData.role = "user";
+      }
       setUser(profileData);
       return profileData;
     } catch (err) {
@@ -112,6 +118,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         id: userPayload.id || 0,
         name: userPayload.name,
         email: userPayload.email,
+        role: userPayload.role || "user",
         firstName: userPayload.firstName,
         lastName: userPayload.lastName,
         phoneNumber: userPayload.phoneNumber,
@@ -119,7 +126,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
     }
 
-    // Refresh official profile from backend
+    // Refresh authoritative profile from backend
     await verifyAndFetchProfile(newToken);
   };
 

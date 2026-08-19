@@ -25,10 +25,10 @@ const getJwtSecret = () => {
     }
     return secret;
 };
-//📌 1️⃣ NEW USER SIGNUP 
+// 📌 1️⃣ NEW USER SIGNUP 
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { name, email, password, termsAccepted } = req.body;
+        const { name, email, password, termsAccepted, role } = req.body;
         if (!name || !email || !password) {
             res.status(400).json({ error: "Name, email and password are required" });
             return;
@@ -37,19 +37,34 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(400).json({ error: "You must accept the terms and conditions" });
             return;
         }
+        // Role validation
+        const validRoles = ["user", "agent", "property_owner"];
+        const assignedRole = role && validRoles.includes(role) ? role : "user";
         const existingUser = yield User_1.User.findOne({ where: { email } });
         if (existingUser) {
             res.status(400).json({ error: "User already exists" });
             return;
         }
         const hashedPassword = yield bcryptjs_1.default.hash(password, 10);
-        const user = yield User_1.User.create({ name, email, password: hashedPassword, termsAccepted });
+        const user = yield User_1.User.create({
+            name,
+            email,
+            password: hashedPassword,
+            termsAccepted,
+            role: assignedRole,
+        });
+        // Issue JWT token on signup as well
+        const token = jsonwebtoken_1.default.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
         res.status(201).json({
             message: "User created successfully!",
+            token,
             user: {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: user.role,
+                firstName: user.firstName,
+                lastName: user.lastName,
             }
         });
     }
@@ -59,7 +74,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.signup = signup;
-// 📌 2️⃣ Login 
+// 📌 2️⃣ LOGIN 
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
@@ -79,6 +94,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(401).json({ error: "Invalid credentials" });
             return;
         }
+        // Ensure user has a valid role (default to "user" if legacy user has null)
+        const userRole = user.role || "user";
         // ✅ Create JWT
         const token = jsonwebtoken_1.default.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
         res.json({
@@ -87,7 +104,12 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             user: {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: userRole,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                phoneNumber: user.phoneNumber,
+                about: user.about,
             }
         });
     }
@@ -97,10 +119,10 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.login = login;
-// 📌 3️⃣ Google OAuth Sign-In / Sign-Up
+// 📌 3️⃣ GOOGLE OAUTH SIGN-IN / SIGN-UP
 const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { credential, email: directEmail, name: directName } = req.body;
+        const { credential, email: directEmail, name: directName, role } = req.body;
         let email = directEmail;
         let name = directName;
         // If Google ID Token / credential is provided, decode payload
@@ -120,6 +142,8 @@ const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             res.status(400).json({ error: "Valid Google account email is required" });
             return;
         }
+        const validRoles = ["user", "agent", "property_owner"];
+        const assignedRole = role && validRoles.includes(role) ? role : "user";
         // Find or create user
         let user = yield User_1.User.findOne({ where: { email } });
         if (!user) {
@@ -129,8 +153,10 @@ const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 email,
                 password: randomPassword,
                 termsAccepted: true,
+                role: assignedRole,
             });
         }
+        const userRole = user.role || "user";
         // Issue VELMORA JWT
         const token = jsonwebtoken_1.default.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
         res.json({
@@ -140,6 +166,11 @@ const googleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 id: user.id,
                 name: user.name,
                 email: user.email,
+                role: userRole,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                phoneNumber: user.phoneNumber,
+                about: user.about,
             },
         });
     }
