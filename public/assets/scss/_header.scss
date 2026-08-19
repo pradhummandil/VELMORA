@@ -141,16 +141,36 @@
         transform: rotate3d(0, 0, 1, -45deg);
     }
 
+    // Logo
+    .logo {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        img, svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
     // Main Menu
     .nav-item .nav-link {
         font-family: $main-font;
         font-weight: 500;
-        font-size: 18px;
+        font-size: 16px;
         line-height: initial;
         color: $text-dark;
         padding: 10px 0;
-        margin: 0 18px;
+        margin: 0 10px;
         position: relative;
+        white-space: nowrap;
         @include transition(0.2s);
     }
     .nav-item:hover .nav-link {
@@ -176,16 +196,24 @@
         font-weight: 900;
         font-size: 12px;
     }
-    .dashboard-menu .nav-link::after {
-        content: '';
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background: url(../images/shape/shape_79.svg) no-repeat center;
-        background-size: cover;
-        margin-left: 5px;
-        vertical-align: 2px;
-        animation: rotated 2s infinite linear;
+    .dashboard-menu .nav-link {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        gap: 4px;
+
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: url(../images/shape/shape_79.svg) no-repeat center;
+            background-size: cover;
+            margin-left: 4px;
+            flex-shrink: 0;
+            vertical-align: middle;
+            animation: rotated 2s infinite linear;
+        }
     }
 
     // Menu Two
@@ -210,6 +238,7 @@
         }
     }
 }
+
 // Dropdown
 .navbar .dropdown-menu .dropdown-item {
     text-transform: capitalize;
@@ -286,14 +315,47 @@
             color: $color-one;
         }
     }
+    .right-widget {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+
+        .btn-one, .btn-two, .btn-ten, .login-btn-one {
+            white-space: nowrap;
+        }
+
+        .btn-one {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            max-width: 170px;
+            white-space: nowrap;
+
+            span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
     .login-btn-one {
         color: #000;
+        display: inline-flex;
+        align-items: center;
+        max-width: 170px;
+        white-space: nowrap;
         i {
             font-size: 1.05em;
-            margin-right: 10px;
+            margin-right: 8px;
+            flex-shrink: 0;
         }
         a {
             color: $text-dark;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             
             &:hover {
                 color: $color-one;
@@ -350,12 +412,36 @@
 }
 /*----- For Desktop -------*/
 @media screen and (min-width: 992px) {
-    .justify-content-between .navbar {
-        position: absolute;
-        top:50%;
-        left: 50%;
-        transform: translate(-50% , -50%);
+    .theme-main-menu {
+        .top-header {
+            .d-flex.align-items-center {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                gap: 15px;
+            }
+        }
+        .navbar {
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: center;
+            position: static;
+            transform: none;
+            margin: 0 auto;
+        }
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
     }
+    .justify-content-between .navbar {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+    }
+
     .navbar .dropdown-menu {
         font-size: 1em;
         z-index: 5;

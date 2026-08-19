@@ -10,6 +10,8 @@
  @media (min-width: 1400px) {
    .container {max-width: 1420px;}
    .container.container-large {max-width: 1574px; padding: 0 12px;}
+   .theme-main-menu .nav-item .nav-link {margin: 0 12px; font-size: 16px;}
+   .theme-main-menu .right-widget .btn-one {max-width: 190px;}
  
  }
  /*(min-width: 1400px)*/
@@ -119,9 +121,12 @@
  
  
  /*Between Grid xl*/
- @media (min-width: 1200px) and (max-width: 1399px) {
-   .theme-main-menu .gap-one {padding: 28px 25px;}
-   .theme-main-menu .gap-two {padding: 20px 25px;}
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .theme-main-menu .nav-item .nav-link {margin: 0 8px; font-size: 15px;}
+  .theme-main-menu .right-widget .btn-one {max-width: 150px;}
+  .theme-main-menu .gap-one {padding: 24px 20px;}
+  .theme-main-menu .gap-two {padding: 18px 20px;}
+
    .hero-banner-two .line-bg:before {top:112px;}
    .layout-two .input-box-one {padding: 3px 0;}
    .search-wrapper-one.layout-two .bg-wrapper .search-btn-two {margin: 0 10px; width: 75px;}
@@ -357,8 +362,11 @@
  
  
  /*Between Grid lg*/
- @media (min-width: 992px) and (max-width: 1199px) {
-   .theme-main-menu .nav-item .nav-link {margin: 0 15px;}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .theme-main-menu .nav-item .nav-link {margin: 0 5px; font-size: 14px;}
+  .theme-main-menu .right-widget .btn-one {max-width: 125px; font-size: 14px; padding: 0 12px;}
+  .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten {font-size: 14px; padding: 0 14px; line-height: 44px;}
+
    .listing-card-three .wrapper .property-info .feature li:before {right: -25%;}
    .card-style-seven,.location-card-three .image-bg {width: 222px; height: 222px;}
    .feedback-section-five .content-wrapper {max-width: 550px;}

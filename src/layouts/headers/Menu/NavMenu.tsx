@@ -26,8 +26,9 @@ const NavMenu = () => {
             <li className="d-block d-lg-none">
                 <div className="logo">
                     <Link href="/" className="d-block">
-                        <Image src={logo} alt="" />
+                        <Image src={logo} alt="VELMORA" priority />
                     </Link>
+
                 </div>
             </li>
             <li className="nav-item dashboard-menu">

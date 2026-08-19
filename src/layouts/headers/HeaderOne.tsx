@@ -22,12 +22,24 @@ const HeaderOne = ({ style }: any) => {
             <div className="inner-content gap-one">
                <div className="top-header position-relative">
                   <div className="d-flex align-items-center justify-content-between">
-                     <div className="logo order-lg-0">
+                     <div className="logo order-lg-0 me-lg-3 me-xl-4">
                         <Link href="/" className="d-flex align-items-center">
-                           <Image src={logo_1} alt="" />
+                           <Image src={logo_1} alt="VELMORA" priority />
                         </Link>
                      </div>
-                     <div className="right-widget ms-auto ms-lg-0 me-3 me-lg-0 order-lg-3">
+
+                     <nav className="navbar navbar-expand-lg p0 order-lg-1">
+                        <button className="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
+                           data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                           aria-label="Toggle navigation">
+                           <span></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarNav">
+                           <NavMenu />
+                        </div>
+                     </nav>
+
+                     <div className="right-widget ms-auto ms-lg-3 ms-xl-4 me-3 me-lg-0 order-lg-2">
                         <ul className="d-flex align-items-center style-none">
                            <li>
                               {isAuthenticated ? (
@@ -45,18 +57,8 @@ const HeaderOne = ({ style }: any) => {
                            </li>
                         </ul>
                      </div>
-
-                     <nav className="navbar navbar-expand-lg p0 order-lg-2">
-                        <button className="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
-                           data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                           aria-label="Toggle navigation">
-                           <span></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarNav">
-                           <NavMenu />
-                        </div>
-                     </nav>
                   </div>
+
                </div>
             </div>
          </header>
