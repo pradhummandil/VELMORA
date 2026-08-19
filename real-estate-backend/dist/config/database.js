@@ -9,7 +9,7 @@ const User_1 = require("../models/User");
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.USE_SQLITE === "true" ? undefined : process.env.DATABASE_URL;
 exports.sequelize = databaseUrl
     ? new sequelize_typescript_1.Sequelize(databaseUrl, {
         models: [User_1.User],

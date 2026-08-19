@@ -5,7 +5,7 @@ import path from "path";
 
 dotenv.config();
 
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.USE_SQLITE === "true" ? undefined : process.env.DATABASE_URL;
 
 export const sequelize = databaseUrl
   ? new Sequelize(databaseUrl, {
