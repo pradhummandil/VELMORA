@@ -40,10 +40,62 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
          toast.info("Google Sign-In requires NEXT_PUBLIC_GOOGLE_CLIENT_ID in environment settings.", {
             position: "top-center",
          });
+         console.warn("Google Sign-In: NEXT_PUBLIC_GOOGLE_CLIENT_ID is not configured in environment variables.");
          return;
       }
 
-      if (typeof window !== "undefined" && (window as any).google?.accounts?.id) {
+      if (typeof window !== "undefined" && (window as any).google?.accounts?.oauth2) {
+         try {
+            const tokenClient = (window as any).google.accounts.oauth2.initTokenClient({
+               client_id: clientId,
+               scope: "email profile openid",
+               callback: async (tokenResponse: any) => {
+                  if (tokenResponse && tokenResponse.access_token) {
+                     try {
+                        const userInfoRes = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+                           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+                        });
+                        const userInfo = await userInfoRes.json();
+
+                        if (userInfo && userInfo.email) {
+                           const res = await fetch(`${API_BASE_URL}/api/auth/google`, {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({
+                                 email: userInfo.email,
+                                 name: userInfo.name || userInfo.email.split("@")[0],
+                              }),
+                           });
+                           const data = await res.json();
+                           if (res.ok && data.token) {
+                              localStorage.setItem("token", data.token);
+                              toast.success("Google Sign-In successful!", { position: "top-center" });
+                              const closeBtn = document.querySelector("#loginModal .btn-close") as HTMLElement;
+                              if (closeBtn) closeBtn.click();
+                              router.push("/dashboard/dashboard-index");
+                           } else {
+                              toast.error(data.error || "Google Sign-In failed");
+                           }
+                        } else {
+                           toast.error("Could not retrieve Google profile details.");
+                        }
+                     } catch (e) {
+                        console.error("Google userinfo fetch error:", e);
+                        toast.error("Unable to complete Google authentication");
+                     }
+                  } else if (tokenResponse && tokenResponse.error) {
+                     console.warn("Google OAuth error:", tokenResponse.error);
+                  }
+               },
+            });
+
+            tokenClient.requestAccessToken({ prompt: "select_account" });
+         } catch (err) {
+            console.error("Google OAuth token client initialization error:", err);
+            toast.error("Unable to initialize Google Sign-In dialog.");
+         }
+      } else if (typeof window !== "undefined" && (window as any).google?.accounts?.id) {
+         // Fallback to GIS ID client
          (window as any).google.accounts.id.initialize({
             client_id: clientId,
             callback: async (response: any) => {
@@ -68,7 +120,6 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                }
             },
          });
-
          (window as any).google.accounts.id.prompt();
       } else {
          toast.error("Google authentication service is initializing. Please try again in a moment.");
