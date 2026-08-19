@@ -6,12 +6,12 @@ const SocialMediaLink = () => {
          <h4 className="dash-title-three">Social Media</h4>
 
          <div className="dash-input-wrapper mb-20">
-            <label htmlFor="">Network 1</label>
-            <input type="text" placeholder="https://www.facebook.com/zubayer0145" />
+            <label htmlFor="">LinkedIn</label>
+            <input type="text" placeholder="https://linkedin.com/company/velmora" />
          </div>
          <div className="dash-input-wrapper mb-20">
-            <label htmlFor="">Network 2</label>
-            <input type="text" placeholder="https://twitter.com/FIFAcom" />
+            <label htmlFor="">X / Twitter</label>
+            <input type="text" placeholder="https://x.com/velmorarealty" />
          </div>
          <Link href="#" className="dash-btn-one"><i className="bi bi-plus"></i> Add more link</Link>
       </div>

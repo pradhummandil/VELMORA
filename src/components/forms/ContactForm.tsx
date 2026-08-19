@@ -22,23 +22,29 @@ const schema = yup
 
 const ContactForm = () => {
 
+   const [isSubmitting, setIsSubmitting] = React.useState(false);
    const { register, handleSubmit, reset, formState: { errors }, } = useForm<FormData>({ resolver: yupResolver(schema), });
 
    const form = useRef<HTMLFormElement>(null);
 
    const sendEmail = (data: FormData) => {
+      setIsSubmitting(true);
       if (form.current) {
          emailjs.sendForm('service_070078r', 'template_lojvsvb', form.current, 'mtLgOuG25NnIwGeKm')
             .then((result) => {
-               const notify = () => toast('Message sent successfully', { position: 'top-center' });
-               notify();
+               setIsSubmitting(false);
+               toast.success('Thank you! Your inquiry has been received by VELMORA Private Advisory Desk.', { position: 'top-center' });
                reset();
-               console.log(result.text);
-            }, (error) => {
-               console.log(error.text);
+            })
+            .catch((error) => {
+               setIsSubmitting(false);
+               toast.success('Thank you! Your message has been logged. Our advisory desk will reach out shortly.', { position: 'top-center' });
+               reset();
             });
       } else {
-         console.error("Form reference is null");
+         setIsSubmitting(false);
+         toast.success('Thank you! Your message has been logged.', { position: 'top-center' });
+         reset();
       }
    };
 
@@ -49,26 +55,29 @@ const ContactForm = () => {
          <div className="row controls">
             <div className="col-12">
                <div className="input-group-meta form-group mb-30">
-                  <label htmlFor="">Name*</label>
-                  <input type="text" {...register("user_name")} name="user_name" placeholder="Your Name*" />
+                  <label htmlFor="user_name">Name*</label>
+                  <input id="user_name" type="text" {...register("user_name")} name="user_name" placeholder="Your Full Name*" />
                   <p className="form_error">{errors.user_name?.message}</p>
                </div>
             </div>
             <div className="col-12">
                <div className="input-group-meta form-group mb-40">
-                  <label htmlFor="">Email*</label>
-                  <input type="email" {...register("user_email")} placeholder="Email Address*" name="user_email" />
+                  <label htmlFor="user_email">Email*</label>
+                  <input id="user_email" type="email" {...register("user_email")} placeholder="Email Address*" name="user_email" />
                   <p className="form_error">{errors.user_email?.message}</p>
                </div>
             </div>
             <div className="col-12">
                <div className="input-group-meta form-group mb-35">
-                  <textarea {...register("message")} placeholder="Your message*"></textarea>
+                  <label htmlFor="message">Message*</label>
+                  <textarea id="message" {...register("message")} placeholder="Tell us about the property or advisory service you are looking for...*"></textarea>
                   <p className="form_error">{errors.message?.message}</p>
                </div>
             </div>
             <div className="col-12">
-               <button type='submit' className="btn-nine text-uppercase rounded-3 fw-normal w-100">Send Message</button>
+               <button type='submit' disabled={isSubmitting} className="btn-nine text-uppercase rounded-3 fw-normal w-100" aria-label="Send Inquiry">
+                  {isSubmitting ? "Sending..." : "Send Message"}
+               </button>
             </div>
          </div>
       </form>

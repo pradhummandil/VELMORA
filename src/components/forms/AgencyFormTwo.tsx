@@ -7,19 +7,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 interface FormData {
    email: string;
-   phone: number;
+   phone: string;
    message: string;
 }
 
 const schema = yup
    .object({
-      phone: yup.number()
-         .transform((originalValue, originalObject) => {
-            // Convert empty string to NaN
-            return originalObject && originalObject.phone === '' ? NaN : originalValue;
-         })
-         .typeError('Phone number is required')
-         .required('Phone must be a number'),
+      phone: yup.string().required('Phone number is required'),
       email: yup.string().required().email().label("Email"),
       message: yup.string().required().label("Message"),
    })
@@ -29,8 +23,7 @@ const AgencyFormTwo = () => {
 
    const { register, handleSubmit, reset, formState: { errors }, } = useForm<FormData>({ resolver: yupResolver(schema), });
    const onSubmit = (data: FormData) => {
-      const notify = () => toast('Review submit successfully', { position: 'top-center' });
-      notify();
+      toast.success('Thank you! Your inquiry has been sent to our private advisory team.', { position: 'top-center' });
       reset();
    };
 
@@ -38,20 +31,20 @@ const AgencyFormTwo = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
          <div className="input-box-three mb-25">
             <div className="label">Your Email*</div>
-            <input type="email" {...register("email")} placeholder="Enter mail address" className="type-input rounded-0" />
+            <input type="email" {...register("email")} placeholder="advisory@velmora.in" className="type-input rounded-0" />
             <p className="form_error">{errors.email?.message}</p>
          </div>
          <div className="input-box-three mb-25">
             <div className="label">Your Phone*</div>
-            <input type="tel" {...register("phone")} placeholder="Your phone number" className="type-input rounded-0" />
+            <input type="tel" {...register("phone")} placeholder="+91 98200 12345" className="type-input rounded-0" />
             <p className="form_error">{errors.phone?.message}</p>
          </div>
          <div className="input-box-three mb-15">
             <div className="label">Message*</div>
-            <textarea {...register("message")} placeholder="Hello, I am interested in [Califronia Apartments]" className="rounded-0"></textarea>
+            <textarea {...register("message")} placeholder="Hello, I am interested in [The Meridian Residences, Worli]" className="rounded-0"></textarea>
             <p className="form_error">{errors.message?.message}</p>
          </div>
-         <button type='submit' className="btn-nine text-uppercase w-100 mb-20">INQUIry</button>
+         <button type='submit' className="btn-nine text-uppercase w-100 mb-20" aria-label="Send Inquiry">Send Inquiry</button>
       </form>
    )
 }

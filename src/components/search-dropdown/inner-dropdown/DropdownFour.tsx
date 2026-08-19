@@ -85,11 +85,11 @@ const DropdownFour = ({
                                        <div className="label">Location</div>
                                        <NiceSelect className="nice-select location fw-normal"
                                           options={[
-                                             { value: "washington", text: "Washington DC" },
+                                             { value: "mumbai", text: "Worli, Mumbai" },
                                              { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                                              { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                                              { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                                             { value: "india", text: "Delhi, India" },
+                                             { value: "delhi", text: "Chanakyapuri, New Delhi" },
                                              { value: "pune", text: "Koregaon Park, Pune" },
                                              { value: "goa", text: "Assagao, Goa" },
                                           ]}
@@ -102,11 +102,11 @@ const DropdownFour = ({
                                  <div className="col-lg-5">
                                     <div className="input-box-one">
                                        <div className="d-flex align-items-center justify-content-center justify-content-lg-end md-mt-10">
-                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3">
+                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" aria-label="Open Advanced Filter" className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3">
                                              <span>ADVANCE Search</span>
                                              <i className="fa-light fa-sliders-up"></i>
                                           </Link>
-                                          <button className="fw-500 text-uppercase tran3s search-btn-four w-auto">
+                                          <button aria-label="Search Properties" className="fw-500 text-uppercase tran3s search-btn-four w-auto">
                                              <span>Search</span>
                                              <i className="fa-light fa-magnifying-glass"></i>
                                           </button>
@@ -116,7 +116,7 @@ const DropdownFour = ({
                               </div>
                            </form>
                         </div>
-                        <div className={`tab-pane show ${activeTab === 1 ? "active" : ""}`} id="buy">
+                        <div className={`tab-pane show ${activeTab === 1 ? "active" : ""}`} id="rent">
                            <form onSubmit={(e) => e.preventDefault()}>
                               <div className="row gx-0 align-items-center">
                                  <div className="col-lg-3">
@@ -124,11 +124,10 @@ const DropdownFour = ({
                                        <div className="label">I’m looking to...</div>
                                        <NiceSelect className="nice-select fw-normal"
                                           options={[
-                                             { value: "houses", text: "Sell Houses" },
-                                             { value: "apartments", text: "Buy Apartments" },
+                                             { value: "apartments", text: "Rent Apartments" },
+                                             { value: "villas", text: "Rent Villas" },
                                              { value: "condos", text: "Rent Condos" },
-                                             { value: "industrial", text: "Rent Industrial" },
-                                             { value: "villas", text: "Sell Villas" },
+                                             { value: "commercial", text: "Rent Commercial" },
                                           ]}
                                           defaultCurrent={0}
                                           onChange={handleStatusChange}
@@ -141,11 +140,11 @@ const DropdownFour = ({
                                        <div className="label">Location</div>
                                        <NiceSelect className="nice-select location fw-normal"
                                           options={[
+                                             { value: "mumbai", text: "Worli, Mumbai" },
                                              { value: "gurugram", text: "Golf Course Rd, Gurugram" },
-                                             { value: "washington", text: "Washington DC" },
                                              { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                                              { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                                             { value: "india", text: "Delhi, India" },
+                                             { value: "delhi", text: "Chanakyapuri, New Delhi" },
                                              { value: "pune", text: "Koregaon Park, Pune" },
                                              { value: "goa", text: "Assagao, Goa" },
                                           ]}
@@ -158,11 +157,11 @@ const DropdownFour = ({
                                  <div className="col-lg-5">
                                     <div className="input-box-one">
                                        <div className="d-flex align-items-center justify-content-center justify-content-lg-end md-mt-10">
-                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3">
+                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" aria-label="Open Advanced Filter" className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3">
                                              <span>ADVANCE Search</span>
                                              <i className="fa-light fa-sliders-up"></i>
                                           </Link>
-                                          <button className="fw-500 text-uppercase tran3s search-btn-four w-auto">
+                                          <button aria-label="Search Properties" className="fw-500 text-uppercase tran3s search-btn-four w-auto">
                                              <span>Search</span>
                                              <i className="fa-light fa-magnifying-glass"></i>
                                           </button>
@@ -172,7 +171,7 @@ const DropdownFour = ({
                               </div>
                            </form>
                         </div>
-                        <div className={`tab-pane show ${activeTab === 2 ? "active" : ""}`} id="buy">
+                        <div className={`tab-pane show ${activeTab === 2 ? "active" : ""}`} id="sell">
                            <form onSubmit={(e) => e.preventDefault()}>
                               <div className="row gx-0 align-items-center">
                                  <div className="col-lg-3">
@@ -180,11 +179,10 @@ const DropdownFour = ({
                                        <div className="label">I’m looking to...</div>
                                        <NiceSelect className="nice-select fw-normal"
                                           options={[
-                                             { value: "industrial", text: "Rent Industrial" },
-                                             { value: "houses", text: "Sell Houses" },
                                              { value: "apartments", text: "Buy Apartments" },
-                                             { value: "condos", text: "Rent Condos" },
                                              { value: "villas", text: "Sell Villas" },
+                                             { value: "houses", text: "Sell Houses" },
+                                             { value: "commercial", text: "Sell Commercial" },
                                           ]}
                                           defaultCurrent={0}
                                           onChange={handleStatusChange}
@@ -197,11 +195,11 @@ const DropdownFour = ({
                                        <div className="label">Location</div>
                                        <NiceSelect className="nice-select location fw-normal"
                                           options={[
-                                             { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                                             { value: "washington", text: "Washington DC" },
+                                             { value: "mumbai", text: "Worli, Mumbai" },
                                              { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                                              { value: "bengaluru", text: "Indiranagar, Bengaluru" },
-                                             { value: "india", text: "Delhi, India" },
+                                             { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
+                                             { value: "delhi", text: "Chanakyapuri, New Delhi" },
                                              { value: "pune", text: "Koregaon Park, Pune" },
                                              { value: "goa", text: "Assagao, Goa" },
                                           ]}
@@ -214,11 +212,11 @@ const DropdownFour = ({
                                  <div className="col-lg-5">
                                     <div className="input-box-one">
                                        <div className="d-flex align-items-center justify-content-center justify-content-lg-end md-mt-10">
-                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3">
+                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" aria-label="Open Advanced Filter" className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3">
                                              <span>ADVANCE Search</span>
                                              <i className="fa-light fa-sliders-up"></i>
                                           </Link>
-                                          <button className="fw-500 text-uppercase tran3s search-btn-four w-auto">
+                                          <button aria-label="Search Properties" className="fw-500 text-uppercase tran3s search-btn-four w-auto">
                                              <span>Search</span>
                                              <i className="fa-light fa-magnifying-glass"></i>
                                           </button>

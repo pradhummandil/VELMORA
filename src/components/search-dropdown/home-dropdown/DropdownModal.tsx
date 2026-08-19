@@ -42,12 +42,12 @@ const DropdownModal = () => {
                                           <div className="label">Location</div>
                                           <NiceSelect className="nice-select location fw-normal"
                                              options={[
-                                                { value: "washington", text: "Washington DC" },
                                                 { value: "mumbai", text: "Worli, Mumbai" },
                                                 { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                                                 { value: "bengaluru", text: "Indiranagar, Bengaluru" },
-                                                { value: "india", text: "Delhi, India" },
+                                                { value: "delhi", text: "Chanakyapuri, New Delhi" },
                                                 { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
+                                                { value: "pune", text: "Koregaon Park, Pune" },
                                                 { value: "goa", text: "Assagao, Goa" },
                                              ]}
                                              defaultCurrent={0}
@@ -59,13 +59,13 @@ const DropdownModal = () => {
                                     <div className="col-md-6">
                                        <div className="input-box-one mb-35">
                                           <div className="label">Keyword</div>
-                                          <input type="text" placeholder="buy, home, loft, apartment" className="type-input" />
+                                          <input type="text" placeholder="Sea Face, Penthouse, Duplex" className="type-input" />
                                        </div>
                                     </div>
                                     <div className="col-md-6">
                                        <div className="input-box-one mb-35">
                                           <div className="label">Property ID</div>
-                                          <input type="text" placeholder="EM45203014" className="type-input" />
+                                          <input type="text" placeholder="VM-WORLI-401" className="type-input" />
                                        </div>
                                     </div>
 
@@ -77,7 +77,7 @@ const DropdownModal = () => {
                                                 { value: "1", text: "1" },
                                                 { value: "2", text: "2" },
                                                 { value: "3", text: "3" },
-                                                { value: "4", text: "4" },
+                                                { value: "4", text: "4+" },
                                              ]}
                                              defaultCurrent={0}
                                              onChange={selectHandler}
@@ -93,7 +93,7 @@ const DropdownModal = () => {
                                                 { value: "1", text: "1" },
                                                 { value: "2", text: "2" },
                                                 { value: "3", text: "3" },
-                                                { value: "4", text: "4" },
+                                                { value: "4", text: "4+" },
                                              ]}
                                              defaultCurrent={0}
                                              onChange={selectHandler}
@@ -113,27 +113,27 @@ const DropdownModal = () => {
                                        </ul>
                                     </div>
                                     <div className="col-md-6">
-                                       <h6 className="block-title fw-bold mt-45 mb-20">Price range</h6>
+                                       <h6 className="block-title fw-bold mt-45 mb-20">Price range (INR)</h6>
                                        <div className="price-ranger">
                                           <div
                                              className="price-input d-flex align-items-center justify-content-between pt-5">
                                              <div className="field d-flex align-items-center">
-                                                <input type="number" className="input-min" defaultValue="2500" onChange={(e) => (e.target.value)} />
+                                                <input type="number" className="input-min" defaultValue="10000000" onChange={(e) => (e.target.value)} />
                                              </div>
                                              <div className="divider-line"></div>
                                              <div className="field d-flex align-items-center">
-                                                <input type="number" className="input-max" defaultValue="35000" />
+                                                <input type="number" className="input-max" defaultValue="100000000" />
                                              </div>
-                                             <div className="currency ps-1">USD</div>
+                                             <div className="currency ps-1">INR</div>
                                           </div>
                                           <div className="slider">
                                              <div className="progress"></div>
                                           </div>
                                           <div className="range-input mb-10">
-                                             <input type="range" className="range-min" min="1000" max="80000" defaultValue="2500"
-                                                step="500" />
-                                             <input type="range" className="range-max" min="0" max="100000" defaultValue="35000"
-                                                step="500" />
+                                             <input type="range" className="range-min" min="5000000" max="200000000" defaultValue="10000000"
+                                                step="1000000" />
+                                             <input type="range" className="range-max" min="5000000" max="200000000" defaultValue="100000000"
+                                                step="1000000" />
                                           </div>
                                        </div>
                                     </div>

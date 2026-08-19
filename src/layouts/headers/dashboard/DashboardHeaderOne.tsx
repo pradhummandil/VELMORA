@@ -33,10 +33,10 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
       <aside className={`dash-aside-navbar ${isActive ? "show" : ""}`}>
          <div className="position-relative">
             <div className="logo d-md-block d-flex align-items-center justify-content-between plr bottom-line pb-30">
-               <Link href="/dashboard-index">
-                  <Image src={dashboardLogo} alt="" />
+               <Link href="/dashboard/dashboard-index" aria-label="VELMORA Dashboard">
+                  <Image src={dashboardLogo} alt="VELMORA" />
                </Link>
-               <button onClick={() => setIsActive(false)} className="close-btn d-block d-md-none"><i className="fa-light fa-circle-xmark"></i></button>
+               <button onClick={() => setIsActive(false)} className="close-btn d-block d-md-none" aria-label="Close Navigation"><i className="fa-light fa-circle-xmark"></i></button>
             </div>
             <nav className="dasboard-main-nav pt-30 pb-30 bottom-line">
                <ul className="style-none">
@@ -95,7 +95,7 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
             </div>
 
             <div className="plr">
-               <Link href="#" className="d-flex w-100 align-items-center logout-btn">
+               <Link href="/" className="d-flex w-100 align-items-center logout-btn" aria-label="Logout">
                   <div className="icon tran3s d-flex align-items-center justify-content-center rounded-circle"><Image src={dashboardIcon_11} alt="" /></div>
                   <span>Logout</span>
                </Link>

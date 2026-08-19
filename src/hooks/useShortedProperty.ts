@@ -168,9 +168,11 @@ const UseShortedProperty = ({ itemsPerPage, page }: DataType) => {
    const priceRanges: {
       [key: string]: number[];
    } = {
-      "1": [10000, 200000],
-      "2": [20000, 300000],
-      "3": [30000, 400000],
+      "1": [0, 10000000],
+      "2": [10000000, 30000000],
+      "3": [30000000, 50000000],
+      "4": [50000000, 100000000],
+      "5": [100000000, 500000000],
    };
 
    const handlePriceDropChange = (selectedValue: string) => {

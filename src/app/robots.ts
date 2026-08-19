@@ -1,0 +1,21 @@
+import { MetadataRoute } from 'next';
+
+export default function robots(): MetadataRoute.Robots {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://velmora.in';
+
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [
+          '/dashboard/',
+          '/profile',
+          '/account-settings',
+          '/api/',
+        ],
+      },
+    ],
+    sitemap: `${siteUrl}/sitemap.xml`,
+  };
+}

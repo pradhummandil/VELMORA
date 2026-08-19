@@ -5,9 +5,24 @@ import path from "path";
 
 dotenv.config();
 
-export const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: path.join(__dirname, "../../database.sqlite"),
-  models: [User],
-  logging: false, // Disable SQL logging for cleaner output
-});
+const databaseUrl = process.env.DATABASE_URL;
+
+export const sequelize = databaseUrl
+  ? new Sequelize(databaseUrl, {
+      models: [User],
+      dialect: "postgres",
+      dialectOptions: process.env.NODE_ENV === "production" ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      } : {},
+      logging: false,
+    })
+  : new Sequelize({
+      dialect: "sqlite",
+      storage: process.env.DB_STORAGE || path.join(__dirname, "../../database.sqlite"),
+      models: [User],
+      logging: false,
+    });
+

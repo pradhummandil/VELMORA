@@ -1,7 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key";
+dotenv.config();
+
+const SECRET_KEY = process.env.JWT_SECRET || "velmora_luxury_realestate_jwt_secret_dev_only";
 
 export interface AuthRequest extends Request {
   user?: { id: number };

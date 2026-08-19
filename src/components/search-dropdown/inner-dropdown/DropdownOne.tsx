@@ -51,11 +51,11 @@ const DropdownOne = ({
                   <div className="label">Location</div>
                   <NiceSelect className="nice-select location fw-normal"
                      options={[
-                        { value: "washington", text: "Washington DC" },
+                        { value: "mumbai", text: "Worli, Mumbai" },
                         { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                         { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                         { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                        { value: "india", text: "Delhi, India" },
+                        { value: "delhi", text: "Chanakyapuri, New Delhi" },
                         { value: "pune", text: "Koregaon Park, Pune" },
                         { value: "goa", text: "Assagao, Goa" },
                      ]}
@@ -131,7 +131,7 @@ const DropdownOne = ({
                      <div className="field d-flex align-items-center">
                         <input type="number" className="input-max" value={priceValue[1]} onChange={() => handlePriceChange} />
                      </div>
-                     <div className="currency ps-1">USD</div>
+                     <div className="currency ps-1">INR</div>
                   </div>
                </div>
                <PriceRange
@@ -152,7 +152,7 @@ const DropdownOne = ({
                </div>
             </div>
             <div className="col-12">
-               <button className="fw-500 text-uppercase tran3s apply-search w-100 mt-40 mb-25">
+               <button aria-label="Apply Search Filters" className="fw-500 text-uppercase tran3s apply-search w-100 mt-40 mb-25">
                   <i className="fa-light fa-magnifying-glass"></i>
                   <span>Search</span>
                </button>
@@ -160,11 +160,11 @@ const DropdownOne = ({
 
             <div className="col-12">
                <div className="d-flex justify-content-between form-widget">
-                  <a onClick={handleResetFilter} style={{ cursor: "pointer" }} className="tran3s">
+                  <a onClick={handleResetFilter} style={{ cursor: "pointer" }} className="tran3s" role="button" aria-label="Reset Filter">
                      <i className="fa-regular fa-arrows-rotate"></i>
                      <span>Reset Filter</span>
                   </a>
-                  <Link href="#" className="tran3s">
+                  <Link href="#" className="tran3s" aria-label="Save Search">
                      <i className="fa-regular fa-star"></i>
                      <span>Save Search</span>
                   </Link>

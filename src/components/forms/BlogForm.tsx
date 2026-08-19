@@ -24,8 +24,7 @@ const BlogForm = () => {
 
    const { register, handleSubmit, reset, formState: { errors }, } = useForm<FormData>({ resolver: yupResolver(schema), });
    const onSubmit = (data: FormData) => {
-      const notify = () => toast('Comment submit successfully', { position: 'top-center' });
-      notify();
+      toast.success('Thank you! Your perspective has been submitted for review.', { position: 'top-center' });
       reset();
    };
 
@@ -35,24 +34,25 @@ const BlogForm = () => {
       <>
          <div className="blog-comment-form">
             <h3 className="blog-inner-title">Leave A Comment</h3>
-            <p><a onClick={() => setLoginModal(true)} style={{ cursor: "pointer" }} className="text-decoration-underline fw-500">Sign in</a> Sign-in to post your comment or signup
-               if you don’t have any account.</p>
+            <p><a onClick={() => setLoginModal(true)} style={{ cursor: "pointer" }} className="text-decoration-underline fw-500">Sign in</a> to post your comment or signup
+               if you don’t have an account.</p>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-30">
                <div className="input-wrapper mb-30">
-                  <label>Name*</label>
-                  <input {...register("name")} type="text" placeholder="Rashed Kabir" />
+                  <label htmlFor="comment_name">Name*</label>
+                  <input id="comment_name" {...register("name")} type="text" placeholder="Vikram Malhotra" />
                   <p className="form_error">{errors.name?.message}</p>
                </div>
                <div className="input-wrapper mb-40">
-                  <label>Email*</label>
-                  <input {...register("email")} type="email" placeholder="rsr@gmail.com" />
+                  <label htmlFor="comment_email">Email*</label>
+                  <input id="comment_email" {...register("email")} type="email" placeholder="vikram.malhotra@gmail.com" />
                   <p className="form_error">{errors.email?.message}</p>
                </div>
                <div className="input-wrapper mb-30">
-                  <textarea {...register("message")} placeholder="Your Comment"></textarea>
+                  <label htmlFor="comment_msg">Your Comment*</label>
+                  <textarea id="comment_msg" {...register("message")} placeholder="Share your insights on Indian luxury real estate, regulatory trends, or investment architecture..."></textarea>
                   <p className="form_error">{errors.message?.message}</p>
                </div>
-               <button className="btn-five rounded-0">Post Comment</button>
+               <button type="submit" aria-label="Post Comment" className="btn-five rounded-0">Post Comment</button>
             </form>
          </div>
          <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} />

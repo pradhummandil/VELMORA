@@ -44,11 +44,11 @@ const DropdownSeven = ({
                      <div className="label">Location</div>
                      <NiceSelect className="nice-select location fw-normal"
                         options={[
-                           { value: "washington", text: "Washington DC" },
+                           { value: "mumbai", text: "Worli, Mumbai" },
                            { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                            { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                            { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                           { value: "india", text: "Delhi, India" },
+                           { value: "delhi", text: "Chanakyapuri, New Delhi" },
                            { value: "pune", text: "Koregaon Park, Pune" },
                            { value: "goa", text: "Assagao, Goa" },
                         ]}
@@ -64,9 +64,11 @@ const DropdownSeven = ({
                      <NiceSelect
                         className="nice-select fw-normal"
                         options={[
-                           { value: "1", text: "₹10,000 - ₹200,000" },
-                           { value: "2", text: "₹20,000 - ₹300,000" },
-                           { value: "3", text: "₹30,000 - ₹400,000" },
+                           { value: "1", text: "Under ₹1 Cr" },
+                           { value: "2", text: "₹1 Cr - ₹3 Cr" },
+                           { value: "3", text: "₹3 Cr - ₹5 Cr" },
+                           { value: "4", text: "₹5 Cr - ₹10 Cr" },
+                           { value: "5", text: "₹10 Cr+" },
                         ]}
                         defaultCurrent={0}
                         onChange={(event) => handlePriceDropChange(event.target.value)}
@@ -112,7 +114,7 @@ const DropdownSeven = ({
                <div className="col-xxl-2 col-xl-1">
                   <div className="input-box-one lg-mt-20">
                      <div className="d-flex align-items-center justify-content-center justify-content-xl-end">
-                        <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal"
+                        <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" aria-label="Open Advanced Filter"
                            className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center">
                            <span className="me-3 d-xl-none d-xxl-block">ADVANCE Search</span>
                            <i className="fa-light fa-sliders-up"></i>

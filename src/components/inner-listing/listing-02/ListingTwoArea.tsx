@@ -9,6 +9,18 @@ import DropdownOne from "@/components/search-dropdown/inner-dropdown/DropdownOne
 
 import icon from "@/assets/images/icon/icon_46.svg"
 
+const formatPrice = (price: number) => {
+   if (!price) return "Price on Request";
+   if (price >= 10000000) {
+      const cr = price / 10000000;
+      return `₹${cr.toFixed(2).replace(/\.00$/, '')} Cr`;
+   } else if (price >= 100000) {
+      const lakh = price / 100000;
+      return `₹${lakh.toFixed(2).replace(/\.00$/, '')} Lakh`;
+   }
+   return `₹${price.toLocaleString('en-IN')}`;
+};
+
 const ListingTwoArea = ({ style }: any) => {
 
    const itemsPerPage = 5;
@@ -45,7 +57,7 @@ const ListingTwoArea = ({ style }: any) => {
                <div className="col-lg-8">
                   <div className="ps-xxl-5">
                      <div className="listing-header-filter d-sm-flex justify-content-between align-items-center mb-40 lg-mb-30">
-                        <div>Showing <span className="color-dark fw-500">{itemOffset + 1}–{itemOffset + currentItems.length}</span> of <span
+                        <div>Showing <span className="color-dark fw-500">{currentItems.length > 0 ? itemOffset + 1 : 0}–{itemOffset + currentItems.length}</span> of <span
                            className="color-dark fw-500">{sortedProperties.length}</span> results</div>
                         <div className="d-flex align-items-center xs-mt-20">
                            <div className="short-filter d-flex align-items-center">
@@ -65,69 +77,79 @@ const ListingTwoArea = ({ style }: any) => {
                                  placeholder="" />
                            </div>
                            <Link href="/listing_01" className="tran3s layout-change rounded-circle ms-auto ms-sm-3"
-                              data-bs-toggle="tooltip" title="Switch To Grid View"><i
+                              data-bs-toggle="tooltip" title="Switch To Grid View" aria-label="Switch To Grid View"><i
                                  className="fa-regular fa-grid-2"></i></Link>
                         </div>
                      </div>
 
-                     {currentItems.map((item: any) => (
-                        <div key={item.id} className={`listing-card-seven border-20 p-20 mb-50 wow fadeInUp ${style ? "grey-bg" : ""}`}>
-                           <div className="d-flex flex-wrap layout-one">
-                              <div className={`img-gallery position-relative z-1 border-20 overflow-hidden ${item.bg_img}`}>
-                                 <div className={style ? "tag bg-white rounded-0 text-dark fw-500" : `border-20 tag ${item.tag_bg}`}>{item.tag}</div>
-                                 <div className="img-slider-btn">
-                                    03 <i className="fa-regular fa-image"></i>
-                                    <Fancybox
-                                       options={{
-                                          Carousel: {
-                                             infinite: true,
-                                          },
-                                       }}
-                                    >
-                                       {item.carousel_thumb.map((thumb: any, index: any) => (
-                                          <a key={index} className="d-block" data-fancybox="gallery2" href={`/assets/images/listing/img_large_0${thumb.id}.jpg`}></a>
-                                       ))}
-                                    </Fancybox>
+                     {currentItems.length === 0 ? (
+                        <div className="text-center p-50 bg-white border-20 mb-50">
+                           <h4 className="font-garamond mb-15">No residences match your search.</h4>
+                           <p className="fs-18 mb-25">Try adjusting your location, property type, or budget filters.</p>
+                           <button onClick={handleResetFilter} className="btn-two sm">Reset Filters</button>
+                        </div>
+                     ) : (
+                        currentItems.map((item: any) => (
+                           <div key={item.id} className={`listing-card-seven border-20 p-20 mb-50 wow fadeInUp ${style ? "grey-bg" : ""}`}>
+                              <div className="d-flex flex-wrap layout-one">
+                                 <div className={`img-gallery position-relative z-1 border-20 overflow-hidden ${item.bg_img}`}>
+                                    <div className={style ? "tag bg-white rounded-0 text-dark fw-500" : `border-20 tag ${item.tag_bg}`}>{item.tag}</div>
+                                    <div className="img-slider-btn">
+                                       03 <i className="fa-regular fa-image"></i>
+                                       <Fancybox
+                                          options={{
+                                             Carousel: {
+                                                infinite: true,
+                                             },
+                                          }}
+                                       >
+                                          {item.carousel_thumb.map((thumb: any, index: any) => (
+                                             <a key={index} className="d-block" data-fancybox="gallery2" href={`/assets/images/listing/img_large_0${thumb.id}.jpg`} aria-label={`View image ${index + 1}`}></a>
+                                          ))}
+                                       </Fancybox>
+                                    </div>
                                  </div>
-                              </div>
-                              <div className="property-info">
-                                 <Link href="/listing_details_02" className="title tran3s mb-15">{item.title}</Link>
-                                 <div className="address">{item.address}</div>
-                                 <div className="feature mt-30 mb-30 pt-30 pb-5">
-                                    <ul className="style-none d-flex flex-wrap align-items-center justify-content-between">
-                                       <li><strong>{item.property_info.sqft}</strong> sqft</li>
-                                       <li><strong>{item.property_info.bed}</strong> bed</li>
-                                       <li><strong>{item.property_info.bath}</strong> bath</li>
-                                       <li><strong>{item.property_info.kitchen}</strong> Kitchen</li>
-                                    </ul>
-                                 </div>
-                                 <div className="pl-footer d-flex flex-wrap align-items-center justify-content-between">
-                                    <strong className="price fw-500 color-dark me-auto">₹{item.price.toLocaleString({ minimumFractionDigits: 2, maximumFractionDigits: 2 })}{item.price_text && <>/<sub>m</sub></>}</strong>
+                                 <div className="property-info">
+                                    <Link href="/listing_details_02" className="title tran3s mb-15">{item.title}</Link>
+                                    <div className="address">{item.address}</div>
+                                    <div className="feature mt-30 mb-30 pt-30 pb-5">
+                                       <ul className="style-none d-flex flex-wrap align-items-center justify-content-between">
+                                          <li><strong>{item.property_info.sqft}</strong> sqft</li>
+                                          <li><strong>{item.property_info.bed}</strong> bed</li>
+                                          <li><strong>{item.property_info.bath}</strong> bath</li>
+                                          <li><strong>{item.property_info.kitchen}</strong> Kitchen</li>
+                                       </ul>
+                                    </div>
+                                    <div className="pl-footer d-flex flex-wrap align-items-center justify-content-between">
+                                       <strong className="price fw-500 color-dark me-auto">{formatPrice(item.price)}{item.price_text && <>/<sub>m</sub></>}</strong>
 
-                                    <ul className="style-none d-flex action-icons me-4">
-                                       <li><Link href="#"><i className="fa-light fa-heart"></i></Link></li>
-                                       <li><Link href="#"><i className="fa-light fa-bookmark"></i></Link></li>
-                                       <li><Link href="#"><i className="fa-light fa-circle-plus"></i></Link></li>
-                                    </ul>
-                                    <Link href="/listing_details_02" className="btn-four rounded-circle">
-                                       <i className="bi bi-arrow-up-right"></i>
-                                    </Link>
+                                       <ul className="style-none d-flex action-icons me-4">
+                                          <li><Link href="#" aria-label="Save property"><i className="fa-light fa-heart"></i></Link></li>
+                                          <li><Link href="#" aria-label="Bookmark property"><i className="fa-light fa-bookmark"></i></Link></li>
+                                          <li><Link href="#" aria-label="Compare property"><i className="fa-light fa-circle-plus"></i></Link></li>
+                                       </ul>
+                                       <Link href="/listing_details_02" className="btn-four rounded-circle" aria-label="View Details">
+                                          <i className="bi bi-arrow-up-right"></i>
+                                       </Link>
+                                    </div>
                                  </div>
                               </div>
                            </div>
-                        </div>
-                     ))}
+                        ))
+                     )}
 
-                     <ReactPaginate
-                        breakLabel="..."
-                        nextLabel={<Image src={icon} alt="" className="ms-2" />}
-                        onPageChange={handlePageClick}
-                        pageRangeDisplayed={pageCount}
-                        pageCount={pageCount}
-                        previousLabel={<Image src={icon} alt="" className="ms-2" />}
-                        renderOnZeroPageCount={null}
-                        className="pagination-one d-flex align-items-center justify-content-center justify-content-sm-start style-none pt-30"
-                     />
+                     {pageCount > 1 && (
+                        <ReactPaginate
+                           breakLabel="..."
+                           nextLabel={<Image src={icon} alt="" className="ms-2" />}
+                           onPageChange={handlePageClick}
+                           pageRangeDisplayed={pageCount}
+                           pageCount={pageCount}
+                           previousLabel={<Image src={icon} alt="" className="ms-2" />}
+                           renderOnZeroPageCount={null}
+                           className="pagination-one d-flex align-items-center justify-content-center justify-content-sm-start style-none pt-30"
+                        />
+                     )}
                   </div>
                </div>
 

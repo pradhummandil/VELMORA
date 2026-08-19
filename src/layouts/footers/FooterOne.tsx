@@ -24,13 +24,13 @@ const FooterOne = ({ style }: any) => {
                               </Link>
                            </div>
                            <p className="mb-10 fs-16 fw-500 opacity-75">Curated Spaces. Timeless Living.</p>
-                           <p className="mb-40 lg-mb-30 md-mb-20">VELMORA Real Estate<br/>Mumbai, Maharashtra, India</p>
+                           <p className="mb-40 lg-mb-30 md-mb-20">VELMORA Private Office<br/>Dr Annie Besant Road, Worli, Mumbai 400018</p>
                            <h6>CONTACT</h6>
-                           <Link href="mailto:hello@velmora.example" className={`email tran3s mb-10 ${style ? "font-garamond" : "fs-20 text-decoration-underline"}`}>hello@velmora.example</Link>
-                           <p className="fs-18 fw-500 mb-40">+91 90000 00000</p>
+                           <Link href="mailto:advisory@velmora.in" className={`email tran3s mb-10 ${style ? "font-garamond" : "fs-20 text-decoration-underline"}`}>advisory@velmora.in</Link>
+                           <p className="fs-18 fw-500 mb-40">+91 22 4987 6543</p>
                            <ul className="style-none d-flex align-items-center social-icon">
                               {icon_1.map((icon, i) => (
-                                 <li key={i}><Link href="#"><i className={`fa-brands fa${style ? "" : "-square"}-${icon}`}></i></Link></li>
+                                 <li key={i}><Link href="#" aria-label={icon}><i className={`fa-brands fa${style ? "" : "-square"}-${icon}`}></i></Link></li>
                               ))}
                            </ul>
                         </div>

@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from "next/image";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
+import { API_BASE_URL } from "@/utils/api";
 
 interface FormData {
    email: string;
@@ -28,7 +29,7 @@ const LoginForm = () => {
 
    const onSubmit = async (data: FormData) => {
       try {
-         const response = await fetch("http://localhost:5000/api/auth/login", { 
+         const response = await fetch(`${API_BASE_URL}/api/auth/login`, { 
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -37,14 +38,17 @@ const LoginForm = () => {
          const result = await response.json();
 
          if (response.ok) {
-            toast.success("Login successfully", { position: "top-center" });
+            if (result.token && typeof window !== "undefined") {
+               localStorage.setItem("token", result.token);
+            }
+            toast.success("Login successful!", { position: "top-center" });
             reset();
             router.push("/dashboard/dashboard-index"); 
          } else {
-            toast.error(result.message || "Invalid email or password");
+            toast.error(result.error || result.message || "Invalid email or password");
          }
       } catch (error) {
-         toast.error("An error occurred. Please try again.");
+         toast.error("Unable to connect to authentication service. Please try again.");
       }
    };
 

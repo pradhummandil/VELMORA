@@ -18,12 +18,12 @@ const FooterFour = () => {
                               <Image src={footerLogo} alt="" />
                            </Link>
                         </div>
-                        <p className="mb-30 xs-mb-20">VELMORA Real Estate, Mumbai, Maharashtra, India</p>
-                        <Link href="mailto:hello@velmora.example" className="email tran3s mb-60 md-mb-30">hello@velmora.example</Link>
+                        <p className="mb-30 xs-mb-20">VELMORA Private Office, Worli, Mumbai, India</p>
+                        <Link href="mailto:advisory@velmora.in" className="email tran3s mb-60 md-mb-30">advisory@velmora.in</Link>
                         <ul className="style-none d-flex align-items-center social-icon">
-                           <li><Link href="#"><i className="fa-brands fa-facebook-f"></i></Link></li>
-                           <li><Link href="#"><i className="fa-brands fa-twitter"></i></Link></li>
-                           <li><Link href="#"><i className="fa-brands fa-instagram"></i></Link></li>
+                           <li><Link href="#" aria-label="Facebook"><i className="fa-brands fa-facebook-f"></i></Link></li>
+                           <li><Link href="#" aria-label="X Twitter"><i className="fa-brands fa-twitter"></i></Link></li>
+                           <li><Link href="#" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></Link></li>
                         </ul>
                      </div>
                   </div>
@@ -42,7 +42,7 @@ const FooterFour = () => {
                </div>
             </div>
             <div className="bottom-footer">
-               <p className="m0 text-center fs-16">Copyright @2026 VELMORA.</p>
+               <p className="m0 text-center fs-14 opacity-75">Copyright © 2026 VELMORA Real Estate. Property names, imagery and selected portfolio examples are presented for curated demonstration purposes.</p>
             </div>
          </div>
          <Image src={footerShape} alt="" className="lazy-img shapes shape_01" />

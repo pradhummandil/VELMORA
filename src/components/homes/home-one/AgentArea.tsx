@@ -43,8 +43,8 @@ const AgentArea = ({ style }: any) => {
          <div className={`container ${style ? "container-large" : ""}`}>
             <div className="position-relative">
                <div className="title-one mb-85 lg-mb-50 wow fadeInLeft">
-                  <h3>Our <span>Agents{style?"":<Image src={titleShape} alt="" className="lazy-img" />}</span></h3>
-                  <p className="fs-22 mt-xs">Lorem  is placeholder text commonly used  graphic </p>
+                  <h3>Our <span>Advisors{style?"":<Image src={titleShape} alt="" className="lazy-img" />}</span></h3>
+                  <p className="fs-22 mt-xs">Dedicated private advisors curating exclusive residential investments across India.</p>
                </div>
 
                <div className="wrapper position-relative z-1">

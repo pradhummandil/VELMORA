@@ -12,10 +12,10 @@ const Profile = () => {
          <div className="user-name-data">
             <ul className="dropdown-menu" aria-labelledby="profile-dropdown">
                <li>
-                  <Link className="dropdown-item d-flex align-items-center" href="/profile"><Image src={profileIcon_1} alt="" className="lazy-img" /><span className="ms-2 ps-1">Profile</span></Link>
+                  <Link className="dropdown-item d-flex align-items-center" href="/dashboard/profile"><Image src={profileIcon_1} alt="" className="lazy-img" /><span className="ms-2 ps-1">Profile</span></Link>
                </li>
                <li>
-                  <Link className="dropdown-item d-flex align-items-center" href="/account-settings"><Image src={profileIcon_2} alt="" className="lazy-img" /><span className="ms-2 ps-1">Account Settings</span></Link>
+                  <Link className="dropdown-item d-flex align-items-center" href="/dashboard/account-settings"><Image src={profileIcon_2} alt="" className="lazy-img" /><span className="ms-2 ps-1">Account Settings</span></Link>
                </li>
                <li>
                   <Link className="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><Image src={profileIcon_3} alt="" className="lazy-img"/><span className="ms-2 ps-1">Delete Account</span></Link>

@@ -6,15 +6,17 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const SECRET_KEY = process.env.JWT_SECRET || "secret_key";
+const SECRET_KEY = process.env.JWT_SECRET || "velmora_luxury_realestate_jwt_secret_dev_only";
 
-//📌 1️⃣ NEW USER  SIGNUP 
-
+//📌 1️⃣ NEW USER SIGNUP 
 export const signup = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, password, termsAccepted } = req.body;
 
-    console.log("Received Data:", req.body); 
+    if (!name || !email || !password) {
+      res.status(400).json({ error: "Name, email and password are required" });
+      return;
+    }
 
     if (!termsAccepted) {
       res.status(400).json({ error: "You must accept the terms and conditions" });
@@ -31,10 +33,17 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 
     const user = await User.create({ name, email, password: hashedPassword, termsAccepted });
 
-    res.status(201).json({ message: "User created successfully!", user });
+    res.status(201).json({ 
+      message: "User created successfully!", 
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+    });
   } catch (error) {
     console.error("Signup Error:", error); 
-    res.status(500).json({ error: "Error creating user", details: error });
+    res.status(500).json({ error: "Error creating user" });
   }
 };
   
@@ -43,8 +52,13 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 export const login = async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password } = req.body;
+
+      if (!email || !password) {
+        res.status(400).json({ error: "Email and password are required" });
+        return;
+      }
   
-      // Search new user
+      // Search user
       const user = await User.findOne({ where: { email } });
       if (!user) {
         res.status(401).json({ error: "Invalid credentials" });
@@ -59,10 +73,19 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       }
   
       // ✅ Create JWT
-      const token = jwt.sign({ id: user.id }, "your_secret_key", { expiresIn: "1h" });
+      const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "7d" });
   
-      res.json({ message: "Login successful!", token });
+      res.json({ 
+        message: "Login successful!", 
+        token,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        }
+      });
     } catch (error) {
+      console.error("Login Error:", error);
       res.status(500).json({ error: "Error logging in" });
     }
   };

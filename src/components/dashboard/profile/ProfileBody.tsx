@@ -6,6 +6,7 @@ import UserAvatarSetting from "./UserAvatarSetting";
 import AddressAndLocation from "./AddressAndLocation";
 import Link from "next/link";
 import SocialMediaLink from "./SocialMediaLink";
+import { API_BASE_URL } from "@/utils/api";
 
 import avatar_1 from "@/assets/images/dashboard/avatar_02.jpg";
 
@@ -21,7 +22,7 @@ const ProfileBody = () => {
       const fetchUserData = async () => {
          try {
             const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-            const res = await fetch("http://localhost:5000/api/profile", {
+            const res = await fetch(`${API_BASE_URL}/api/profile`, {
                headers: {
                   Authorization: `Bearer ${token}`,
                },
@@ -49,7 +50,7 @@ const ProfileBody = () => {
    const handleSave = async () => {
       try {
          const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-         const res = await fetch("http://localhost:5000/api/profile", {
+         const res = await fetch(`${API_BASE_URL}/api/profile`, {
             method: "PUT",
             headers: {
                "Content-Type": "application/json",

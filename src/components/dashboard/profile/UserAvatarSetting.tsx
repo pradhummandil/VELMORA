@@ -74,7 +74,7 @@ const UserAvatarSetting: React.FC<UserAvatarSettingProps> = ({
          <div className="col-sm-6">
             <div className="dash-input-wrapper mb-30">
                <label htmlFor="">Website*</label>
-               <input type="text" placeholder="http://somename.com" />
+               <input type="text" placeholder="https://velmora.in/advisors/profile" />
             </div>
          </div>
          <div className="col-12">

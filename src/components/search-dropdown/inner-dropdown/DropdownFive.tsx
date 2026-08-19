@@ -56,11 +56,11 @@ const DropdownFive = ({
                                        <div className="label">Location</div>
                                        <NiceSelect className="nice-select location"
                                           options={[
-                                             { value: "washington", text: "Washington DC" },
+                                             { value: "mumbai", text: "Worli, Mumbai" },
                                              { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                                              { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                                              { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                                             { value: "india", text: "Delhi, India" },
+                                             { value: "delhi", text: "Chanakyapuri, New Delhi" },
                                              { value: "pune", text: "Koregaon Park, Pune" },
                                              { value: "goa", text: "Assagao, Goa" },
                                           ]}
@@ -73,10 +73,10 @@ const DropdownFive = ({
                                  <div className="col-xl-3 col-lg-4">
                                     <div className="input-box-one md-mt-10">
                                        <div className="d-flex align-items-center justify-content-center justify-content-lg-end">
-                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" className="search-modal-btn sm rounded-circle tran3s text-uppercase fw-500 d-inline-flex align-items-center justify-content-center me-3">
+                                          <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" aria-label="Open Advanced Filter" className="search-modal-btn sm rounded-circle tran3s text-uppercase fw-500 d-inline-flex align-items-center justify-content-center me-3">
                                              <i className="fa-light fa-sliders-up"></i>
                                           </Link>
-                                          <button className="fw-500 text-uppercase tran3s search-btn w-auto m0">Search</button>
+                                          <button aria-label="Search Properties" className="fw-500 text-uppercase tran3s search-btn w-auto m0">Search</button>
                                        </div>
                                     </div>
                                  </div>

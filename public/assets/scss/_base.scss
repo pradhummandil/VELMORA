@@ -123,3 +123,28 @@ p {line-height: 1.777em;}
   transition: all 0.6s ease-in-out;
 }
 
+// Accessibility & Luxury Hardening
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.nice-select:focus-visible {
+  outline: 2px solid #B89B5E !important;
+  outline-offset: 2px !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -26,8 +26,7 @@ const AgencyFormOne = ({ style }: any) => {
 
    const { register, handleSubmit, reset, formState: { errors }, } = useForm<FormData>({ resolver: yupResolver(schema), });
    const onSubmit = (data: FormData) => {
-      const notify = () => toast('Review submit successfully', { position: 'top-center' });
-      notify();
+      toast.success('Your review has been submitted for verification.', { position: 'top-center' });
       reset();
    };
 
@@ -37,14 +36,14 @@ const AgencyFormOne = ({ style }: any) => {
             <div className="col-12">
                <div className="input-box-two mb-30">
                   <div className="label">Title*</div>
-                  <input type="text" {...register("name")} placeholder="Rashed Kabir" className={`type-input ${style ? "" : "rounded-0"}`} />
+                  <input type="text" {...register("name")} placeholder="Vikram Malhotra" className={`type-input ${style ? "" : "rounded-0"}`} />
                   <p className="form_error">{errors.name?.message}</p>
                </div>
             </div>
             <div className="col-lg-6">
                <div className="input-box-two mb-30">
                   <div className="label">Email*</div>
-                  <input type="email" {...register("email")} placeholder="r@gmail.com" className={`type-input ${style ? "" : "rounded-0"}`} />
+                  <input type="email" {...register("email")} placeholder="vikram.malhotra@gmail.com" className={`type-input ${style ? "" : "rounded-0"}`} />
                   <p className="form_error">{errors.email?.message}</p>
                </div>
             </div>

@@ -52,11 +52,11 @@ const DropdownSix = ({
                      <div className="label2">Location</div>
                      <NiceSelect className="nice-select location fw-normal box-style"
                         options={[
-                           { value: "washington", text: "Washington DC" },
+                           { value: "mumbai", text: "Worli, Mumbai" },
                            { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                            { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                            { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                           { value: "india", text: "Delhi, India" },
+                           { value: "delhi", text: "Chanakyapuri, New Delhi" },
                            { value: "pune", text: "Koregaon Park, Pune" },
                            { value: "goa", text: "Assagao, Goa" },
                         ]}
@@ -128,7 +128,7 @@ const DropdownSix = ({
                         <div className="field d-flex align-items-center">
                            <input type="number" className="input-max" value={priceValue[1]} onChange={() => handlePriceChange} />
                         </div>
-                        <div className="currency ps-1">USD</div>
+                        <div className="currency ps-1">INR</div>
                      </div>
                   </div>
                   <PriceRange
