@@ -6,7 +6,13 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const SECRET_KEY = process.env.JWT_SECRET || "velmora_luxury_realestate_jwt_secret_dev_only";
+const getJwtSecret = (): string => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error("JWT_SECRET environment variable is required");
+  }
+  return secret;
+};
 
 //📌 1️⃣ NEW USER SIGNUP 
 export const signup = async (req: Request, res: Response): Promise<void> => {
@@ -73,7 +79,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       }
   
       // ✅ Create JWT
-      const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "7d" });
+      const token = jwt.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
   
       res.json({ 
         message: "Login successful!", 

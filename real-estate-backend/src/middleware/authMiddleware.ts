@@ -4,7 +4,13 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const SECRET_KEY = process.env.JWT_SECRET || "velmora_luxury_realestate_jwt_secret_dev_only";
+const getJwtSecret = (): string => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error("JWT_SECRET environment variable is required");
+  }
+  return secret;
+};
 
 export interface AuthRequest extends Request {
   user?: { id: number };
@@ -19,7 +25,7 @@ export const authenticateUser = (req: AuthRequest, res: Response, next: NextFunc
   }
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY) as { id: number };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: number };
     req.user = decoded;
     next();
   } catch (error) {

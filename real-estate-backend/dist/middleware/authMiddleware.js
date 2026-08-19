@@ -5,7 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticateUser = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key";
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const getJwtSecret = () => {
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+        throw new Error("JWT_SECRET environment variable is required");
+    }
+    return secret;
+};
 const authenticateUser = (req, res, next) => {
     var _a;
     const token = (_a = req.header("Authorization")) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
@@ -14,7 +22,7 @@ const authenticateUser = (req, res, next) => {
         return;
     }
     try {
-        const decoded = jsonwebtoken_1.default.verify(token, SECRET_KEY);
+        const decoded = jsonwebtoken_1.default.verify(token, getJwtSecret());
         req.user = decoded;
         next();
     }

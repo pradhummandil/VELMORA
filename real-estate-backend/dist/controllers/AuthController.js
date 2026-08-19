@@ -18,12 +18,21 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const SECRET_KEY = process.env.JWT_SECRET || "secret_key";
-//📌 1️⃣ NEW USER  SIGNUP 
+const getJwtSecret = () => {
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+        throw new Error("JWT_SECRET environment variable is required");
+    }
+    return secret;
+};
+//📌 1️⃣ NEW USER SIGNUP 
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, email, password, termsAccepted } = req.body;
-        console.log("Received Data:", req.body);
+        if (!name || !email || !password) {
+            res.status(400).json({ error: "Name, email and password are required" });
+            return;
+        }
         if (!termsAccepted) {
             res.status(400).json({ error: "You must accept the terms and conditions" });
             return;
@@ -35,11 +44,18 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
         const user = yield User_1.User.create({ name, email, password: hashedPassword, termsAccepted });
-        res.status(201).json({ message: "User created successfully!", user });
+        res.status(201).json({
+            message: "User created successfully!",
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            }
+        });
     }
     catch (error) {
         console.error("Signup Error:", error);
-        res.status(500).json({ error: "Error creating user", details: error });
+        res.status(500).json({ error: "Error creating user" });
     }
 });
 exports.signup = signup;
@@ -47,7 +63,11 @@ exports.signup = signup;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
-        // Search new user
+        if (!email || !password) {
+            res.status(400).json({ error: "Email and password are required" });
+            return;
+        }
+        // Search user
         const user = yield User_1.User.findOne({ where: { email } });
         if (!user) {
             res.status(401).json({ error: "Invalid credentials" });
@@ -60,10 +80,19 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return;
         }
         // ✅ Create JWT
-        const token = jsonwebtoken_1.default.sign({ id: user.id }, "your_secret_key", { expiresIn: "1h" });
-        res.json({ message: "Login successful!", token });
+        const token = jsonwebtoken_1.default.sign({ id: user.id }, getJwtSecret(), { expiresIn: "7d" });
+        res.json({
+            message: "Login successful!",
+            token,
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            }
+        });
     }
     catch (error) {
+        console.error("Login Error:", error);
         res.status(500).json({ error: "Error logging in" });
     }
 });

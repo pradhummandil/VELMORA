@@ -9,9 +9,22 @@ const User_1 = require("../models/User");
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
-exports.sequelize = new sequelize_typescript_1.Sequelize({
-    dialect: "sqlite",
-    storage: path_1.default.join(__dirname, "../../database.sqlite"),
-    models: [User_1.User],
-    logging: false, // Disable SQL logging for cleaner output
-});
+const databaseUrl = process.env.DATABASE_URL;
+exports.sequelize = databaseUrl
+    ? new sequelize_typescript_1.Sequelize(databaseUrl, {
+        models: [User_1.User],
+        dialect: "postgres",
+        dialectOptions: process.env.NODE_ENV === "production" ? {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false,
+            },
+        } : {},
+        logging: false,
+    })
+    : new sequelize_typescript_1.Sequelize({
+        dialect: "sqlite",
+        storage: process.env.DB_STORAGE || path_1.default.join(__dirname, "../../database.sqlite"),
+        models: [User_1.User],
+        logging: false,
+    });
