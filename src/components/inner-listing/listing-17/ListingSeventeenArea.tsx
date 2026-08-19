@@ -158,7 +158,7 @@ const ListingSeventeenArea = () => {
                                  </ul>
                               </div>
                               <div className="pl-footer pb-15 d-flex align-items-center justify-content-between">
-                                 <strong className="price sm fw-500 w-100 color-dark m0">${item.price.toLocaleString({ minimumFractionDigits: 2, maximumFractionDigits: 2 })} {item.price_text && <>/ <sub>m</sub></>}</strong>
+                                 <strong className="price sm fw-500 w-100 color-dark m0">₹{item.price.toLocaleString({ minimumFractionDigits: 2, maximumFractionDigits: 2 })} {item.price_text && <>/ <sub>m</sub></>}</strong>
                                  <ul className="style-none d-flex action-icons on-top">
                                     <li><Link href="#"><i className="fa-light fa-heart"></i></Link></li>
                                  </ul>

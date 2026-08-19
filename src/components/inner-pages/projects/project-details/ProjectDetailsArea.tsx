@@ -27,7 +27,7 @@ const content_data: ContentType = {
    title_1: "Apartments on Vintage City.",
    title_2: "Project Details",
    desc_1: "Your leading real estate advocate, transforming houses into dreams. Trust",
-   desc_2: "Your leading real estate advocate, transforming houses into dreams. Trust us to expertly guide you home.  745,000 apartments & home for sell, rent & mortgage.",
+   desc_2: "Your trusted real estate partner, transforming spaces into exceptional homes. Trust us to expertly guide you home with curated properties for sale and rent.",
    project_details: [
       {
          count: "01",

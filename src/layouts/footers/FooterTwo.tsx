@@ -20,10 +20,10 @@ interface ContentType {
 
 const footer_content: ContentType = {
    title: "Our Newsletter",
-   desc_1: "Get instant news by subscribe to our newsletter",
-   desc_2: "11910 Cairo Suite 210, Kafralshakh , Cairo, Egypt",
-   email: "Emile@gmail.com",
-   number: "+210 0000-0000",
+   desc_1: "Subscribe to receive curated property highlights and market insights.",
+   desc_2: "VELMORA Real Estate, Mumbai, Maharashtra, India",
+   email: "hello@velmora.example",
+   number: "+91 90000 00000",
    icon: ["facebook-f", "twitter", "instagram"],
 }
 
@@ -113,7 +113,7 @@ const FooterTwo = () => {
                      <li><Link href="/faq">Cookies</Link></li>
                      <li><Link href="/contact">Contact Us</Link></li>
                   </ul>
-                  <p className="mb-15 text-center text-lg-start order-md-first">Copyright @2025 HOZN.</p>
+                  <p className="mb-15 text-center text-lg-start order-md-first">Copyright @2026 VELMORA.</p>
                </div>
             </div>
          </div>

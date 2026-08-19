@@ -38,7 +38,7 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                            </li>
                               <li className="d-none d-md-inline-block ms-3 ms-xl-4 me-xl-4">
                                  <Link href="dashboard/add-property" className={style_1 ? "btn-ten" : "btn-two rounded-0"} target="_blank">
-                                    <span>Add Listing</span> <i className="fa-thin fa-arrow-up-right"></i>
+                                    <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
                                  </Link>
                               </li>
                               <li className="d-none d-xl-block">
@@ -48,7 +48,7 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                               </li></>) : (<>
                                  <li className="d-none d-md-flex align-items-center login-btn-one me-4 me-xxl-5">
                                     <i className="fa-regular fa-phone-volume"></i>
-                                    <Link href="tel:+210-0000-0000" className="tran3s">+210-0000-0000</Link>
+                                    <Link href="tel:+919000000000" className="tran3s">+91 90000 00000</Link>
                                  </li>
                                  <li>
                                     <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="login-btn-two rounded-circle tran3s d-flex align-items-center justify-content-center"><i className="fa-regular fa-lock"></i></Link>

@@ -15,7 +15,7 @@ const BLockFeatureTwo = ({ style }: any) => {
                      <div className="title-one mb-45 lg-mb-20">
                         <h3>Find Your Perfect Match Easily.</h3>
                      </div>
-                     <p className="fs-24 mb-45">Browse 745,000+ homes for purchase, rent, and mortgage options in our listings.</p>
+                     <p className="fs-24 mb-45">Browse curated homes for purchase, rent, and investment options in our collection.</p>
                      <form onSubmit={(e) => e.preventDefault()} className="email-form position-relative z-1">
                         <input type="email" placeholder="Your Email Address..." />
                         <button className="btn-two">Find out</button>
@@ -31,7 +31,7 @@ const BLockFeatureTwo = ({ style }: any) => {
                            </div>
                            <div className="col-xxl-6 col-sm-7">
                               <div className="counter-block-one mt-20">
-                                 <div className="main-count fw-500 color-dark">$<span className="counter"><Count number={1.3} /></span>b+</div>
+                                 <div className="main-count fw-500 color-dark">₹<span className="counter"><Count number={1200} /></span>Cr+</div>
                                  <span>Property listing sold last year</span>
                               </div>
                            </div>

@@ -20,7 +20,7 @@ const MembershipBody = () => {
                   <div className="col-xxl-5 col-lg-6 d-flex flex-column">
                      <div className="column border-left w-100 h-100">
                         <div className="d-flex">
-                           <h3 className="price m0">$29</h3>
+                           <h3 className="price m0">₹2,499</h3>
                            <div className="ps-4 flex-fill">
                               <h6>Monthly Plan</h6>
                               <span className="text1 d-block">Your subscription renews <span className="fw-500">July 12th,

@@ -23,9 +23,11 @@ const FooterOne = ({ style }: any) => {
                                  <Image src={style ? footerLogo_2 : footerLogo_1} alt="" />
                               </Link>
                            </div>
-                           <p className="mb-60 lg-mb-40 md-mb-20">VELMORA Real Estate, Mumbai, Maharashtra, India</p>
+                           <p className="mb-10 fs-16 fw-500 opacity-75">Curated Spaces. Timeless Living.</p>
+                           <p className="mb-40 lg-mb-30 md-mb-20">VELMORA Real Estate<br/>Mumbai, Maharashtra, India</p>
                            <h6>CONTACT</h6>
-                           <Link href="#" className={`email tran3s mb-70 lg-mb-50 ${style ? "font-garamond" : "fs-24 text-decoration-underline"}`}>hello@velmora.example</Link>
+                           <Link href="mailto:hello@velmora.example" className={`email tran3s mb-10 ${style ? "font-garamond" : "fs-20 text-decoration-underline"}`}>hello@velmora.example</Link>
+                           <p className="fs-18 fw-500 mb-40">+91 90000 00000</p>
                            <ul className="style-none d-flex align-items-center social-icon">
                               {icon_1.map((icon, i) => (
                                  <li key={i}><Link href="#"><i className={`fa-brands fa${style ? "" : "-square"}-${icon}`}></i></Link></li>

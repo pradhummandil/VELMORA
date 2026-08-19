@@ -34,11 +34,11 @@ const DropdownOne = ({ style }: any) => {
                   <NiceSelect className={`nice-select location ${style ? "fw-normal" : ""}`}
                      options={[
                         { value: "germany", text: "Lucknow, India" },
-                        { value: "dhaka", text: "Mumbai, India" },
+                        { value: "mumbai", text: "Mumbai, Maharashtra" },
                         { value: "mexico", text: "Gwalior, India" },
                         { value: "france", text: "Indore, India" },
                         { value: "india", text: "Delhi, India" },
-                        { value: "giza", text: "Bhopal, India" },
+                        { value: "bhopal", text: "Bhopal, Madhya Pradesh" },
                         { value: "cuba", text: "Ujjain, India" },
                      ]}
                      defaultCurrent={0}

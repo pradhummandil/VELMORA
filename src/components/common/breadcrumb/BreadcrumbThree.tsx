@@ -21,7 +21,7 @@ const BreadcrumbThree = ({ title, link, link_title, sub_title, style }: any) => 
                   </ul>
                </div>
                <div className="col-lg-6">
-                  <p className="sub-heading">Over 745,000 listings, apartments, lots and  plots available now!</p>
+                  <p className="sub-heading">Discover handpicked residences and luxury properties across India.</p>
                </div>
             </div>
 
@@ -51,12 +51,12 @@ const BreadcrumbThree = ({ title, link, link_title, sub_title, style }: any) => 
                               <div className="label">Location</div>
                               <NiceSelect className="nice-select location fw-normal"
                                  options={[
-                                    { value: "dhaka", text: "Gwalior, India" },
+                                    { value: "gwalior", text: "Gwalior, India" },
                                     { value: "germany", text: "Indore, India" },
                                     { value: "mexico", text: "Ujjain, India" },
                                     { value: "france", text: "Bhopal, France" },
                                     { value: "india", text: "Delhi, India" },
-                                    { value: "giza", text: "Mumbai, India" },
+                                    { value: "mumbai", text: "Mumbai, India" },
                                     { value: "cuba", text: "Lucknow, Cuba" },
                                  ]}
                                  defaultCurrent={0}

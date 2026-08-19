@@ -1,4 +1,4 @@
-# 🏡 HOZN Real Estate - Visual Architecture & Data Flow Guide
+# 🏡 VELMORA Real Estate - Visual Architecture & Data Flow Guide
 
 ---
 
@@ -616,4 +616,4 @@ New property details displayed
 
 ---
 
-**This visual guide helps understand the complete data flow, component hierarchy, and system architecture of the HOZN Real Estate platform.**
+**This visual guide helps understand the complete data flow, component hierarchy, and system architecture of the VELMORA Real Estate platform.**

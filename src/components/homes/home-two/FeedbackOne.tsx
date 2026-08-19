@@ -18,7 +18,7 @@ const Feedback = () => {
                            <Image src={feedbackAvatar} alt="" className="rounded-circle avatar" />
                            <div className="ps-4">
                               <h6 className="fs-22 text-white fw-normal mb-5">xyz.</h6>
-                              <span className="text-white opacity-50 fw-light">CEO & Head of HOZN Inc</span>
+                              <span className="text-white opacity-50 fw-light">CEO & Head of VELMORA Inc</span>
                            </div>
                         </div>
                      </div>

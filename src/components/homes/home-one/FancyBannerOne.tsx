@@ -32,8 +32,8 @@ const FancyBannerOne = ({ style }: any) => {
 
                         <div className="col-md-7 d-flex">
                            <div className="gutter w-100 h-100">
-                              <p>Mirpur 10, National Stadium, 1210, Dhaka, BD</p>
-                              <h2 className="price text-center">$28,100.00</h2>
+                              <p>Dr Annie Besant Rd, Worli, Mumbai 400018</p>
+                              <h2 className="price text-center">₹2,81,00,000</h2>
                               <ul className="style-none d-flex feature">
                                  <li>
                                     <strong className="d-block color-dark fw-500 fs-20">2137</strong>

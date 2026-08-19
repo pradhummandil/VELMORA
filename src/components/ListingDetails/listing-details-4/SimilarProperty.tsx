@@ -54,7 +54,7 @@ const SimilarProperty = () => {
                      </div>
                      <div className="property-info d-flex justify-content-between align-items-end pt-30">
                         <div>
-                           <strong className="price fw-500 color-dark">${item.price}</strong>
+                           <strong className="price fw-500 color-dark">₹{item.price}</strong>
                            <div className="address m0">{item.address}</div>
                         </div>
                         <Link href="/listing_details_01" className="btn-four mb-5"><i className="bi bi-arrow-up-right"></i></Link>

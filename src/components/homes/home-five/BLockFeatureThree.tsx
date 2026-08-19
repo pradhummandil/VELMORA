@@ -12,7 +12,7 @@ const BLockFeatureThree = () => {
                <div className="row">
                   <div className="title-one text-center mb-50 lg-mb-20 wow fadeInUp">
                      <h3>Buy, Rend & Sell</h3>
-                     <p className="fs-22">Over 745K listings of apartments, lots, plots - available today.</p>
+                     <p className="fs-22">Handpicked luxury residences, villas and premium apartments available today.</p>
                   </div>
                </div>
 

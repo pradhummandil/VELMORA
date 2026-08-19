@@ -35,16 +35,16 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                         <div className="tab-content mt-30">
                            <div className={`tab-pane fade ${activeTab === 0 ? 'show active' : ''}`}>
                               <div className="text-center mb-20">
-                                 <h2>Welcome Back!</h2>
-                                 <p className="fs-20 color-dark">Still don&apos;t have an account? <Link href="#">Sign up</Link></p>
+                                 <h2>Welcome to VELMORA</h2>
+                                 <p className="fs-20 color-dark">Still don&apos;t have an account? <Link href="#" onClick={() => setActiveTab(1)}>Sign up</Link></p>
                               </div>
                               <LoginForm />
                            </div>
 
                            <div className={`tab-pane fade ${activeTab === 1 ? 'show active' : ''}`}>
                               <div className="text-center mb-20">
-                                 <h2>Register</h2>
-                                 <p className="fs-20 color-dark">Already have an account? <Link href="#">Login</Link></p>
+                                 <h2>Create your VELMORA account</h2>
+                                 <p className="fs-20 color-dark">Already have an account? <Link href="#" onClick={() => setActiveTab(0)}>Login</Link></p>
                               </div>
                               <RegisterForm />
                            </div>

@@ -28,7 +28,7 @@ const list_data: DataType[] = [
    {
       id: 1,
       title: "Galaxy Flat",
-      address: "Mirpur 10, dhaka, BD",
+      address: "Dr Annie Besant Rd, Worli, Mumbai",
       price: 32800,
       date: "13 Jan, 2023",
       view: 1210,
@@ -90,7 +90,7 @@ const PropertyTableBody = () => {
                      <div className="ps-lg-4 md-pt-10">
                         <Link href="#" className="property-name tran3s color-dark fw-500 fs-20 stretched-link">{item.title}</Link>
                         <div className="address">{item.address}</div>
-                        <strong className="price color-dark">${item.price}</strong>
+                        <strong className="price color-dark">₹{item.price}</strong>
                      </div>
                   </div>
                </td>

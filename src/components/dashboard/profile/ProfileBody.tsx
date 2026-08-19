@@ -16,11 +16,11 @@ const ProfileBody = () => {
    const [lastName, setLastName] = useState("");
    const [phoneNumber, setPhoneNumber] = useState("");
    const [about, setAbout] = useState("");
-   const token = localStorage.getItem("token"); 
 
    useEffect(() => {
       const fetchUserData = async () => {
          try {
+            const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
             const res = await fetch("http://localhost:5000/api/profile", {
                headers: {
                   Authorization: `Bearer ${token}`,
@@ -48,6 +48,7 @@ const ProfileBody = () => {
 
    const handleSave = async () => {
       try {
+         const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
          const res = await fetch("http://localhost:5000/api/profile", {
             method: "PUT",
             headers: {

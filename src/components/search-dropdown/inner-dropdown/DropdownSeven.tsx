@@ -45,12 +45,12 @@ const DropdownSeven = ({
                      <NiceSelect className="nice-select location fw-normal"
                         options={[
                            { value: "washington", text: "Washington DC" },
-                           { value: "mexico", text: "Acapulco, Mexico" },
-                           { value: "germany", text: "Berlin, Germany" },
-                           { value: "france", text: "Cannes, France" },
+                           { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                           { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                           { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                            { value: "india", text: "Delhi, India" },
-                           { value: "giza", text: "Giza, Egypt" },
-                           { value: "cuba", text: "Havana, Cuba" },
+                           { value: "pune", text: "Koregaon Park, Pune" },
+                           { value: "goa", text: "Assagao, Goa" },
                         ]}
                         defaultCurrent={0}
                         onChange={handleLocationChange}

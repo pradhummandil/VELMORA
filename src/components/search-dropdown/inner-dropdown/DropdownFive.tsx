@@ -26,7 +26,7 @@ const DropdownFive = ({
             <div className="container">
                <div className="title-one text-center mb-55 xl-mb-30 lg-mb-20 wow fadeInUp">
                   <h3>Find Your <span>Home <Image src={titleShape} alt="" className="lazy-img" /></span></h3>
-                  <p className="fs-24 mt-xs">We’ve more than 745,000 apartments, place & plot.</p>
+                  <p className="fs-24 mt-xs">Discover curated residences and luxury properties across India.</p>
                </div>
                <div className="row">
                   <div className="col-xxl-10 m-auto">
@@ -57,12 +57,12 @@ const DropdownFive = ({
                                        <NiceSelect className="nice-select location"
                                           options={[
                                              { value: "washington", text: "Washington DC" },
-                                             { value: "mexico", text: "Acapulco, Mexico" },
-                                             { value: "germany", text: "Berlin, Germany" },
-                                             { value: "france", text: "Cannes, France" },
+                                             { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                             { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                                             { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                                              { value: "india", text: "Delhi, India" },
-                                             { value: "giza", text: "Giza, Egypt" },
-                                             { value: "cuba", text: "Havana, Cuba" },
+                                             { value: "pune", text: "Koregaon Park, Pune" },
+                                             { value: "goa", text: "Assagao, Goa" },
                                           ]}
                                           defaultCurrent={0}
                                           onChange={handleLocationChange}

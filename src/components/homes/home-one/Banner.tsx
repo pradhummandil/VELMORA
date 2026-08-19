@@ -11,8 +11,9 @@ const Banner = () => {
          <div className="container position-relative">
             <div className="row">
                <div className="col-xxl-10 col-xl-9 col-lg-10 col-md-10 m-auto">
-                  <h1 className="hero-heading text-center wow fadeInUp">Get the ideal home for your <span className="d-inline-block position-relative">family <Image src={titleShape} alt="" className="lazy-img" /></span></h1>
-                  <p className="fs-24 color-dark text-center pt-35 pb-35 wow fadeInUp" data-wow-delay="0.1s">We’ve more than 745,000 apartments, place & plot.</p>
+                  <p className="fs-16 fw-500 text-uppercase tracking-wider text-center mb-10 text-muted">VELMORA REAL ESTATE</p>
+                  <h1 className="hero-heading text-center wow fadeInUp">Find a Place <span className="d-inline-block position-relative">Worth Calling Home. <Image src={titleShape} alt="" className="lazy-img" /></span></h1>
+                  <p className="fs-24 color-dark text-center pt-35 pb-35 wow fadeInUp" data-wow-delay="0.1s">Discover thoughtfully selected residences, investment opportunities and premium addresses across India&apos;s most desirable destinations.</p>
                </div>
             </div>
             <div className="row">

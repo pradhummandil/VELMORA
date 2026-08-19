@@ -21,7 +21,7 @@ const service_data: DataType[] = [
       icon: serviceIcon_1,
       title: "Buy a home",
       btn: "Buy Home",
-      desc: "Explore HOZN 2 million+ homes and uncover your ideal living space.",
+      desc: "Explore VELMORA curated residences and uncover your ideal living space.",
    },
    {
       id: 2,
@@ -29,7 +29,7 @@ const service_data: DataType[] = [
       icon: serviceIcon_2,
       title: "Rent a Home",
       btn: "Rent Home",
-      desc: "Discover a rental you'll love on HOZN, thanks to 35+ filters.",
+      desc: "Discover a rental you'll love on VELMORA, thanks to 35+ filters.",
       data_delay_time: "0.1s",
    },
    {
@@ -47,7 +47,7 @@ const service_data: DataType[] = [
       icon: serviceIcon_1,
       title: "Mortgage",
       btn: "Buy Home",
-      desc: "Explore HOZN 2 million+ homes and uncover your ideal living space.",
+      desc: "Explore VELMORA curated residences and uncover your ideal living space.",
    },
    {
       id: 5,
@@ -55,7 +55,7 @@ const service_data: DataType[] = [
       icon: serviceIcon_2,
       title: "Consulting",
       btn: "Rent Home",
-      desc: "Discover a rental you'll love on HOZN, thanks to 35+ filters.",
+      desc: "Discover a rental you'll love on VELMORA, thanks to 35+ filters.",
       data_delay_time: "0.1s",
    },
    {

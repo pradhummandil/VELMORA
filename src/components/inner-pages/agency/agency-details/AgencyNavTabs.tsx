@@ -29,8 +29,8 @@ const tab_data: DataType[] = [
       category: "rent",
       img_slider: ["1", "2", "3"],
       total_img: 3,
-      price: (<>$2,210/ <sub>m</sub></>),
-      address: "6391 Elgin St. Celina"
+      price: (<>₹1,85,000/ <sub>m</sub></>),
+      address: "Dr Annie Besant Rd, Worli, Mumbai"
    },
    {
       id: 2,
@@ -38,8 +38,8 @@ const tab_data: DataType[] = [
       category: "sell",
       img_slider: ["1", "2", "3"],
       total_img: 3,
-      price: (<>$2,210/ <sub>m</sub></>),
-      address: "6391 Elgin St. Celina"
+      price: (<>₹2,20,000/ <sub>m</sub></>),
+      address: "Golf Course Road, DLF Phase V, Gurugram"
    },
    {
       id: 3,
@@ -47,8 +47,8 @@ const tab_data: DataType[] = [
       category: "sell",
       img_slider: ["1", "2", "3"],
       total_img: 3,
-      price: (<>$1,23,710</>),
-      address: "6391 Elgin St. Celina"
+      price: (<>₹1,23,71,000</>),
+      address: "100 Feet Road, Indiranagar, Bengaluru"
    },
    {
       id: 4,
@@ -56,8 +56,8 @@ const tab_data: DataType[] = [
       category: "rent",
       img_slider: ["1", "2", "3"],
       total_img: 3,
-      price: (<>$78,420</>),
-      address: "6391 Elgin St. Celina"
+      price: (<>₹78,42,000</>),
+      address: "Road No 36, Jubilee Hills, Hyderabad"
    },
 ]
 

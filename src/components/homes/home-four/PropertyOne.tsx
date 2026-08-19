@@ -50,7 +50,7 @@ const PropertyOne = ({ style_1, style_2 }: any) => {
                                  ))}
                               </ul>
                               <div className="pl-footer top-border bottom-border d-flex align-items-center justify-content-between">
-                                 <strong className="price fw-500 color-dark">${item.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+                                 <strong className="price fw-500 color-dark">₹{item.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
                                  <Link href="/listing_details_03" className="btn-four"><i className="bi bi-arrow-up-right"></i></Link>
                               </div>
                            </div>

@@ -51,13 +51,13 @@ const ListingDropdownModal = ({
                                           <div className="label">Location</div>
                                           <NiceSelect className="nice-select location fw-normal"
                                              options={[
-                                                { value: "washington", text: "Lucknow, India" },
-                                                { value: "mexico", text: "Gwalior, India" },
-                                                { value: "germany", text: "Indore, India" },
-                                                { value: "france", text: "Mumbai, India" },
-                                                { value: "india", text: "Delhi, India" },
-                                                { value: "giza", text: "Bhopal, India" },
-                                                { value: "cuba", text: "Ujjain, India" },
+                                                { value: "mumbai", text: "Mumbai, Maharashtra" },
+                                                { value: "gurugram", text: "Gurugram, Haryana" },
+                                                { value: "bengaluru", text: "Bengaluru, Karnataka" },
+                                                { value: "hyderabad", text: "Hyderabad, Telangana" },
+                                                { value: "delhi", text: "Delhi NCR, India" },
+                                                { value: "pune", text: "Pune, Maharashtra" },
+                                                { value: "goa", text: "Goa, India" },
                                              ]}
                                              defaultCurrent={0}
                                              onChange={handleLocationChange}
@@ -138,7 +138,7 @@ const ListingDropdownModal = ({
                                              <div className="field d-flex align-items-center">
                                                 <input type="number" className="input-max" value={priceValue[0]} onChange={() => handlePriceChange} />
                                              </div>
-                                             <div className="currency ps-1">USD</div>
+                                             <div className="currency ps-1">INR</div>
                                           </div>
                                        </div>
                                        <PriceRange

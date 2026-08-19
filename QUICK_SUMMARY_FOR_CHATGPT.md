@@ -1,8 +1,8 @@
-# 🏡 HOZN Real Estate - Quick Summary for ChatGPT
+# 🏡 VELMORA Real Estate - Quick Summary for ChatGPT
 
 ## 📌 PROJECT AT A GLANCE
 
-**Name:** HOZN - Real Estate Full-Stack Platform  
+**Name:** VELMORA Real Estate Full-Stack Platform  
 **Type:** Full-Stack Web Application  
 **Status:** Under Development (v0.1.0)  
 

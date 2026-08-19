@@ -22,24 +22,24 @@ const pricing_data: DataType[] = [
             id: 1,
             class_name: "active",
             plan: "FREE PLAN",
-            price: "0",
-            desc: "Great for Individual Person",
+            price: "₹0",
+            desc: "Great for Individual Buyers & Sellers",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "active"
          },
          {
             id: 1,
             plan: "Gold Plan",
-            price: "$89",
-            desc: "Great for Startup",
+            price: "₹4,999",
+            desc: "Great for Property Consultants",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },
          {
             id: 1,
             plan: "Business Plan",
-            price: "$147",
-            desc: "Great for Large Business",
+            price: "₹9,999",
+            desc: "Great for Advisory Agencies",
             icon_details: [{ icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },
@@ -52,24 +52,24 @@ const pricing_data: DataType[] = [
             id: 1,
             class_name: "active",
             plan: "FREE PLAN",
-            price: "0",
-            desc: "Great for Individual Person",
+            price: "₹0",
+            desc: "Great for Individual Buyers & Sellers",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "active"
          },
          {
             id: 1,
             plan: "Gold Plan",
-            price: "$189",
-            desc: "Great for Startup",
+            price: "₹9,999",
+            desc: "Great for Property Consultants",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },
          {
             id: 1,
             plan: "Business Plan",
-            price: "$347",
-            desc: "Great for Large Business",
+            price: "₹19,999",
+            desc: "Great for Advisory Agencies",
             icon_details: [{ icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },

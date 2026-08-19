@@ -24,14 +24,14 @@ const pricing_data: DataType[] = [
    {
       id: 2,
       plan: "STANDARD",
-      price: "$12",
+      price: "₹999",
       desc: "per user/month",
       price_features: [{ feature_title: "60-day chat history" }, { feature_title: "Basic widget customization" }, { feature_title: "Ticketing system" }, { feature_title: "Data security", feature_class: "disable" }]
    },
    {
       id: 3,
       plan: "BUSINESS",
-      price: "$39",
+      price: "₹2,999",
       desc: "per user/month",
       price_features: [{ feature_title: "60-day chat history" }, { feature_title: "Basic widget customization" }, { feature_title: "Ticketing system" }, { feature_title: "Data security" }]
    },

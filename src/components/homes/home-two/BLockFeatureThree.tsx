@@ -15,7 +15,7 @@ const BLockFeatureThree = () => {
                </div>
             </div>
             <div className="col-xxl-4 col-xl-4">
-               <p className="fs-24 m0 color-dark lg-pt-30 lg-pb-50">We’v big collection of property & over more than 745,000 apartments, home for sell & rent</p>
+               <p className="fs-24 m0 color-dark lg-pt-30 lg-pb-50">We feature a curated collection of premium properties and homes for sale and rent across India.</p>
             </div>
             <div className="col-xxl-2 col-xl-3 d-inline-flex justify-content-xl-end">
                <Link href="#" className="btn-five text-uppercase rounded-0">Get Started</Link>

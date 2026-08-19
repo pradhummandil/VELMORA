@@ -18,7 +18,7 @@ const HeroBanner = () => {
                   <div className="row">
                      <div className="col-xxl-9 col-xl-8 col-lg-9 col-md-10">
                         <h1 className="hero-heading font-garamond wow fadeInUp">Find a Place Worth Calling Home. <span><Image src={titleShape} alt="" className="lazy-img icon d-inline-block" /></span></h1>
-                        <p className="fs-24 color-dark pt-35 md-pt-30 pb-35 mb-pb-20 wow fadeInUp" data-wow-delay="0.1s">Discover thoughtfully selected residences, investment opportunities and premium addresses across India's most desirable destinations.</p>
+                        <p className="fs-24 color-dark pt-35 md-pt-30 pb-35 mb-pb-20 wow fadeInUp" data-wow-delay="0.1s">Discover thoughtfully selected residences, investment opportunities and premium addresses across India&apos;s most desirable destinations.</p>
                         <div className="d-inline-flex align-items-center flex-wrap">
                            <Link href="/listing_07" className="btn-seven mb-20 me-4 me-xxl5"><span>Explore Properties</span> <i className="bi bi-arrow-up-right"></i></Link>
                            <Link href="/dashboard/add-property" style={{ cursor: "pointer" }} className="video-icon tran3s d-flex align-items-center justify-content-center mb-20">

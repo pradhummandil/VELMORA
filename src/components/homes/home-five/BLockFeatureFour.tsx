@@ -19,7 +19,7 @@ const BLockFeatureFour = () => {
                            <Image src={featureImg_1} alt="" className="rounded-circle avatar" />
                            <div className="ps-4">
                               <h6 className="fs-22 mb-5">xyz.</h6>
-                              <span className="opacity-75">CEO & Head of HOZN Inc</span>
+                              <span className="opacity-75">CEO & Head of VELMORA Inc</span>
                            </div>
                         </div>
                      </div>

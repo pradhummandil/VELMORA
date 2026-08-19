@@ -47,7 +47,7 @@ const BLockFeatureOne = () => {
                            </div>
                            <div className="col-xxl-6 col-sm-7">
                               <div className="counter-block-one mt-20">
-                                 <div className="main-count fw-500 color-dark">$<span className="counter"><Count number={1.3} /></span>b+</div>
+                                 <div className="main-count fw-500 color-dark">₹<span className="counter"><Count number={1200} /></span>Cr+</div>
                                  <span>Cumulative trading volume</span>
                               </div>
                            </div>

@@ -56,13 +56,13 @@ const DropdownFour = () => {
                               <div className="label">Location</div>
                               <NiceSelect className="nice-select location fw-normal"
                                  options={[
-                                    { value: "germany", text: "Berlin, Germany" },
-                                    { value: "dhaka", text: "Dhanmondi, Dhaka" },
-                                    { value: "mexico", text: "Acapulco, Mexico" },
-                                    { value: "france", text: "Cannes, France" },
+                                    { value: "mumbai", text: "Worli, Mumbai" },
+                                    { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                    { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                                    { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                                     { value: "india", text: "Delhi, India" },
-                                    { value: "giza", text: "Giza, Egypt" },
-                                    { value: "cuba", text: "Havana, Cuba" },
+                                    { value: "pune", text: "Koregaon Park, Pune" },
+                                    { value: "goa", text: "Assagao, Goa" },
                                  ]}
                                  defaultCurrent={0}
                                  onChange={selectHandler}
@@ -120,13 +120,13 @@ const DropdownFour = () => {
                               <div className="label">Location</div>
                               <NiceSelect className="nice-select location fw-normal"
                                  options={[
-                                    { value: "mexico", text: "Acapulco, Mexico" },
-                                    { value: "dhaka", text: "Dhanmondi, Dhaka" },
-                                    { value: "germany", text: "Berlin, Germany" },
-                                    { value: "france", text: "Cannes, France" },
+                                    { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                    { value: "mumbai", text: "Worli, Mumbai" },
+                                    { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                                    { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                                     { value: "india", text: "Delhi, India" },
-                                    { value: "giza", text: "Giza, Egypt" },
-                                    { value: "cuba", text: "Havana, Cuba" },
+                                    { value: "pune", text: "Koregaon Park, Pune" },
+                                    { value: "goa", text: "Assagao, Goa" },
                                  ]}
                                  defaultCurrent={0}
                                  onChange={selectHandler}
@@ -184,13 +184,13 @@ const DropdownFour = () => {
                               <div className="label">Location</div>
                               <NiceSelect className="nice-select location fw-normal"
                                  options={[
-                                    { value: "germany", text: "Berlin, Germany" },
-                                    { value: "dhaka", text: "Dhanmondi, Dhaka" },
-                                    { value: "mexico", text: "Acapulco, Mexico" },
-                                    { value: "france", text: "Cannes, France" },
+                                    { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                                    { value: "mumbai", text: "Worli, Mumbai" },
+                                    { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                    { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                                     { value: "india", text: "Delhi, India" },
-                                    { value: "giza", text: "Giza, Egypt" },
-                                    { value: "cuba", text: "Havana, Cuba" },
+                                    { value: "pune", text: "Koregaon Park, Pune" },
+                                    { value: "goa", text: "Assagao, Goa" },
                                  ]}
                                  defaultCurrent={0}
                                  onChange={selectHandler}

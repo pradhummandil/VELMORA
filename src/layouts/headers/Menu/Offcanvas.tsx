@@ -101,7 +101,7 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: any) => {
                                  </div>
                                  <div className="property-info d-flex justify-content-between align-items-end pt-30">
                                     <div>
-                                       <strong className="price fw-500 color-dark fs-3">${item.price}{item.sub}</strong>
+                                       <strong className="price fw-500 color-dark fs-3">₹{item.price}{item.sub}</strong>
                                        <div className="address pt-5 m0">{item.address}</div>
                                     </div>
                                     <Link href="#" className="btn-four mb-5"><i className="bi bi-arrow-up-right"></i></Link>
@@ -114,8 +114,8 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: any) => {
 
                   <div className="address-block mt-50">
                      <h4 className="title pb-15">Our Address</h4>
-                     <p>Chowrastar Mirpur- 1210, Sangu <br />River, Dhaka</p>
-                     <p>Urgent issue? call us at <br /><Link href="tel:310.841.5500">310.841.5500</Link></p>
+                     <p>Dr Annie Besant Road, Worli, <br />Mumbai, Maharashtra 400018</p>
+                     <p>Inquiries? Call our advisory desk at <br /><Link href="tel:+912249876543">+91 22 4987 6543</Link></p>
                   </div>
                   <ul
                      className="style-none d-flex flex-wrap w-100 justify-content-between align-items-center social-icon pt-25 mt-auto">

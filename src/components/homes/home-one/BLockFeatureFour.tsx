@@ -31,7 +31,7 @@ const BLockFeatureFour = () => {
                      <div className="card-one">
                         <div className="text text-center z-1">
                            <h6>Your estimate is in!</h6>
-                           <h3>$378,30.00</h3>
+                           <h3>₹3,78,30,000</h3>
                         </div>
                         <Image src={featureThumb} alt="" className="lazy-img w-100" />
                      </div>

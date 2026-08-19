@@ -8,7 +8,7 @@ const FancyBanner = () => {
                <div className="col-lg-8 m-auto text-center">
                   <div className="title-one mb-50 lg-mb-40">
                      <h2 className="text-white fs-lg">Apply for loan with low interest.</h2>
-                     <p className="fs-24 text-white">Apply for loan & get up to $20million with low interest</p>
+                     <p className="fs-24 text-white">Apply for loan & get up to ₹20 Crore with competitive interest rates</p>
                   </div>
                   <Link href="contact" className="btn-six">Get Started</Link>
                </div>

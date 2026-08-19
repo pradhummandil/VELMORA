@@ -17,7 +17,7 @@ const HeroBanner = () => {
                   </div>
                   <div className="col-lg-5 ms-auto">
                      <div className="ps-xxl-5 pt-35 wow fadeInRight">
-                        <p className="color-dark sub-heading mb-40 lg-mb-20">Over 745,000 listings, apartments, lots and  plots available now!</p>
+                        <p className="color-dark sub-heading mb-40 lg-mb-20">Discover handpicked residences and luxury properties across India.</p>
                         <div className="d-flex flex-wrap justify-content-between align-items-start">
                            <div className="d-flex flex-column justify-content-center align-items-start mt-20">
                               <Image src={bannerimg} alt="" className="lazy-img" />

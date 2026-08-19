@@ -17,7 +17,7 @@ const HeroBanner = () => {
                         <Image src={bannerShape} alt="" className="lazy-img shape_01 shapes d-none d-lg-block" />
                         <div className="row">
                            <div className="col-xl-7 col-lg-12 col-md-7">
-                              <p className="fs-24 color-dark m0 lg-pb-20 wow fadeInUp" data-wow-delay="0.1s">Over 745,000 listings, apartments, lots & plots available now</p>
+                              <p className="fs-24 color-dark m0 lg-pb-20 wow fadeInUp" data-wow-delay="0.1s">Discover handpicked residences and luxury properties across India</p>
                            </div>
                            <div className="col-xl-5 col-lg-12 col-md-5">
                               <div className="d-flex flex-column justify-content-center align-items-start">

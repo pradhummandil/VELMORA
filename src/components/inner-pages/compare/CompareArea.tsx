@@ -55,7 +55,7 @@ const table_row_data: TableData[] = [
    },
    {
       table_head: "Price",
-      table_data: ["$1,75,320", "$1,42,720", "$1,82,000"],
+      table_data: ["₹1,75,00,000", "₹1,42,00,000", "₹1,82,00,000"],
    },
    {
       table_head: "Property Type",

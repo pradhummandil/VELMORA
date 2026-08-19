@@ -248,7 +248,7 @@ Feel free to fork the repository and create a pull request! 😊
 ## 📜 License
 This project is licensed under the **MIT License**.
 
-🚀 **HOZN - Real Estate** | Built with ❤️ by [AHMAD-JX](https://github.com/AHMAD-JX)
+🚀 **VELMORA Real Estate** | Built with ❤️
 
 
 

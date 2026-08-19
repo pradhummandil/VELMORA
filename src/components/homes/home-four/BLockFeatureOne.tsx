@@ -9,7 +9,7 @@ const BLockFeatureOne = () => {
                   <div className="col-xxl-6 col-xl-7 col-lg-8">
                      <div className="title-one mb-30 lg-mb-20 wow fadeInUp">
                         <h3>We’r here help to you  find properties.</h3>
-                        <p className="fs-22">Over 745K listings of apartments, lots, plots - available today.</p>
+                        <p className="fs-22">Handpicked luxury residences, villas and premium apartments available today.</p>
                      </div>
                   </div>
                </div>

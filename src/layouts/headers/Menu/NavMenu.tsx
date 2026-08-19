@@ -36,17 +36,17 @@ const NavMenu = () => {
             {menu_data.map((menu: any) => (
                 <li
                     key={menu.id}
-                    className={`nav-item dropdown ${menu.class_name} ${menu.title === "Home" ? "no-dropdown" : ""}`}
+                    className={`nav-item dropdown ${menu.class_name ? menu.class_name : ""} ${!menu.has_dropdown ? "no-dropdown" : ""}`}
                 >
                     <Link
                         href={menu.link}
-                        className={`nav-link ${menu.has_dropdown && menu.title !== "Home" ? "dropdown-toggle" : ""} 
+                        className={`nav-link ${menu.has_dropdown ? "dropdown-toggle" : ""} 
                         ${pathname === menu.link ? "active" : ""} ${navTitle === menu.title ? "show" : ""}`}
-                        onClick={() => menu.title !== "Home" && openMobileMenu(menu.title)}
+                        onClick={() => menu.has_dropdown && openMobileMenu(menu.title)}
                     >
                         {menu.title}
                     </Link>
-                    {menu.has_dropdown && menu.title !== "Home" && (
+                    {menu.has_dropdown && (
                         <ul className={`dropdown-menu ${navTitle === menu.title ? "show" : ""}`}>
                             {menu.sub_menus &&
                                 menu.sub_menus.map((sub_m: any, i: any) => (

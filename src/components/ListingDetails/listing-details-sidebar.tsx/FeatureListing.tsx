@@ -29,7 +29,7 @@ const feature_listing_data: DataType[] = [
       large_thumb: [largeThumb_1, largeThumb_2, largeThumb_3],
       tag: "FOR RENT",
       price: 123710,
-      address: "120 Elgin St. Celina, Delaware",
+      address: "Dr Annie Besant Rd, Worli, Mumbai",
    },
    {
       id: 2,
@@ -37,7 +37,7 @@ const feature_listing_data: DataType[] = [
       large_thumb: [largeThumb_1, largeThumb_2, largeThumb_3],
       tag: "FOR RENT",
       price: 211536,
-      address: "120 Elgin St. Celina, Delaware",
+      address: "Dr Annie Besant Rd, Worli, Mumbai",
    },
    {
       id: 3,
@@ -45,7 +45,7 @@ const feature_listing_data: DataType[] = [
       large_thumb: [largeThumb_1, largeThumb_2, largeThumb_3],
       tag: "FOR RENT",
       price: 305958,
-      address: "120 Elgin St. Celina, Delaware",
+      address: "Dr Annie Besant Rd, Worli, Mumbai",
    },
 ]
 
@@ -90,7 +90,7 @@ const FeatureListing = () => {
                         <div className="property-info mt-15">
                            <div className="d-flex justify-content-between align-items-end">
                               <div>
-                                 <strong className="price fw-500 color-dark">${item.price}</strong>
+                                 <strong className="price fw-500 color-dark">₹{item.price}</strong>
                                  <div className="address m0 pt-5">{item.address} </div>
                               </div>
                               <Link href="/listing_details_03" className="btn-four rounded-circle">

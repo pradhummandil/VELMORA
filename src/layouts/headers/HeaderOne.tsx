@@ -15,7 +15,7 @@ const HeaderOne = ({ style }: any) => {
       <>
          <header className={`theme-main-menu menu-overlay menu-style-one sticky-menu ${sticky ? "fixed" : ""}`}>
             {!style && <div className="alert-wrapper text-center">
-               <p className="fs-16 m0 text-white">The <Link href="/listing_01" className="fw-500">flash sale</Link> go on. The offer will end in — <span>This Sunday</span></p>
+               <p className="fs-16 m0 text-white">Discover curated luxury residences across India with <Link href="/listing_01" className="fw-500 text-decoration-underline">VELMORA</Link></p>
             </div>}
             <div className="inner-content gap-one">
                <div className="top-header position-relative">
@@ -31,7 +31,7 @@ const HeaderOne = ({ style }: any) => {
                               <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="btn-one"><i className="fa-regular fa-lock"></i> <span>Login</span></Link>
                            </li>
                            <li className="d-none d-md-inline-block ms-3">
-                              <Link href="/dashboard/add-property" className="btn-two" target="_blank"><span>Add Listing</span> <i className="fa-thin fa-arrow-up-right"></i></Link>
+                              <Link href="/dashboard/add-property" className="btn-two" target="_blank"><span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i></Link>
                            </li>
                         </ul>
                      </div>

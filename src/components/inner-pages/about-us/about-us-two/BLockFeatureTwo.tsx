@@ -14,7 +14,7 @@ const BLockFeatureTwo = () => {
             <div className="container">
                <div className="title-one text-center mb-70 xl-mb-40 lg-mb-20">
                   <h2 className="font-garamond star-shape"><span className="star-shape"><Image src={titleShape} alt="" className="lazy-img" /></span> Buy, Rend & Sell</h2>
-                  <p className="fs-22 mt-xs color-dark">Over 745K listings of apartments, lots, plots - available today.</p>
+                  <p className="fs-22 mt-xs color-dark">Handpicked luxury residences, villas and premium apartments available today.</p>
                </div>
 
                <div className="row justify-content-center gx-xxl-5">

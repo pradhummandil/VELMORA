@@ -58,11 +58,11 @@ const DropdownSix = () => {
                                  <NiceSelect className="nice-select location fw-normal"
                                     options={[
                                        { value: "germany", text: "Lucknow, India" },
-                                       { value: "dhaka", text: "Mumbai, India" },
+                                       { value: "mumbai", text: "Mumbai, Maharashtra" },
                                        { value: "mexico", text: "Gwalior, India" },
                                        { value: "france", text: "Indore, India" },
                                        { value: "india", text: "Delhi, India" },
-                                       { value: "giza", text: "Bhopal, India" },
+                                       { value: "bhopal", text: "Bhopal, Madhya Pradesh" },
                                        { value: "cuba", text: "Ujjain, India" },
                                     ]}
                                     defaultCurrent={0}
@@ -131,13 +131,13 @@ const DropdownSix = () => {
                                  <div className="label">Location</div>
                                  <NiceSelect className="nice-select location fw-normal"
                                     options={[
-                                       { value: "mexico", text: "Acapulco, Mexico" },
-                                       { value: "dhaka", text: "Dhanmondi, Dhaka" },
-                                       { value: "germany", text: "Berlin, Germany" },
-                                       { value: "france", text: "Cannes, France" },
+                                       { value: "mumbai", text: "Worli, Mumbai" },
+                                       { value: "mumbai", text: "Worli, Mumbai" },
+                                       { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                       { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                                        { value: "india", text: "Delhi, India" },
-                                       { value: "giza", text: "Giza, Egypt" },
-                                       { value: "cuba", text: "Havana, Cuba" },
+                                       { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
+                                       { value: "goa", text: "Assagao, Goa" },
                                     ]}
                                     defaultCurrent={0}
                                     onChange={selectHandler}
@@ -207,13 +207,13 @@ const DropdownSix = () => {
                                  <div className="label">Location</div>
                                  <NiceSelect className="nice-select location fw-normal"
                                     options={[
-                                       { value: "france", text: "Cannes, France" },
-                                       { value: "germany", text: "Berlin, Germany" },
-                                       { value: "dhaka", text: "Dhanmondi, Dhaka" },
-                                       { value: "mexico", text: "Acapulco, Mexico" },
+                                       { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
+                                       { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                                       { value: "mumbai", text: "Worli, Mumbai" },
+                                       { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                                        { value: "india", text: "Delhi, India" },
-                                       { value: "giza", text: "Giza, Egypt" },
-                                       { value: "cuba", text: "Havana, Cuba" },
+                                       { value: "pune", text: "Koregaon Park, Pune" },
+                                       { value: "goa", text: "Assagao, Goa" },
                                     ]}
                                     defaultCurrent={0}
                                     onChange={selectHandler}

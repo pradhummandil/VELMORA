@@ -1,4 +1,4 @@
-# 🏡 HOZN - Real Estate Full-Stack Application
+# 🏡 VELMORA - Real Estate Full-Stack Application
 ## Complete Project Documentation
 
 ---
@@ -20,7 +20,7 @@
 
 ## 1️⃣ PROJECT OVERVIEW
 
-**Project Name:** HOZN - Real Estate  
+**Project Name:** VELMORA Real Estate  
 **Version:** 0.1.0  
 **Description:** A full-stack real estate platform built with React, Next.js, TypeScript, and Node.js Express backend.
 

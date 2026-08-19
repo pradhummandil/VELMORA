@@ -19,7 +19,7 @@ const property_data: DataType[] = [
       id: 1,
       tag: "FOR SELL",
       title: "Super luxury duplex orkit villa.",
-      address: "Mirpur 10, Stadium dhaka 1210",
+      address: "Dr Annie Besant Rd, Worli, Mumbai",
       property_info: [(<><span>2137</span> sqft</>), (<><span>03</span> beds</>), (<><span>01</span> kitchen</>), (<><span>02</span> baths</>),],
       icon: ["heart", "bookmark", "circle-plus"],
       item_bg_img:"property-item-1"

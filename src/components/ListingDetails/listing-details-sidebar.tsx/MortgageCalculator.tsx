@@ -8,7 +8,7 @@ const MortgageCalculator = () => {
          </div>
          <div className="input-box-three mb-25">
             <div className="label">Down Payment*</div>
-            <input type="tel" placeholder="$" className="type-input" />
+            <input type="tel" placeholder="₹" className="type-input" />
          </div>
          <div className="input-box-three mb-25">
             <div className="label">Interest Rate*</div>

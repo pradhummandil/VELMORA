@@ -43,12 +43,12 @@ const DropdownModal = () => {
                                           <NiceSelect className="nice-select location fw-normal"
                                              options={[
                                                 { value: "washington", text: "Washington DC" },
-                                                { value: "mexico", text: "Acapulco, Mexico" },
-                                                { value: "germany", text: "Berlin, Germany" },
-                                                { value: "france", text: "Cannes, France" },
+                                                { value: "mumbai", text: "Worli, Mumbai" },
+                                                { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                                { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                                                 { value: "india", text: "Delhi, India" },
-                                                { value: "giza", text: "Giza, Egypt" },
-                                                { value: "cuba", text: "Havana, Cuba" },
+                                                { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
+                                                { value: "goa", text: "Assagao, Goa" },
                                              ]}
                                              defaultCurrent={0}
                                              onChange={selectHandler}

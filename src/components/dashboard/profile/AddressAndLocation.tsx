@@ -34,7 +34,7 @@ const AddressAndLocation = () => {
                         { value: "11", text: "Azerbaijan" },
                         { value: "12", text: "Bahamas" },
                         { value: "13", text: "Bahrain" },
-                        { value: "14", text: "Bangladesh" },
+                        { value: "14", text: "India" },
                         { value: "15", text: "Barbados" },
                         { value: "16", text: "Belarus" },
                         { value: "17", text: "Belgium" },
@@ -100,7 +100,7 @@ const AddressAndLocation = () => {
                </div>
                <div className="map-frame mt-30">
                   <div className="gmap_canvas h-100 w-100">
-                     <iframe className="gmap_iframe h-100 w-100" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=dhaka collage&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                     <iframe className="gmap_iframe h-100 w-100" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Worli+Mumbai&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                   </div>
                </div>
             </div>

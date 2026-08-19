@@ -55,11 +55,11 @@ const DropdownFive = () => {
                               <NiceSelect className="nice-select location fw-normal"
                                  options={[
                                     { value: "germany", text: "Lucknow, India" },
-                                    { value: "dhaka", text: "Mumbai, India" },
+                                    { value: "mumbai", text: "Mumbai, Maharashtra" },
                                     { value: "mexico", text: "Indore, India" },
                                     { value: "france", text: "Gwalior, India" },
                                     { value: "india", text: "Delhi, India" },
-                                    { value: "giza", text: "Bhopal, India" },
+                                    { value: "bhopal", text: "Bhopal, Madhya Pradesh" },
                                     { value: "cuba", text: "Ujjain, India" },
                                  ]}
                                  defaultCurrent={0}
@@ -120,10 +120,10 @@ const DropdownFive = () => {
                                  options={[
                                     { value: "france", text: "Lucknow, India" },
                                     { value: "germany", text: "Gwalior, India" },
-                                    { value: "dhaka", text: "Indore, India" },
+                                    { value: "indore", text: "Indore, Madhya Pradesh" },
                                     { value: "mexico", text: "Mumbai, India" },
                                     { value: "india", text: "Delhi, India" },
-                                    { value: "giza", text: "Ujjain, India" },
+                                    { value: "ujjain", text: "Ujjain, Madhya Pradesh" },
                                     { value: "cuba", text: "Bhopal, India" },
                                  ]}
                                  defaultCurrent={0}

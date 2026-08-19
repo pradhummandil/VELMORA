@@ -46,7 +46,7 @@ const DropdownFour = ({
                      </ul>
                   </div>
                   <div className="col-lg-6">
-                     <p className="sub-heading">Over 745,000 listings, apartments, lots and  plots available now!</p>
+                     <p className="sub-heading">Discover handpicked residences and luxury properties across India.</p>
                   </div>
                </div>
                <div className="search-wrapper-one layout-one position-relative mt-80 xl-mt-50">
@@ -86,12 +86,12 @@ const DropdownFour = ({
                                        <NiceSelect className="nice-select location fw-normal"
                                           options={[
                                              { value: "washington", text: "Washington DC" },
-                                             { value: "mexico", text: "Acapulco, Mexico" },
-                                             { value: "germany", text: "Berlin, Germany" },
-                                             { value: "france", text: "Cannes, France" },
+                                             { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                             { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                                             { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                                              { value: "india", text: "Delhi, India" },
-                                             { value: "giza", text: "Giza, Egypt" },
-                                             { value: "cuba", text: "Havana, Cuba" },
+                                             { value: "pune", text: "Koregaon Park, Pune" },
+                                             { value: "goa", text: "Assagao, Goa" },
                                           ]}
                                           defaultCurrent={0}
                                           onChange={handleLocationChange}
@@ -141,13 +141,13 @@ const DropdownFour = ({
                                        <div className="label">Location</div>
                                        <NiceSelect className="nice-select location fw-normal"
                                           options={[
-                                             { value: "mexico", text: "Acapulco, Mexico" },
+                                             { value: "gurugram", text: "Golf Course Rd, Gurugram" },
                                              { value: "washington", text: "Washington DC" },
-                                             { value: "germany", text: "Berlin, Germany" },
-                                             { value: "france", text: "Cannes, France" },
+                                             { value: "bengaluru", text: "Indiranagar, Bengaluru" },
+                                             { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                                              { value: "india", text: "Delhi, India" },
-                                             { value: "giza", text: "Giza, Egypt" },
-                                             { value: "cuba", text: "Havana, Cuba" },
+                                             { value: "pune", text: "Koregaon Park, Pune" },
+                                             { value: "goa", text: "Assagao, Goa" },
                                           ]}
                                           defaultCurrent={0}
                                           onChange={handleLocationChange}
@@ -197,13 +197,13 @@ const DropdownFour = ({
                                        <div className="label">Location</div>
                                        <NiceSelect className="nice-select location fw-normal"
                                           options={[
-                                             { value: "france", text: "Cannes, France" },
+                                             { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
                                              { value: "washington", text: "Washington DC" },
-                                             { value: "mexico", text: "Acapulco, Mexico" },
-                                             { value: "germany", text: "Berlin, Germany" },
+                                             { value: "gurugram", text: "Golf Course Rd, Gurugram" },
+                                             { value: "bengaluru", text: "Indiranagar, Bengaluru" },
                                              { value: "india", text: "Delhi, India" },
-                                             { value: "giza", text: "Giza, Egypt" },
-                                             { value: "cuba", text: "Havana, Cuba" },
+                                             { value: "pune", text: "Koregaon Park, Pune" },
+                                             { value: "goa", text: "Assagao, Goa" },
                                           ]}
                                           defaultCurrent={0}
                                           onChange={handleLocationChange}

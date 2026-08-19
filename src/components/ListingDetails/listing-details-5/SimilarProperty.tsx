@@ -37,7 +37,7 @@ const SimilarProperty = () => {
                                  <Link href="/listing_details_06" className="title tran3s">{item.title}</Link>
                                  <div className="address m0 pb-5">{item.address}</div>
                                  <div className="pl-footer m0 d-flex align-items-center justify-content-between">
-                                    <strong className="price fw-500 color-dark">${item.price}</strong>
+                                    <strong className="price fw-500 color-dark">₹{item.price}</strong>
                                     <ul className="style-none d-flex action-icons">
                                        <li><Link href="#"><i className="fa-light fa-heart"></i></Link></li>
                                        <li><Link href="#"><i className="fa-light fa-bookmark"></i></Link></li>

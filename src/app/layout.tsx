@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={isDev}>
       <head>
+        <title>VELMORA | Premium Real Estate in India</title>
         <meta name="keywords" content="Real estate, Property sale, Property buy, Premium homes, India" />
         <meta name="description" content="Discover premium homes, luxury residences, investment properties and exceptional addresses across India's leading cities with VELMORA." />
         <meta property="og:site_name" content="VELMORA" />
