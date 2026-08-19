@@ -7,7 +7,6 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node",
     "types": ["node"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
