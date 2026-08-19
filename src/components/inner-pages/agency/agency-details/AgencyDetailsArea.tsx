@@ -28,15 +28,25 @@ interface ContentType {
 }
 
 const agency_details_content: ContentType = {
-   title_1: "Rainbow Housing",
-   title_2: "Mathews Firlo.",
-   desc_1: "8210 Preston Rd. Inglewood",
-   desc_4: "Sales & Broker",
-   table_data: [{ table_td_1: "Location", table_td_2: "Maine, USA" }, { table_td_1: "Phone:", table_td_2: "+210 000 00 000" }, { table_td_1: "Email", table_td_2: "rain@demo.com" }, { table_td_1: "Website:", table_td_2: "www.rainbowinc.com" },],
-   table_data_2: [{ table_td_1: "Location", table_td_2: "Spain, Barcelona" }, { table_td_1: "Phone:", table_td_2: "+210 000 00 000" }, { table_td_1: "Email", table_td_2: "mar@support.com" }, { table_td_1: "Qualification:", table_td_2: "Master Degree" },],
-   icon: ["whatsapp", "x-twitter", "instagram", "viber"],
-   desc_2: (<>Before establishing Beratung in 2001, Mathew founded Silicon Valley internet companies and later held management roles at Salomon in New York.</>),
-   desc_3: (<>Risk management and compliance, when approached strategically, have the potential to go beyond mitigating threats and protecting a company’s operations & reputation.They can actually generate value and create opportunities.</>),
+   title_1: "VELMORA Private Office Mumbai",
+   title_2: "Aarav Mehta",
+   desc_1: "Worli Sea Face, Worli, Mumbai, Maharashtra 400030",
+   desc_4: "Senior Luxury Property Advisor",
+   table_data: [
+      { table_td_1: "Location", table_td_2: "Worli, Mumbai" },
+      { table_td_1: "Phone:", table_td_2: "+91 98200 12345" },
+      { table_td_1: "Email", table_td_2: "advisory@velmora.in" },
+      { table_td_1: "Website:", table_td_2: "www.velmora.in" },
+   ],
+   table_data_2: [
+      { table_td_1: "Location", table_td_2: "Worli, Mumbai" },
+      { table_td_1: "Phone:", table_td_2: "+91 98200 12345" },
+      { table_td_1: "Email", table_td_2: "aarav.mehta@velmora.in" },
+      { table_td_1: "Specialization:", table_td_2: "Ultra-Luxury Penthouses & Sea-Facing Estates" },
+   ],
+   icon: ["whatsapp", "x-twitter", "instagram", "linkedin"],
+   desc_2: (<>Leading private client acquisitions across South Mumbai and coastal destinations with over a decade of specialized advisory experience in prime Indian residential real estate.</>),
+   desc_3: (<>Every transaction is structured with complete RERA compliance, title verification, and discrete representation to protect and maximize long-term client value.</>),
 }
 
 const { title_1, desc_1, table_data, icon, desc_2, desc_3, table_data_2, title_2, desc_4 } = agency_details_content;

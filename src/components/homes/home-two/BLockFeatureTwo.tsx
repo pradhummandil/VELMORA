@@ -25,27 +25,22 @@ const BLockFeatureTwo = () => {
             <div className="position-relative">
                <div className="text-center wow fadeInUp">
                   <div className="title-one mb-30 lg-mb-20">
-                     <h2 className="font-garamond">{title}</h2>
-                     <p className="fs-24 mt-xs">{desc}</p>
+                     <div className="fs-14 fw-semibold text-uppercase mb-10" style={{ color: "#B89B5E", letterSpacing: "2px" }}>CURATED CATEGORIES</div>
+                     <h2 className="font-garamond">Find a Property That Fits Your Life</h2>
+                     <p className="fs-22 mt-xs">Explore curated collections designed around location, architecture, and lifestyle.</p>
                   </div>
-                  <ul className="rating style-none d-flex justify-content-center">
-                     {icon.map((icon, index) => (
-                        <li key={index}><i className={icon}></i></li>
-                     ))}
-                     <li><span className="color-dark fw-500">4.7</span> (18k Reviews)</li>
-                  </ul>
                </div>
 
                <div className="wrapper position-relative z-1 mt-45 lg-mt-20 mb-100 lg-mb-50">
                   <div className="row">
                      {feature_data.filter((items) => items.page === "home_two_feature_2").map((item) => (
-                        <div key={item.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={item}>
+                        <div key={item.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                            <div className="card-style-two overflow-hidden position-relative z-1 mt-30">
-                              <Image src={item.img ? item.img : ""} alt="" className="lazy-img w-100 tran5s" />
+                              <Image src={item.img ? item.img : ""} alt={item.title || "Category"} className="lazy-img w-100 tran5s" />
                               <div className="content text-center">
                                  <h5 className="mb-25">{item.title}</h5>
                                  <div className="btn tran3s fw-500 text-uppercase">{item.tag}</div>
-                                 <Link href="/listing_03" className="stretched-link"></Link>
+                                 <Link href="/listing_01" className="stretched-link" aria-label={`Explore ${item.title}`}></Link>
                               </div>
                            </div>
                         </div>

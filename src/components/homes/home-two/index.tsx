@@ -3,8 +3,11 @@ import HeroBanner from "./HeroBanner"
 import FeedbackOne from "./FeedbackOne"
 import Property from "./Property"
 import BLockFeatureOne from "./BLockFeatureOne"
-import FancyBannerOne from "./FancyBannerOne"
 import BLockFeatureTwo from "./BLockFeatureTwo"
+import SignatureProjects from "./SignatureProjects"
+import FancyBannerOne from "./FancyBannerOne"
+import HowItWorks from "./HowItWorks"
+import Advisors from "./Advisors"
 import FeedbackTwo from "./FeedbackTwo"
 import Blog from "./Blog"
 import FAQ from "./FAQ"
@@ -19,15 +22,19 @@ const HomeTwo = () => {
       <FeedbackOne />
       <Property />
       <BLockFeatureOne />
-      <FancyBannerOne />
       <BLockFeatureTwo />
-      <FeedbackTwo />
+      <SignatureProjects />
+      <FancyBannerOne />
+      <HowItWorks />
+      <Advisors />
       <Blog style={false} />
+      <FeedbackTwo />
       <FAQ />
-      <FancyBannerTwo/>
+      <FancyBannerTwo />
       <FooterOne style={true} />
     </>
   )
 }
 
 export default HomeTwo
+

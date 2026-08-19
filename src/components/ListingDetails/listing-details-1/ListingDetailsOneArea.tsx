@@ -31,14 +31,12 @@ const ListingDetailsOneArea = () => {
             <div className="row">
                <div className="col-xl-8">
                   <div className="property-overview mb-50 bg-white shadow4 border-20 p-40">
-                     <h4 className="mb-20">Overview</h4>
-                     <p className="fs-20 lh-lg">Lorem ipsum dolor sit amet consectetur. Et velit varius ipsum tempor vel
-                        dignissim tincidunt. Aliquam accumsan laoreet ultricies tincidunt faucibus fames augue in
-                        sociis. Nisl enim integer neque nec.</p>
+                     <h4 className="mb-20 font-garamond">About the Residence</h4>
+                     <p className="fs-20 lh-lg">Perched high above the Arabian Sea along Mumbai&apos;s coveted Worli Sea Face, The Meridian Residences represents the pinnacle of modern coastal luxury. Designed with generous spatial planning, Italian marble flooring, expansive wraparound balconies, and uninterrupted ocean vistas, this sky residence delivers an uncompromising standard of urban sophistication.</p>
                   </div>
                   <div className="property-feature-accordion bg-white shadow4 border-20 p-40 mb-50">
-                     <h4 className="mb-20">Property Features</h4>
-                     <p className="fs-20 lh-lg">Risk management and compliance, when approached strategically, have the potential to go beyond mitigating threats.</p>
+                     <h4 className="mb-20 font-garamond">Property Features</h4>
+                     <p className="fs-20 lh-lg">Comprehensive specifications, bespoke finishes, and premium structural engineering crafted for timeless living.</p>
                      <div className="accordion-style-two mt-45">
                         <CommonPropertyFeatureList />
                      </div>

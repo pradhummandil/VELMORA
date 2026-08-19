@@ -14,12 +14,12 @@ interface ContentType {
 }
 
 const feature_content: ContentType = {
-   sub_title: "About us",
-   desc_1: (<>Our founders Dustin Moskovitz and Justin Rosenstein met while leading Engineering .</>),
-   title_1: "Who we are?",
-   title_2: "Our Mission",
-   desc_2: (<>Our founders Dustin Moskovitz & Justin Rosenstein met  leading Engineering teams at Facebook. As operations scaled, they grew frustrated by how difficult coordinate</>),
-   desc_3: (<>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore aliqua.</>),
+   sub_title: "ABOUT VELMORA",
+   desc_1: (<>We curate exceptional residential properties across India&apos;s most coveted micro-markets, delivering transparency, architectural distinction, and dedicated advisory.</>),
+   title_1: "Our Philosophy",
+   title_2: "Our Approach",
+   desc_2: (<>VELMORA was established to bring editorial curation and discrete advisory to Indian luxury real estate. We believe property discovery should be personal, verifiable, and shaped around timeless design.</>),
+   desc_3: (<>Every residence in our collection undergoes rigorous due diligence, RERA compliance validation, and architectural assessment to ensure uncompromising living standards.</>),
 }
 
 const { sub_title, desc_1, title_1, title_2, desc_2, desc_3 } = feature_content;

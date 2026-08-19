@@ -22,23 +22,23 @@ interface DataType {
 const feedback_data: DataType[] = [
    {
       id: 1,
-      desc: (<>&quot;Excellent service, made my dream home real. <span>highly recommended</span> real estate agency!&quot;</>),
-      title: "Musa Delimuza",
-      country: "Milan, Italy",
+      desc: (<>&quot;VELMORA guided us to an exceptional residence on Golf Course Road. Their advisory depth and attention to architectural details made every step <span>effortless</span>.&quot;</>),
+      title: "Vikram Malhotra",
+      country: "Managing Director, Gurugram",
       thumb: feedbackThumb_1,
    },
    {
       id: 2,
-      desc: (<>&quot;Excellent service, made my dream home real. <span>highly recommended</span> real estate agency!&quot;</>),
-      title: "Zubayer Hasan",
-      country: "Milan, Italy",
+      desc: (<>&quot;Finding our private villa in Assagao was made completely transparent. The legal due diligence and local advisory were <span>exemplary</span>.&quot;</>),
+      title: "Pooja Hegde",
+      country: "Creative Director, Bengaluru",
       thumb: feedbackThumb_2,
    },
    {
       id: 3,
-      desc: (<>&quot;Excellent service, made my dream home real. <span>highly recommended</span> real estate agency!&quot;</>),
-      title: "Rashed Ka",
-      country: "Milan, Italy",
+      desc: (<>&quot;The private advisory desk in Worli handled our residence acquisition with the utmost <span>discretion and efficiency</span>. A benchmark in Indian luxury real estate.&quot;</>),
+      title: "Rohit Deshmukh",
+      country: "Tech Founder, Mumbai",
       thumb: feedbackThumb_3,
    },
 ]
@@ -63,8 +63,8 @@ const FeedbackTwo = () => {
                <div className="row gx-lg-0">
                   <div className="col-lg-5 col-md-8">
                      <div className="title-one">
-                        <div className="upper-title color">CLIENT Feedback</div>
-                        <h2 className="font-garamond text-white fs-lg">Don’t Trust us, Trust Our <span className="color">Client.</span></h2>
+                        <div className="upper-title color" style={{ color: "#B89B5E" }}>CLIENT EXPERIENCES</div>
+                        <h2 className="font-garamond text-white fs-lg">A Considered <span className="color" style={{ color: "#B89B5E" }}>Property Experience.</span></h2>
                      </div>
                   </div>
                   <div className="col-lg-6 ms-auto">

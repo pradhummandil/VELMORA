@@ -4,6 +4,18 @@ import property_data from "@/data/home-data/PropertyData";
 
 import titleShape from "@/assets/images/shape/title_shape_03.svg";
 
+const formatPrice = (price: number) => {
+   if (!price) return "Price on Request";
+   if (price >= 10000000) {
+      const cr = price / 10000000;
+      return `₹${cr.toFixed(2).replace(/\.00$/, '')} Cr`;
+   } else if (price >= 100000) {
+      const lakh = price / 100000;
+      return `₹${lakh.toFixed(2).replace(/\.00$/, '')} Lakh`;
+   }
+   return `₹${price.toLocaleString('en-IN')}`;
+};
+
 const Property = () => {
    return (
       <div className="property-listing-one bg-pink-two mt-150 xl-mt-120 pt-140 xl-pt-120 lg-pt-80 pb-180 xl-pb-120 lg-pb-100">
@@ -51,10 +63,7 @@ const Property = () => {
                               </ul>
                               <div className="pl-footer top-border d-flex align-items-center justify-content-between">
                                  <strong className="price fw-500 color-dark">
-                                    ${item.price.toLocaleString(undefined, {
-                                       minimumFractionDigits: item.price_text ? 0 : 2,
-                                       maximumFractionDigits: 2
-                                    })}{item.price_text &&<>/<sub>m</sub></>}
+                                    {formatPrice(item.price)}{item.price_text && <>/<sub>m</sub></>}
                                  </strong>
                                  <Link href="/listing_details_01" className="btn-four rounded-circle"><i className="bi bi-arrow-up-right"></i></Link>
                               </div>

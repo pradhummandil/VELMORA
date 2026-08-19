@@ -24,28 +24,28 @@ interface ContentType {
 }
 
 const content_data: ContentType = {
-   title_1: "Apartments on Vintage City.",
-   title_2: "Project Details",
-   desc_1: "Your leading real estate advocate, transforming houses into dreams. Trust",
-   desc_2: "Your trusted real estate partner, transforming spaces into exceptional homes. Trust us to expertly guide you home with curated properties for sale and rent.",
+   title_1: "VELMORA Aria Residences",
+   title_2: "Architecture & Vision",
+   desc_1: "An architectural landmark on Mumbai's Worli Sea Face featuring curated sea-view residences and private sky lounges.",
+   desc_2: "Designed with timeless materials, expansive spatial planning, and biophilic terraces, VELMORA Aria delivers an uncompromising residential sanctuary in the heart of Mumbai.",
    project_details: [
       {
          count: "01",
          icon: projectDetailsIcon_1,
-         title: "Date",
-         desc: "Sunday, 23 July, 2021",
+         title: "Completion",
+         desc: "December 2025",
       },
       {
          count: "02",
          icon: projectDetailsIcon_2,
-         title: "Client Name",
-         desc: "Mariona Adisson, California",
+         title: "Location",
+         desc: "Worli Sea Face, Mumbai",
       },
       {
          count: "03",
          icon: projectDetailsIcon_3,
-         title: "Project Type",
-         desc: "Business Consulting",
+         title: "Development Type",
+         desc: "Luxury Residential Tower",
       },
    ]
 }

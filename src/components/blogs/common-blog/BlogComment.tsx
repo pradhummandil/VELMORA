@@ -8,22 +8,20 @@ import commentImg_3 from "@/assets/images/blog/avatar_03.jpg"
 const BlogComment = () => {
    return (
       <div className="blog-comment-area">
-         <h3 className="blog-inner-title pb-35">2 Comments</h3>
+         <h3 className="blog-inner-title pb-35 font-garamond">3 Insights & Comments</h3>
          <div className="comment position-relative d-flex">
             <Image src={commentImg_1} alt="" className="lazy-img user-avatar rounded-circle" />
             <div className="comment-text">
-               <div className="name fw-500">Al Hasani</div>
-               <div className="date">27 Aug, 2023, 4:10pm</div>
-               <p>One touch of a red-hot stove is usually all we need to avoid that kind of lorem discomfort
-                  in future. The same true we experience </p>
+               <div className="name fw-500">Vikram Malhotra</div>
+               <div className="date">18 Aug, 2024, 4:10pm</div>
+               <p>The RERA compliance framework discussed here is essential for any high-value residential acquisition in Mumbai and NCR.</p>
                <Link href="#" className="reply-btn tran3s">Reply</Link>
                <div className="comment position-relative reply-comment d-flex">
                   <Image src={commentImg_2} alt="" className="lazy-img user-avatar rounded-circle" />
                   <div className="comment-text">
-                     <div className="name fw-500">Rashed ka.</div>
-                     <div className="date">29 Aug, 2023, 7:30pm</div>
-                     <p>Lorem ipsum dolor sit amet consectetur. Feugiat suspendisse ipsum purus in pharetra
-                        neque libero. Varius ut consectetur pellentesque</p>
+                     <div className="name fw-500">Aarav Mehta</div>
+                     <div className="date">19 Aug, 2024, 11:20am</div>
+                     <p>Absolutely Vikram. Verifying title clearance and escrow compliance prior to agreement registration safeguards buyer equity from day one.</p>
                      <Link href="#" className="reply-btn tran3s">Reply</Link>
                   </div>
                </div>
@@ -32,10 +30,9 @@ const BlogComment = () => {
          <div className="comment position-relative d-flex">
             <Image src={commentImg_3} alt="" className="lazy-img user-avatar rounded-circle" />
             <div className="comment-text">
-               <div className="name fw-500">Jubayer Al Hasan</div>
-               <div className="date">12 June, 2023, 7:30pm</div>
-               <p>Lorem ipsum dolor sit amet consectetur. Enim in aceu velit. Euismod non posu pellentesque
-                  neque. Feugiat cras egestas facilisis.</p>
+               <div className="name fw-500">Pooja Hegde</div>
+               <div className="date">15 Aug, 2024, 2:30pm</div>
+               <p>The insights on North Goa freehold titles versus leasehold structures provide immense clarity for second-home buyers looking at Assagao and Anjuna.</p>
                <Link href="#" className="reply-btn tran3s">Reply</Link>
             </div>
          </div>

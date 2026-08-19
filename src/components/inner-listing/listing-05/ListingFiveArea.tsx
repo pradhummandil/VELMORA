@@ -11,10 +11,22 @@ import featureIcon_1 from "@/assets/images/icon/icon_32.svg"
 import featureIcon_2 from "@/assets/images/icon/icon_33.svg"
 import featureIcon_3 from "@/assets/images/icon/icon_34.svg"
 
+const formatPrice = (price: number) => {
+   if (!price) return "Price on Request";
+   if (price >= 10000000) {
+      const cr = price / 10000000;
+      return `₹${cr.toFixed(2).replace(/\.00$/, '')} Cr`;
+   } else if (price >= 100000) {
+      const lakh = price / 100000;
+      return `₹${lakh.toFixed(2).replace(/\.00$/, '')} Lakh`;
+   }
+   return `₹${price.toLocaleString('en-IN')}`;
+};
+
 const ListingFiveArea = () => {
 
-   const itemsPerPage = 6;
-   const page = "listing_2";
+   const itemsPerPage = 8;
+   const page = "listing_5";
 
    const {
       itemOffset,
@@ -120,10 +132,7 @@ const ListingFiveArea = () => {
                                     <div
                                        className="pl-footer top-border bottom-border d-flex align-items-center justify-content-between">
                                        <strong className="price fw-500 color-dark">
-                                          ${item.price.toLocaleString(undefined, {
-                                             minimumFractionDigits: item.price_text ? 0 : 2,
-                                             maximumFractionDigits: 2
-                                          })}{item.price_text && <>/<sub>m</sub></>}
+                                          {formatPrice(item.price)}{item.price_text && <>/<sub>m</sub></>}
                                        </strong>                                        <Link href="/listing_details_05" className="btn-four"><i
                                           className="bi bi-arrow-up-right"></i></Link>
                                     </div>

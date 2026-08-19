@@ -39,8 +39,8 @@ const PropertyOverview = () => {
    return (
       <>
          <div className="property-overview p-40">
-            <h4 className="mb-20">Overview</h4>
-            <p className="fs-20 lh-lg">Lorem ipsum dolor sit amet consectetur. Et velit varius ipsum tempor vel dignissim tincidunt. Aliquam accumsan laoreet ultricies tincidunt faucibus fames augue in sociis. Nisl enim integer neque nec.</p>
+            <h4 className="mb-20 font-garamond">About the Residence</h4>
+            <p className="fs-20 lh-lg">Perched high above the Arabian Sea along Mumbai&apos;s coveted Worli Sea Face, The Meridian Residences represents the pinnacle of modern coastal luxury. Designed with generous spatial planning, Italian marble flooring, expansive wraparound balconies, and uninterrupted ocean vistas, this sky residence delivers an uncompromising standard of urban sophistication.</p>
             <div className="property-feature-list mt-40">
                <ul className="style-none d-flex flex-wrap align-items-center justify-content-between">
                   {property_overview_data.map((item) => (
@@ -54,8 +54,8 @@ const PropertyOverview = () => {
          </div>
 
          <div className="property-feature-accordion border-top p-40">
-            <h4 className="mb-20">Property Features</h4>
-            <p className="fs-20 lh-lg">Risk management and compliance, when approached strategically, have the potential to go beyond mitigating threats.</p>
+            <h4 className="mb-20 font-garamond">Property Features</h4>
+            <p className="fs-20 lh-lg">Comprehensive specifications, bespoke finishes, and premium structural engineering crafted for timeless living.</p>
             <h5 className="pt-30 pb-25">Property Details</h5>
             {property_feature_list.slice(0, 1).map((item) => (
                <div key={item.id} className="feature-list-two">

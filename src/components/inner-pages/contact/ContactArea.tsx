@@ -15,20 +15,20 @@ interface DataType {
 const address_data: DataType[] = [
    {
       id: 1,
-      title: "We’r always happy to help.",
-      address_1: "ask@gmail.com"
+      title: "Advisory Desk",
+      address_1: "advisory@velmora.in"
    },
    {
       id: 2,
       class_name: "skew-line",
-      title: "Our hotline number",
-      address_1: "+210 0000 0000,",
-      address_2: "+210 0000 0000",
+      title: "Direct Client Line",
+      address_1: "+91 98200 12345,",
+      address_2: "+91 22 6100 4500",
    },
    {
       id: 3,
-      title: "Live chat",
-      address_1: "www.velmora.example"
+      title: "Private Office",
+      address_1: "Worli Sea Face, Mumbai"
    },
 ]
 
@@ -39,7 +39,9 @@ const ContactArea = () => {
             <div className="row">
                <div className="col-xxl-9 col-xl-8 col-lg-10 m-auto">
                   <div className="title-one text-center wow fadeInUp">
-                     <h3>Questions? Feel Free to Reach Out Via Message.</h3>
+                     <div className="fs-14 fw-semibold text-uppercase mb-10" style={{ color: "#B89B5E", letterSpacing: "2px" }}>CONNECT WITH VELMORA</div>
+                     <h2 className="font-garamond">Start Your Property Journey</h2>
+                     <p className="fs-22 mt-xs">Tell us what you&apos;re looking for and a VELMORA advisor will guide your next step.</p>
                   </div>
                </div>
             </div>

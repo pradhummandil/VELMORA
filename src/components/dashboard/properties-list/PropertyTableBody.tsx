@@ -24,55 +24,67 @@ interface DataType {
    status_bg?: string;
 }
 
+const formatPrice = (price: number) => {
+   if (!price) return "Price on Request";
+   if (price >= 10000000) {
+      const cr = price / 10000000;
+      return `₹${cr.toFixed(2).replace(/\.00$/, '')} Cr`;
+   } else if (price >= 100000) {
+      const lakh = price / 100000;
+      return `₹${lakh.toFixed(2).replace(/\.00$/, '')} Lakh`;
+   }
+   return `₹${price.toLocaleString('en-IN')}`;
+};
+
 const list_data: DataType[] = [
    {
       id: 1,
-      title: "Galaxy Flat",
-      address: "Dr Annie Besant Rd, Worli, Mumbai",
-      price: 32800,
-      date: "13 Jan, 2023",
+      title: "The Meridian Sky Suite",
+      address: "Worli Sea Face, Worli, Mumbai",
+      price: 48000000,
+      date: "13 Jan, 2024",
       view: 1210,
       img: listImg_1,
       status: "Active",
    },
    {
       id: 2,
-      title: "White House villa",
-      address: "Ranchview, California, USA",
-      price: 42130,
-      date: "09 Jan, 2023",
-      view: 0,
+      title: "The Aria Grand Residence",
+      address: "Golf Course Road, DLF Phase 5, Gurugram",
+      price: 38500000,
+      date: "09 Jan, 2024",
+      view: 840,
       img: listImg_2,
       status: "Pending",
       status_bg: "pending"
    },
    {
       id: 3,
-      title: "Luxury villa in Dal lake",
-      address: "Muza link road, ca, usa",
-      price: 2370,
-      date: "17 Oct, 2022",
-      view: 0,
+      title: "Serein Sky Residence",
+      address: "100 Feet Road, Indiranagar, Bengaluru",
+      price: 32500000,
+      date: "17 Oct, 2023",
+      view: 620,
       img: listImg_3,
       status: "Processing",
       status_bg: "processing",
    },
    {
       id: 4,
-      title: "Wooden World",
-      address: "Board Baxar, Califronia, USA",
-      price: 63300,
-      date: "23 Sep, 2022",
+      title: "Elysian Heights Mansion",
+      address: "Road No. 36, Jubilee Hills, Hyderabad",
+      price: 52000000,
+      date: "23 Sep, 2023",
       view: 970,
       img: listImg_4,
       status: "Active",
    },
    {
       id: 5,
-      title: "Orkit Villa",
-      address: "Green Road, Uttara, BD",
-      price: 72000,
-      date: "15 Aug, 2022",
+      title: "Casa Sol Luxury Villa",
+      address: "Badem Road, Assagao, Goa",
+      price: 68000000,
+      date: "15 Aug, 2023",
       view: 2320,
       img: listImg_5,
       status: "Active",
@@ -88,9 +100,9 @@ const PropertyTableBody = () => {
                   <div className="d-lg-flex align-items-center position-relative">
                      <Image src={item.img} alt="" className="p-img" />
                      <div className="ps-lg-4 md-pt-10">
-                        <Link href="#" className="property-name tran3s color-dark fw-500 fs-20 stretched-link">{item.title}</Link>
+                        <Link href="/listing_details_01" className="property-name tran3s color-dark fw-500 fs-20 stretched-link">{item.title}</Link>
                         <div className="address">{item.address}</div>
-                        <strong className="price color-dark">₹{item.price}</strong>
+                        <strong className="price color-dark">{formatPrice(item.price)}</strong>
                      </div>
                   </div>
                </td>

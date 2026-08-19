@@ -34,10 +34,9 @@ const AgentArea = () => {
                      <NiceSelect
                         className="nice-select rounded-0"
                         options={[
-                           { value: "01", text: "Pupular" },
-                           { value: "02", text: "Best Rating" },
-                           { value: "03", text: "Price Low" },
-                           { value: "04", text: "Price High" },
+                           { value: "01", text: "Popular" },
+                           { value: "02", text: "Senior Advisors" },
+                           { value: "03", text: "Most Listings" },
                         ]}
                         defaultCurrent={0}
                         onChange={selectHandler}

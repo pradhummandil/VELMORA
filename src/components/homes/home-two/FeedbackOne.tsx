@@ -13,12 +13,12 @@ const Feedback = () => {
                <div className="col-lg-8 order-lg-last">
                   <div className="main-content position-relative z-1">
                      <div className="feedback-block-two">
-                        <blockquote className="font-garamond text-white">&quot;Extraordinary <span>performance!</span> Quick solutions. Highly recommended.&quot;</blockquote>
+                        <blockquote className="font-garamond text-white">&quot;VELMORA made acquiring our residence in Worli completely <span>seamless</span> with unmatched market insight and discretion.&quot;</blockquote>
                         <div className="d-flex align-items-center mt-75 md-mt-60">
-                           <Image src={feedbackAvatar} alt="" className="rounded-circle avatar" />
+                           <Image src={feedbackAvatar} alt="Nisha Agarwal" className="rounded-circle avatar" />
                            <div className="ps-4">
-                              <h6 className="fs-22 text-white fw-normal mb-5">xyz.</h6>
-                              <span className="text-white opacity-50 fw-light">CEO & Head of VELMORA Inc</span>
+                              <h6 className="fs-22 text-white fw-normal mb-5">Nisha Agarwal</h6>
+                              <span className="text-white opacity-50 fw-light">Private Client, Mumbai</span>
                            </div>
                         </div>
                      </div>
@@ -30,14 +30,14 @@ const Feedback = () => {
                      <div className="row">
                         <div className="col-lg-12 col-md-6">
                            <div className="counter-block-two mb-85 xl-mb-50 md-mb-40">
-                              <div className="main-count font-garamond fw-500"><span className="counter"><Count number={1200} /></span>+</div>
-                              <p className="fs-20 fw-light m0">Project handover</p>
+                              <div className="main-count font-garamond fw-500"><span className="counter"><Count number={500} /></span>+</div>
+                              <p className="fs-20 fw-light m0">Curated Residences</p>
                            </div>
                         </div>
                         <div className="col-lg-12 col-md-6">
                            <div className="counter-block-two md-mb-40">
-                              <div className="main-count font-garamond fw-500"><span className="counter"><Count number={1.9} /></span>mil+</div>
-                              <p className="fs-20 fw-light m0">Happy customers</p>
+                              <div className="main-count font-garamond fw-500"><span className="counter"><Count number={13} /></span></div>
+                              <p className="fs-20 fw-light m0">Prime Indian Markets</p>
                            </div>
                         </div>
                      </div>

@@ -11,10 +11,11 @@ const FAQ = () => {
             <div className="row">
                <div className="col-lg-5 wow fadeInLeft">
                   <div className="title-one mb-40 lg-mb-20">
-                     <h2 className="font-garamond">Frequently Asked Question</h2>
-                     <p className="fs-20 mt-xs pt-20 md-pt-10">Don’t find the answer? We can help you.</p>
+                     <div className="fs-14 fw-semibold text-uppercase mb-10" style={{ color: "#B89B5E", letterSpacing: "2px" }}>ADVISORY FAQ</div>
+                     <h2 className="font-garamond">Frequently Asked Questions</h2>
+                     <p className="fs-20 mt-xs pt-20 md-pt-10">Key insights into RERA verification, private viewings, and luxury property transactions in India.</p>
                   </div>
-                  <Link href="/faq" className="btn-five sm text-uppercase rounded-0">ASK QUESTIONs</Link>
+                  <Link href="/faq" className="btn-five sm text-uppercase rounded-0">Explore All FAQs</Link>
                </div>
 
                <div className="col-lg-7">

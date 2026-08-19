@@ -18,24 +18,24 @@ interface Datatype {
 const compare_data: Datatype[] = [
    {
       id: 1,
-      tag: "For Sell",
+      tag: "For Sale",
       thumb: compareThumb_1,
-      title: "Blueberry villa",
-      desc: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
+      title: "The Meridian Residences",
+      desc: "Worli Sea Face, Worli, Mumbai 400030",
    },
    {
       id: 2,
-      tag: "For Sell",
+      tag: "For Sale",
       thumb: compareThumb_2,
-      title: "Orkit Flat",
-      desc: "2118 Thornridge Cir. Syracuse, Connecticut 35624",
+      title: "The Aria Grand Residences",
+      desc: "Golf Course Road, DLF Phase 5, Gurugram 122002",
    },
    {
       id: 3,
-      tag: "For Sell",
+      tag: "For Sale",
       thumb: compareThumb_3,
-      title: "Modu Apartment",
-      desc: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      title: "Serein Sky Residence",
+      desc: "100 Feet Road, Indiranagar, Bengaluru 560038",
    },
 ]
 
@@ -47,39 +47,39 @@ interface TableData {
 const table_row_data: TableData[] = [
    {
       table_head: "Bedrooms",
-      table_data: ["3", "2", "3"],
+      table_data: ["3 BHK", "4 BHK", "3 BHK"],
    },
    {
-      table_head: "Bath",
-      table_data: ["2", "1", "1"],
+      table_head: "Bathrooms",
+      table_data: ["3", "4", "3"],
    },
    {
       table_head: "Price",
-      table_data: ["₹1,75,00,000", "₹1,42,00,000", "₹1,82,00,000"],
+      table_data: ["₹4.80 Cr", "₹3.85 Cr", "₹3.25 Cr"],
    },
    {
       table_head: "Property Type",
-      table_data: ["Villa", "Flat", "Apartment"],
+      table_data: ["Sky Residence", "Penthouse", "Apartment"],
    },
    {
       table_head: "Property ID",
-      table_data: ["h2180", "h3218", "h4322"],
+      table_data: ["VEL-MUM-01", "VEL-GUR-02", "VEL-BLR-03"],
    },
    {
       table_head: "Parking",
-      table_data: ["1", "2", "0"],
+      table_data: ["2 Dedicated", "3 Dedicated", "2 Dedicated"],
    },
    {
-      table_head: "Lot Size",
-      table_data: ["2,710 sq.ft", "1,810 sq.ft", "3,470 sq.ft"],
+      table_head: "Super Built-Up Area",
+      table_data: ["2,180 sq.ft", "2,850 sq.ft", "1,940 sq.ft"],
    },
    {
       table_head: "Features",
-      table_data: ["Ac/Heating, Laundry, Garden, Elevator, Pet Friendly, Wifi, Refrigerator", "Ac/Heating, Garden, Wifi, Pet Friendly, Refrigerator", "Ac/Heating, Laundry, Garden, Elevator, Pet Friendly, Wifi, Refrigerator, Fireplace, Swimming Pool"],
+      table_data: ["Sea View, Private Balcony, Italian Marble, Concierge, EV Charging, Swimming Pool", "Golf Course View, Double Height Ceiling, Private Elevator, Concierge", "Biophilic Terrace, Smart Home Automation, Clubhouse, Infinity Pool"],
    },
    {
-      table_head: "Zoning",
-      table_data: ["Residential", "Residential", "Residential"],
+      table_head: "RERA Status",
+      table_data: ["RERA Approved", "RERA Approved", "RERA Approved"],
    },
 ]
 
@@ -90,7 +90,8 @@ const CompareArea = () => {
             <div className="row align-items-center">
                <div className="col-md-6">
                   <div className="title-one">
-                     <h3>Compare Listing</h3>
+                     <div className="fs-14 fw-semibold text-uppercase mb-10" style={{ color: "#B89B5E", letterSpacing: "2px" }}>PROPERTY COMPARISON</div>
+                     <h2 className="font-garamond">Compare Residences</h2>
                   </div>
                </div>
                <div className="col-xl-3 col-lg-4 col-md-5 ms-auto">

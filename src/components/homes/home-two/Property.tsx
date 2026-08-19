@@ -5,14 +5,26 @@ import Link from "next/link"
 import propertyShape from "@/assets/images/shape/shape_17.svg"
 
 
+const formatPrice = (price: number) => {
+   if (price >= 10000000) {
+      const cr = price / 10000000;
+      return `₹${cr.toFixed(2).replace(/\.00$/, '')} Cr`;
+   } else if (price >= 100000) {
+      const lakh = price / 100000;
+      return `₹${lakh.toFixed(2).replace(/\.00$/, '')} Lakh`;
+   }
+   return `₹${price.toLocaleString('en-IN')}`;
+};
+
 const Property = () => {
    return (
       <div className="xl-mt-120 property-listing-two position-relative z-1 mt-150 pb-150 xl-pb-120 lg-pb-80">
          <div className="container">
             <div className="position-relative">
                <div className="title-one mb-25 lg-mb-20 wow fadeInUp">
-                  <h2 className="font-garamond">New Listings</h2>
-                  <p className="fs-22 mt-xs">Explore latest & featured properties for sale.</p>
+                  <div className="fs-14 fw-semibold text-uppercase mb-10" style={{ color: "#B89B5E", letterSpacing: "2px" }}>FEATURED RESIDENCES</div>
+                  <h2 className="font-garamond">Featured Residences</h2>
+                  <p className="fs-22 mt-xs">A refined collection of exceptional properties selected for location, design and lifestyle.</p>
                </div>
 
                <div className="row gx-xxl-5">
@@ -29,9 +41,9 @@ const Property = () => {
                                        <button type="button" data-bs-target={`#carousel${item.carousel}`} data-bs-slide-to="2" aria-label="Slide 3"></button>
                                     </div>
                                     <div className="carousel-inner">
-                                       {item.carousel_thumb.map((item, i) => (
-                                          <div key={i} className={`carousel-item ${item.active}`} data-bs-interval="1000000">
-                                             <Link href="/listing_details_01" className="d-block"><Image src={item.img} className="w-100" alt="..." /></Link>
+                                       {item.carousel_thumb.map((c_item, i) => (
+                                          <div key={i} className={`carousel-item ${c_item.active}`} data-bs-interval="1000000">
+                                             <Link href="/listing_details_01" className="d-block"><Image src={c_item.img} className="w-100" alt={item.title} /></Link>
                                           </div>
                                        ))}
                                     </div>
@@ -39,7 +51,7 @@ const Property = () => {
                               </div>
                            </div>
                            <div className="property-info p-25">
-                              <Link href="#" className="title tran3s">{item.title}</Link>
+                              <Link href="/listing_details_01" className="title tran3s">{item.title}</Link>
                               <div className="address">{item.address}</div>
                               <ul className="style-none feature d-flex flex-wrap align-items-center justify-content-between pb-5">
                                  {item.property_info.map((info, index) => (
@@ -50,8 +62,8 @@ const Property = () => {
                                  ))}
                               </ul>
                               <div className="pl-footer top-border d-flex align-items-center justify-content-between">
-                                 <strong className="price fw-500 color-dark">₹{item.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
-                                 <Link href="#" className="btn-four"><i className="bi bi-arrow-up-right"></i></Link>
+                                 <strong className="price fw-500 color-dark">{formatPrice(item.price)}</strong>
+                                 <Link href="/listing_details_01" className="btn-four"><i className="bi bi-arrow-up-right"></i></Link>
                               </div>
                            </div>
                         </div>
@@ -60,7 +72,7 @@ const Property = () => {
                </div>
 
                <div className="section-btn text-center md-mt-60">
-                  <Link href="/listing_05" className="btn-eight"><span>Explore All</span> <i
+                  <Link href="/listing_01" className="btn-eight"><span>Explore All Residences</span> <i
                      className="bi bi-arrow-up-right"></i></Link>
                </div>
             </div>

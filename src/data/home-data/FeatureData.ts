@@ -210,22 +210,22 @@ const feature_data: DataType[] = [
       id: 1,
       page: "home_two_feature_3",
       icon: feature4Icon_1,
-      title: "Property Insurance",
-      desc: "Elit esse cillum dolo fugiat nulla tur nos ullamo.",
+      title: "Curated Selection",
+      desc: "A focused portfolio of prime residences evaluated for architecture, location and value.",
    },
    {
       id: 2,
       page: "home_two_feature_3",
       icon: feature4Icon_2,
-      title: "Easy Payments",
-      desc: "quis nostrud exerct ullamo sucirity finibus ne derived.",
+      title: "Verified Advisory",
+      desc: "RERA-compliant documentation and clear advisory for high-value transactions.",
    },
    {
       id: 3,
       page: "home_two_feature_3",
       icon: feature4Icon_3,
-      title: "Quick Process",
-      desc: "Duis aute irure dolor reprehe de Cicero's voluptat velit.",
+      title: "Seamless Process",
+      desc: "Private viewings, discreet negotiations, and end-to-end guidance to acquisition.",
    },
 
    // home_3_feature_1

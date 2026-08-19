@@ -37,20 +37,20 @@ const BLockFeatureOne = () => {
                <div className="row justify-content-center">
                   <div className="col-md-4 col-sm-6">
                      <div className="counter-block-two text-center dark mt-30">
-                        <div className="main-count sm font-garamond fw-500"><span className="counter"><Count number={720} /></span>k+</div>
-                        <p className="fs-20 mt-15 md-mt-10">Project handover</p>
+                        <div className="main-count sm font-garamond fw-500"><span className="counter"><Count number={500} /></span>+</div>
+                        <p className="fs-20 mt-15 md-mt-10">Curated Residences</p>
                      </div>
                   </div>
                   <div className="col-md-4 col-sm-6">
                      <div className="counter-block-two text-center dark mt-30">
-                        <div className="main-count sm font-garamond fw-500"><span className="counter"><Count number={1.3} /></span>%</div>
-                        <p className="fs-20 mt-15 md-mt-10">Low Interest</p>
+                        <div className="main-count sm font-garamond fw-500"><span className="counter"><Count number={13} /></span></div>
+                        <p className="fs-20 mt-15 md-mt-10">Prime Indian Markets</p>
                      </div>
                   </div>
                   <div className="col-md-4 col-sm-6">
                      <div className="counter-block-two text-center dark mt-30">
-                        <div className="main-count sm font-garamond fw-500"><span className="counter">{<Count number={1.9} />}</span>mil+</div>
-                        <p className="fs-20 mt-15 md-mt-10">Happy customers</p>
+                        <div className="main-count sm font-garamond fw-500"><span className="counter">{<Count number={50} />}</span>+</div>
+                        <p className="fs-20 mt-15 md-mt-10">Property Specialists</p>
                      </div>
                   </div>
                </div>
