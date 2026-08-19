@@ -15,9 +15,9 @@ const Feedback = () => {
                      <div className="feedback-block-two">
                         <blockquote className="font-garamond text-white">&quot;VELMORA made acquiring our residence in Worli completely <span>seamless</span> with unmatched market insight and discretion.&quot;</blockquote>
                         <div className="d-flex align-items-center mt-75 md-mt-60">
-                           <Image src={feedbackAvatar} alt="Nisha Agarwal" className="rounded-circle avatar" />
+                           <Image src={feedbackAvatar} alt="Pradhum Mandil" className="rounded-circle avatar" />
                            <div className="ps-4">
-                              <h6 className="fs-22 text-white fw-normal mb-5">Nisha Agarwal</h6>
+                              <h6 className="fs-22 text-white fw-normal mb-5">Pradhum Mandil</h6>
                               <span className="text-white opacity-50 fw-light">Private Client, Mumbai</span>
                            </div>
                         </div>
