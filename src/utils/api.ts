@@ -36,7 +36,9 @@ export const apiClient = {
   getPlaceDetails: (placeId: string, sessionToken?: string) =>
     api.get("/api/locations/details", { params: { placeId, sessionToken } }),
 
-  // Properties
+  // Properties & Map Discovery
+  searchProperties: (params?: any, signal?: AbortSignal) =>
+    api.get("/api/search/properties", { params, signal }),
   getProperties: (params?: any) => api.get("/api/properties", { params }),
   getProperty: (id: string | number) => api.get(`/api/properties/${id}`),
   getMyListings: () => api.get("/api/properties/my/listings"),

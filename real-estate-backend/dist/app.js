@@ -13,6 +13,7 @@ const inquiryRoutes_1 = __importDefault(require("./routes/inquiryRoutes"));
 const viewingRoutes_1 = __importDefault(require("./routes/viewingRoutes"));
 const favoriteRoutes_1 = __importDefault(require("./routes/favoriteRoutes"));
 const locationRoutes_1 = __importDefault(require("./routes/locationRoutes"));
+const searchRoutes_1 = __importDefault(require("./routes/searchRoutes"));
 exports.app = (0, express_1.default)();
 const allowedOrigins = process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
@@ -42,6 +43,7 @@ exports.app.get("/health", (req, res) => {
 // Application API routes
 exports.app.use("/api/auth", authRoutes_1.default);
 exports.app.use("/api/locations", locationRoutes_1.default);
+exports.app.use("/api/search", searchRoutes_1.default);
 exports.app.use("/api/properties", propertyRoutes_1.default);
 exports.app.use("/api/inquiries", inquiryRoutes_1.default);
 exports.app.use("/api/viewings", viewingRoutes_1.default);
