@@ -15,6 +15,8 @@ const Property_1 = require("./Property");
 const Inquiry_1 = require("./Inquiry");
 const ViewingRequest_1 = require("./ViewingRequest");
 const Favorite_1 = require("./Favorite");
+const SavedSearch_1 = require("./SavedSearch");
+const AdvisoryBooking_1 = require("./AdvisoryBooking");
 let User = class User extends sequelize_typescript_1.Model {
 };
 exports.User = User;
@@ -99,6 +101,14 @@ __decorate([
     (0, sequelize_typescript_1.HasMany)(() => Favorite_1.Favorite, "userId"),
     __metadata("design:type", Array)
 ], User.prototype, "favorites", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => SavedSearch_1.SavedSearch, "userId"),
+    __metadata("design:type", Array)
+], User.prototype, "savedSearches", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => AdvisoryBooking_1.AdvisoryBooking, "userId"),
+    __metadata("design:type", Array)
+], User.prototype, "advisoryBookings", void 0);
 exports.User = User = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "users", timestamps: true })
 ], User);

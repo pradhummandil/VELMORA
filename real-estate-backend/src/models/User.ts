@@ -3,6 +3,8 @@ import { Property } from "./Property";
 import { Inquiry } from "./Inquiry";
 import { ViewingRequest } from "./ViewingRequest";
 import { Favorite } from "./Favorite";
+import { SavedSearch } from "./SavedSearch";
+import { AdvisoryBooking } from "./AdvisoryBooking";
 
 @Table({ tableName: "users", timestamps: true })
 export class User extends Model {
@@ -73,4 +75,10 @@ export class User extends Model {
 
   @HasMany(() => Favorite, "userId")
   favorites?: Favorite[];
+
+  @HasMany(() => SavedSearch, "userId")
+  savedSearches?: SavedSearch[];
+
+  @HasMany(() => AdvisoryBooking, "userId")
+  advisoryBookings?: AdvisoryBooking[];
 }

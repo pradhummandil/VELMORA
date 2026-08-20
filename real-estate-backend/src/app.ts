@@ -6,6 +6,7 @@ import propertyRoutes from "./routes/propertyRoutes";
 import inquiryRoutes from "./routes/inquiryRoutes";
 import viewingRoutes from "./routes/viewingRoutes";
 import favoriteRoutes from "./routes/favoriteRoutes";
+import locationRoutes from "./routes/locationRoutes";
 
 export const app = express();
 
@@ -42,6 +43,7 @@ app.get("/health", (req: Request, res: Response) => {
 
 // Application API routes
 app.use("/api/auth", authRoutes);
+app.use("/api/locations", locationRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/viewings", viewingRoutes);

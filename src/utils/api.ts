@@ -27,6 +27,15 @@ export const apiClient = {
   updateProfile: (data: any) => api.put("/api/profile", data),
   getDashboardStats: () => api.get("/api/dashboard/stats"),
 
+  // Locations & Maps
+  getAutocomplete: (q: string, sessionToken?: string, signal?: AbortSignal) =>
+    api.get("/api/locations/autocomplete", { params: { q, sessionToken }, signal }),
+  geocode: (address: string) => api.get("/api/locations/geocode", { params: { address } }),
+  reverseGeocode: (lat: number, lng: number) =>
+    api.get("/api/locations/reverse-geocode", { params: { lat, lng } }),
+  getPlaceDetails: (placeId: string, sessionToken?: string) =>
+    api.get("/api/locations/details", { params: { placeId, sessionToken } }),
+
   // Properties
   getProperties: (params?: any) => api.get("/api/properties", { params }),
   getProperty: (id: string | number) => api.get(`/api/properties/${id}`),

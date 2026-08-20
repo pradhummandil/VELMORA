@@ -129,7 +129,7 @@
 
    .hero-banner-two .line-bg:before {top:112px;}
    .layout-two .input-box-one {padding: 3px 0;}
-   .search-wrapper-one.layout-two .bg-wrapper .search-btn-two {margin: 0 10px; width: 75px;}
+   .search-wrapper-one.layout-two .bg-wrapper .search-btn-two {width: 100%; max-width: 80px; height: 70px; margin: 0 auto;}
    .hero-banner-three {margin: 116px 25px 0;}
    .footer-two .news-letter-area {width: calc(75% - 3rem);}
    .theme-main-menu.menu-style-four:before {width: 90px;}

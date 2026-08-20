@@ -2,29 +2,31 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import NiceSelect from "@/ui/NiceSelect";
-
-import { INDIAN_LOCATION_SUGGESTIONS } from "@/data/home-data/LocationSuggestions";
+import { locationAutocompleteManager, UnifiedLocationSuggestion } from "@/utils/locationAutocomplete";
 
 const DropdownOne = ({ style }: any) => {
   const router = useRouter();
   const [propertyType, setPropertyType] = useState("apartments");
   const [locationInput, setLocationInput] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<UnifiedLocationSuggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const locationRef = useRef<HTMLDivElement>(null);
 
-  // Filter suggestions based on input
+  // Debounced location suggestions fetch
   useEffect(() => {
-    if (locationInput.trim().length < 1) {
+    if (locationInput.trim().length < 2) {
       setSuggestions([]);
       setShowSuggestions(false);
       return;
     }
-    const filtered = INDIAN_LOCATION_SUGGESTIONS.filter((city) =>
-      city.toLowerCase().includes(locationInput.toLowerCase())
-    );
-    setSuggestions(filtered.slice(0, 6));
-    setShowSuggestions(filtered.length > 0);
+
+    const handler = setTimeout(async () => {
+      const results = await locationAutocompleteManager.fetchSuggestions(locationInput);
+      setSuggestions(results);
+      setShowSuggestions(results.length > 0);
+    }, 300);
+
+    return () => clearTimeout(handler);
   }, [locationInput]);
 
   // Close suggestions when clicking outside
@@ -38,9 +40,10 @@ const DropdownOne = ({ style }: any) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSelectCity = (city: string) => {
-    setLocationInput(city);
+  const handleSelectSuggestion = (suggestion: UnifiedLocationSuggestion) => {
+    setLocationInput(suggestion.title);
     setShowSuggestions(false);
+    locationAutocompleteManager.resetSessionToken();
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -105,17 +108,22 @@ const DropdownOne = ({ style }: any) => {
               {showSuggestions && suggestions.length > 0 && (
                 <ul
                   className="position-absolute start-0 end-0 bg-white border shadow-sm rounded list-unstyled m-0 py-1"
-                  style={{ zIndex: 1050, top: "100%" }}
+                  style={{ zIndex: 1050, top: "100%", maxHeight: "250px", overflowY: "auto" }}
                 >
-                  {suggestions.map((city) => (
+                  {suggestions.map((item) => (
                     <li
-                      key={city}
-                      className="px-3 py-2 fs-14 cursor-pointer hover-bg-light"
+                      key={item.id}
+                      className="px-3 py-2 fs-14 cursor-pointer hover-bg-light d-flex align-items-center justify-content-between"
                       style={{ cursor: "pointer" }}
-                      onMouseDown={() => handleSelectCity(city)}
+                      onMouseDown={() => handleSelectSuggestion(item)}
                     >
-                      <i className="bi bi-geo-alt-fill text-muted me-2 fs-12"></i>
-                      {city}
+                      <div>
+                        <i className="bi bi-geo-alt-fill text-muted me-2 fs-12"></i>
+                        <span className="fw-500">{item.title}</span>
+                      </div>
+                      {item.subtitle && (
+                        <span className="text-muted fs-12 ms-2">{item.subtitle}</span>
+                      )}
                     </li>
                   ))}
                 </ul>

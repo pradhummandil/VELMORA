@@ -1,8 +1,9 @@
 import { Response } from "express";
 import { Op } from "sequelize";
-import { Property } from "../models/Property";
+import { Property, ListingPurpose, ReraStatus, ConstructionStatus } from "../models/Property";
 import { User } from "../models/User";
 import { AuthRequest } from "../middleware/authMiddleware";
+import { LocationService } from "../services/LocationService";
 
 export const createProperty = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
@@ -15,17 +16,38 @@ export const createProperty = async (req: AuthRequest, res: Response): Promise<v
       title,
       description,
       price,
+      pricePerSqft,
+      listingPurpose = "buy",
       location,
+      locality,
       city,
+      state,
       address,
+      pincode,
+      latitude,
+      longitude,
+      placeId,
       propertyType,
       status,
       bedrooms,
       bathrooms,
       area,
+      floor,
+      totalFloors,
+      parking,
+      furnishing,
       amenities,
       images,
+      developer,
+      projectId,
+      reraNumber,
+      reraStatus = "pending",
+      reraAuthority,
+      reraRegistrationUrl,
+      constructionStatus = "ready_to_move",
+      possessionStatus,
       agentId,
+      agencyId,
     } = req.body;
 
     if (!title || !price || !location) {
@@ -33,25 +55,100 @@ export const createProperty = async (req: AuthRequest, res: Response): Promise<v
       return;
     }
 
+    // Validate listing purpose
+    const validPurposes: ListingPurpose[] = ["buy", "rent", "commercial", "investment"];
+    const resolvedPurpose: ListingPurpose = validPurposes.includes(listingPurpose) ? listingPurpose : "buy";
+
+    // Validate RERA status
+    const validReraStatuses: ReraStatus[] = ["pending", "verified", "exempt", "not_applicable"];
+    const resolvedReraStatus: ReraStatus = validReraStatuses.includes(reraStatus) ? reraStatus : "pending";
+
+    // Validate Construction status
+    const validConstructionStatuses: ConstructionStatus[] = ["ready_to_move", "under_construction", "new_launch"];
+    const resolvedConstructionStatus: ConstructionStatus = validConstructionStatuses.includes(constructionStatus)
+      ? constructionStatus
+      : "ready_to_move";
+
+    // Calculate pricePerSqft if missing and area is available
+    const parsedPrice = Number(price);
+    const parsedArea = area ? Number(area) : undefined;
+    let resolvedPricePerSqft = pricePerSqft ? Number(pricePerSqft) : undefined;
+    if (!resolvedPricePerSqft && parsedArea && parsedArea > 0 && parsedPrice > 0) {
+      resolvedPricePerSqft = Math.round(parsedPrice / parsedArea);
+    }
+
+    // Location normalization & server-side geocoding
+    let resolvedLat = latitude !== undefined && latitude !== null ? Number(latitude) : undefined;
+    let resolvedLng = longitude !== undefined && longitude !== null ? Number(longitude) : undefined;
+    let resolvedLocality = locality ? String(locality).trim() : undefined;
+    let resolvedCity = city ? String(city).trim() : location.split(",").pop()?.trim() || "Mumbai";
+    let resolvedState = state ? String(state).trim() : undefined;
+    let resolvedPincode = pincode ? String(pincode).trim() : undefined;
+
+    try {
+      const normalized = await LocationService.normalizeAndGeocode({
+        address: address ? String(address).trim() : undefined,
+        locality: resolvedLocality,
+        city: resolvedCity,
+        state: resolvedState,
+        pincode: resolvedPincode,
+        placeId: placeId ? String(placeId).trim() : undefined,
+      });
+
+      if (normalized) {
+        if (resolvedLat === undefined || isNaN(resolvedLat)) resolvedLat = normalized.latitude;
+        if (resolvedLng === undefined || isNaN(resolvedLng)) resolvedLng = normalized.longitude;
+        if (!resolvedLocality && normalized.locality) resolvedLocality = normalized.locality;
+        if (!resolvedCity && normalized.city) resolvedCity = normalized.city;
+        if (!resolvedState && normalized.state) resolvedState = normalized.state;
+        if (!resolvedPincode && normalized.pincode) resolvedPincode = normalized.pincode;
+      }
+    } catch (normErr: any) {
+      console.warn("Location normalization notice on create:", normErr.message);
+    }
+
     const property = await Property.create({
-      title,
-      description,
-      price: Number(price),
-      location,
-      city: city || location.split(",").pop()?.trim() || "Mumbai",
-      address,
-      propertyType: propertyType || "Apartment",
-      status: status || "For Sale",
-      bedrooms: bedrooms ? String(bedrooms) : undefined,
-      bathrooms: bathrooms ? String(bathrooms) : undefined,
-      area: area ? Number(area) : undefined,
+      title: String(title).trim(),
+      description: description ? String(description).trim() : undefined,
+      price: parsedPrice,
+      pricePerSqft: resolvedPricePerSqft,
+      listingPurpose: resolvedPurpose,
+      location: String(location).trim(),
+      locality: resolvedLocality,
+      city: resolvedCity,
+      state: resolvedState,
+      address: address ? String(address).trim() : undefined,
+      pincode: resolvedPincode,
+      latitude: resolvedLat,
+      longitude: resolvedLng,
+      propertyType: propertyType ? String(propertyType).trim() : "Apartment",
+      status: status ? String(status).trim() : "For Sale",
+      bedrooms: bedrooms !== undefined && bedrooms !== null ? String(bedrooms) : undefined,
+      bathrooms: bathrooms !== undefined && bathrooms !== null ? String(bathrooms) : undefined,
+      area: parsedArea,
+      floor: floor !== undefined && floor !== null ? Number(floor) : undefined,
+      totalFloors: totalFloors !== undefined && totalFloors !== null ? Number(totalFloors) : undefined,
+      parking: parking ? String(parking).trim() : undefined,
+      furnishing: furnishing ? String(furnishing).trim() : undefined,
       amenities: Array.isArray(amenities) ? amenities : [],
       images: Array.isArray(images) ? images : [],
+      developer: developer ? String(developer).trim() : undefined,
+      projectId: projectId ? String(projectId).trim() : undefined,
+      reraNumber: reraNumber ? String(reraNumber).trim() : undefined,
+      reraStatus: resolvedReraStatus,
+      reraAuthority: reraAuthority ? String(reraAuthority).trim() : undefined,
+      reraRegistrationUrl: reraRegistrationUrl ? String(reraRegistrationUrl).trim() : undefined,
+      constructionStatus: resolvedConstructionStatus,
+      possessionStatus: possessionStatus ? String(possessionStatus).trim() : undefined,
+      addressScore: 0,
+      scoreBreakdown: {},
+      verifiedBadges: [],
       ownerId: req.user.id,
       agentId: agentId ? Number(agentId) : undefined,
+      agencyId: agencyId ? Number(agencyId) : undefined,
     });
 
-    // 📌 Business Rule: Auto-promote 'user' to 'property_owner' upon successful property creation
+    // Auto-promote 'user' to 'property_owner' upon successful property creation
     const user = await User.findByPk(req.user.id);
     let promoted = false;
     if (user && user.role === "user") {
@@ -74,7 +171,22 @@ export const createProperty = async (req: AuthRequest, res: Response): Promise<v
 
 export const getAllProperties = async (req: any, res: Response): Promise<void> => {
   try {
-    const { city, location, propertyType, minPrice, maxPrice, search, limit = 50, page = 1 } = req.query;
+    const {
+      city,
+      locality,
+      location,
+      propertyType,
+      listingPurpose,
+      bedrooms,
+      reraStatus,
+      constructionStatus,
+      minPrice,
+      maxPrice,
+      minScore,
+      search,
+      limit = 50,
+      page = 1,
+    } = req.query;
 
     const whereClause: any = {};
 
@@ -82,9 +194,14 @@ export const getAllProperties = async (req: any, res: Response): Promise<void> =
       whereClause.city = { [Op.iLike]: `%${city}%` };
     }
 
+    if (locality) {
+      whereClause.locality = { [Op.iLike]: `%${locality}%` };
+    }
+
     if (location) {
       whereClause[Op.or] = [
         { location: { [Op.iLike]: `%${location}%` } },
+        { locality: { [Op.iLike]: `%${location}%` } },
         { city: { [Op.iLike]: `%${location}%` } },
         { address: { [Op.iLike]: `%${location}%` } },
       ];
@@ -92,6 +209,26 @@ export const getAllProperties = async (req: any, res: Response): Promise<void> =
 
     if (propertyType && propertyType !== "all") {
       whereClause.propertyType = propertyType;
+    }
+
+    if (listingPurpose && listingPurpose !== "all") {
+      whereClause.listingPurpose = listingPurpose;
+    }
+
+    if (bedrooms && bedrooms !== "all") {
+      whereClause.bedrooms = String(bedrooms);
+    }
+
+    if (reraStatus && reraStatus !== "all") {
+      whereClause.reraStatus = reraStatus;
+    }
+
+    if (constructionStatus && constructionStatus !== "all") {
+      whereClause.constructionStatus = constructionStatus;
+    }
+
+    if (minScore) {
+      whereClause.addressScore = { [Op.gte]: Number(minScore) };
     }
 
     if (minPrice || maxPrice) {
@@ -104,8 +241,10 @@ export const getAllProperties = async (req: any, res: Response): Promise<void> =
       whereClause[Op.or] = [
         { title: { [Op.iLike]: `%${search}%` } },
         { location: { [Op.iLike]: `%${search}%` } },
+        { locality: { [Op.iLike]: `%${search}%` } },
         { city: { [Op.iLike]: `%${search}%` } },
         { description: { [Op.iLike]: `%${search}%` } },
+        { developer: { [Op.iLike]: `%${search}%` } },
       ];
     }
 
@@ -223,22 +362,91 @@ export const updateProperty = async (req: AuthRequest, res: Response): Promise<v
       "title",
       "description",
       "price",
+      "pricePerSqft",
+      "listingPurpose",
       "location",
+      "locality",
       "city",
+      "state",
       "address",
+      "pincode",
+      "latitude",
+      "longitude",
       "propertyType",
       "status",
       "bedrooms",
       "bathrooms",
       "area",
+      "floor",
+      "totalFloors",
+      "parking",
+      "furnishing",
       "amenities",
       "images",
+      "developer",
+      "projectId",
+      "reraNumber",
+      "reraAuthority",
+      "reraRegistrationUrl",
+      "constructionStatus",
+      "possessionStatus",
+      "agentId",
+      "agencyId",
     ];
+
+    const adminOnlyFields = ["reraStatus", "reraVerifiedAt", "addressScore", "scoreBreakdown", "verifiedBadges"];
 
     const updatePayload: any = {};
     for (const field of updatableFields) {
       if (req.body[field] !== undefined) {
         updatePayload[field] = req.body[field];
+      }
+    }
+
+    if (isAdmin) {
+      for (const field of adminOnlyFields) {
+        if (req.body[field] !== undefined) {
+          updatePayload[field] = req.body[field];
+        }
+      }
+    }
+
+    // Auto update pricePerSqft if price and area change and pricePerSqft is not explicitly sent
+    const newPrice = updatePayload.price !== undefined ? Number(updatePayload.price) : property.price;
+    const newArea = updatePayload.area !== undefined ? Number(updatePayload.area) : property.area;
+    if (updatePayload.pricePerSqft === undefined && newPrice && newArea && newArea > 0) {
+      updatePayload.pricePerSqft = Math.round(newPrice / newArea);
+    }
+
+    // Only re-geocode if address/locality/pincode/city actually changed
+    const addressChanged =
+      (updatePayload.address !== undefined && updatePayload.address !== property.address) ||
+      (updatePayload.locality !== undefined && updatePayload.locality !== property.locality) ||
+      (updatePayload.city !== undefined && updatePayload.city !== property.city) ||
+      (updatePayload.pincode !== undefined && updatePayload.pincode !== property.pincode) ||
+      req.body.placeId;
+
+    if (addressChanged && updatePayload.latitude === undefined && updatePayload.longitude === undefined) {
+      try {
+        const normalized = await LocationService.normalizeAndGeocode({
+          address: updatePayload.address || property.address,
+          locality: updatePayload.locality || property.locality,
+          city: updatePayload.city || property.city,
+          state: updatePayload.state || property.state,
+          pincode: updatePayload.pincode || property.pincode,
+          placeId: req.body.placeId,
+        });
+
+        if (normalized) {
+          updatePayload.latitude = normalized.latitude;
+          updatePayload.longitude = normalized.longitude;
+          if (!updatePayload.locality && normalized.locality) updatePayload.locality = normalized.locality;
+          if (!updatePayload.city && normalized.city) updatePayload.city = normalized.city;
+          if (!updatePayload.state && normalized.state) updatePayload.state = normalized.state;
+          if (!updatePayload.pincode && normalized.pincode) updatePayload.pincode = normalized.pincode;
+        }
+      } catch (normErr: any) {
+        console.warn("Location normalization notice on update:", normErr.message);
       }
     }
 
