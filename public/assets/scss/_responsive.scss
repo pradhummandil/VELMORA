@@ -65,8 +65,7 @@
    .fancy-banner-six .text-slide-wrapper .marquee p {font-size: 70px;}
    .fancy-banner-six .country-list .list-block .title {font-size: 20px; margin-bottom: 8px;}
    .footer-two .news-letter-area .form-wrapper form {height: 70px;}
-   .theme-main-menu .login-btn-two,.theme-main-menu .search-btn-one {width: 50px; height: 50px; font-size: 1.1em;}
-   .theme-main-menu .search-btn-one:before {left: -42px;}
+   .theme-main-menu .login-btn-two,.theme-main-menu .search-btn-one,.sidenavbtn {width: 44px; height: 44px; min-width: 44px; min-height: 44px; flex: 0 0 44px; font-size: 1.1em;}
    .search-wrapper-two .bg-wrapper {padding: 30px 20px 20px;}
    .listing-card-four {padding: 15px;}
    .listing-card-four .tag {left: 15px;}
@@ -122,10 +121,11 @@
  
  /*Between Grid xl*/
 @media (min-width: 1200px) and (max-width: 1399px) {
-  .theme-main-menu .nav-item .nav-link {margin: 0 8px; font-size: 15px;}
-  .theme-main-menu .right-widget .btn-one {max-width: 150px;}
-  .theme-main-menu .gap-one {padding: 24px 20px;}
-  .theme-main-menu .gap-two {padding: 18px 20px;}
+  .theme-main-menu .nav-item .nav-link {margin: 0 6px; font-size: 15px;}
+  .theme-main-menu .right-widget .btn-one {max-width: 140px;}
+  .theme-main-menu .gap-one {padding: 20px 20px;}
+  .theme-main-menu .gap-two {padding: 16px 20px;}
+  .theme-main-menu .login-btn-two, .theme-main-menu .search-btn-one, .sidenavbtn {width: 44px; height: 44px; min-width: 44px; min-height: 44px; flex: 0 0 44px;}
 
    .hero-banner-two .line-bg:before {top:112px;}
    .layout-two .input-box-one {padding: 3px 0;}
@@ -363,9 +363,12 @@
  
  /*Between Grid lg*/
 @media (min-width: 992px) and (max-width: 1199px) {
-  .theme-main-menu .nav-item .nav-link {margin: 0 5px; font-size: 14px;}
-  .theme-main-menu .right-widget .btn-one {max-width: 125px; font-size: 14px; padding: 0 12px;}
-  .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten {font-size: 14px; padding: 0 14px; line-height: 44px;}
+  .theme-main-menu .nav-item .nav-link {margin: 0 4px; font-size: 14px;}
+  .theme-main-menu .right-widget .btn-one {max-width: 120px; font-size: 14px; padding: 0 10px;}
+  .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten {font-size: 14px; padding: 0 12px; line-height: 42px;}
+  .theme-main-menu .gap-one {padding: 15px 12px;}
+  .theme-main-menu .gap-two {padding: 12px 12px;}
+  .theme-main-menu .login-btn-two, .theme-main-menu .search-btn-one, .sidenavbtn {width: 40px; height: 40px; min-width: 40px; min-height: 40px; flex: 0 0 40px; font-size: 1em;}
 
    .listing-card-three .wrapper .property-info .feature li:before {right: -25%;}
    .card-style-seven,.location-card-three .image-bg {width: 222px; height: 222px;}

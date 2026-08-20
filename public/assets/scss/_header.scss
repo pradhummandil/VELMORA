@@ -1,12 +1,28 @@
 // Sidenav
 .sidenavbtn {
-    width: 55px;
-    height: 55px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    flex: 0 0 48px;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     border: 1px solid #000;
-    font-size: 28px;
+    font-size: 22px;
+    line-height: 1;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
     &:hover {
         background: #000;
         color: #fff;
+    }
+    i, svg {
+        line-height: 1;
+        flex-shrink: 0;
     }
 }
 /*^^^^^^^^^^^^^^^^^^^^^ sidebar Menu ^^^^^^^^^^^^^^^^^^^^^^^^*/
@@ -144,19 +160,27 @@
     // Logo
     .logo {
         flex: 0 0 auto;
+        flex-shrink: 0;
         white-space: nowrap;
+        overflow: visible;
         display: flex;
         align-items: center;
+        min-width: max-content;
 
         a {
             display: inline-flex;
             align-items: center;
+            flex-shrink: 0;
+            overflow: visible;
         }
 
         img, svg {
-            max-width: 100%;
-            height: auto;
+            flex-shrink: 0;
             display: block;
+            height: 42px;
+            width: auto;
+            max-width: none;
+            overflow: visible;
         }
     }
 
@@ -317,13 +341,30 @@
     }
     .right-widget {
         flex: 0 0 auto;
+        flex-shrink: 0;
         white-space: nowrap;
         display: flex;
         align-items: center;
         z-index: 2;
 
-        .btn-one, .btn-two, .btn-ten, .login-btn-one {
+        ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            gap: 12px;
+        }
+
+        li {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-one, .btn-two, .btn-five, .btn-ten, .login-btn-one {
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .btn-one {
@@ -332,6 +373,7 @@
             gap: 8px;
             max-width: 170px;
             white-space: nowrap;
+            flex-shrink: 0;
 
             span {
                 overflow: hidden;
@@ -346,6 +388,7 @@
         align-items: center;
         max-width: 170px;
         white-space: nowrap;
+        flex-shrink: 0;
         i {
             font-size: 1.05em;
             margin-right: 8px;
@@ -363,38 +406,64 @@
         }
     }
     .login-btn-two {
-        width: 60px;
-        height: 60px;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        flex: 0 0 48px;
+        flex-shrink: 0;
+        aspect-ratio: 1 / 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
         background: #000;
         color: #fff;
-        font-size: 1.3em;
+        font-size: 1.15em;
+        line-height: 1;
+        padding: 0;
+        transition: all 0.3s ease-in-out;
         &:hover {
             background: $color-one;
+            color: #fff;
+        }
+        i, svg {
+            font-size: 1em;
+            line-height: 1;
+            flex-shrink: 0;
         }
     }
     .search-btn-one {
-        width: 60px;
-        height: 60px;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        flex: 0 0 48px;
+        flex-shrink: 0;
+        aspect-ratio: 1 / 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
         background: #000;
         color: #fff;
-        font-size: 1.3em;
+        font-size: 1.15em;
+        line-height: 1;
+        padding: 0;
         position: relative;
         z-index: 1;
         overflow: hidden;
-        margin-left: -10px;
-        &:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: #fff;
-            top:0;
-            left: -50px;
-            @include transition(0.3s);
-        }
-        &:hover,&:hover:before {
+        transition: all 0.3s ease-in-out;
+        &:hover {
             background: $color-one;
+            color: #fff;
+        }
+        i, svg {
+            font-size: 1em;
+            line-height: 1;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
         }
     }
     .email-text {

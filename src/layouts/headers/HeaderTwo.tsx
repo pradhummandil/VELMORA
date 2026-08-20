@@ -25,24 +25,24 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
             <div className={`inner-content ${style_2 ? "gap-two" : "gap-one"}`}>
                <div className="top-header position-relative">
                   <div className="d-flex align-items-center justify-content-between">
-                     <div className="logo order-lg-0 me-lg-3 me-xl-4">
+                     <div className="logo order-lg-0 flex-shrink-0 me-2 me-xl-3">
                         <Link href="/" className="d-flex align-items-center">
                            <Image src={style_2 ? logo_3 : style_1 ? logo_2 : logo_1} alt="VELMORA" priority />
                         </Link>
                      </div>
 
-                     <nav className="navbar navbar-expand-lg p0 ms-lg-2 ms-xl-4 order-lg-1">
+                     <nav className="navbar navbar-expand-lg p0 order-lg-1">
                         <button className="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                            aria-label="Toggle navigation">
                            <span></span>
                         </button>
-                        <div className={`collapse navbar-collapse ${style_2 ? "ms-xl-5" : ""}`} id="navbarNav">
+                        <div className="collapse navbar-collapse" id="navbarNav">
                            <NavMenu />
                         </div>
                      </nav>
 
-                     <div className="right-widget ms-auto ms-lg-3 ms-xl-4 me-3 me-lg-0 order-lg-2">
+                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 me-2 me-lg-0 order-lg-2 flex-shrink-0">
                         <ul className="d-flex align-items-center style-none">
                            {!style_2 ? (<>
                               <li className="d-flex align-items-center login-btn-one">

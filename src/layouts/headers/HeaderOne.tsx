@@ -22,7 +22,7 @@ const HeaderOne = ({ style }: any) => {
             <div className="inner-content gap-one">
                <div className="top-header position-relative">
                   <div className="d-flex align-items-center justify-content-between">
-                     <div className="logo order-lg-0 me-lg-3 me-xl-4">
+                     <div className="logo order-lg-0 flex-shrink-0 me-2 me-xl-3">
                         <Link href="/" className="d-flex align-items-center">
                            <Image src={logo_1} alt="VELMORA" priority />
                         </Link>
@@ -39,7 +39,7 @@ const HeaderOne = ({ style }: any) => {
                         </div>
                      </nav>
 
-                      <div className="right-widget ms-auto ms-lg-3 ms-xl-4 me-3 me-lg-0 order-lg-2">
+                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 me-2 me-lg-0 order-lg-2 flex-shrink-0">
                          <ul className="d-flex align-items-center style-none m-0">
                             <li>
                                {isAuthenticated ? (
