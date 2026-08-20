@@ -151,12 +151,12 @@ export const usePropertyDiscovery = (initialLimit: number = 20) => {
 
       if (filters.propertyType && filters.propertyType !== "all") {
         filtered = filtered.filter(
-          (p) => p.property_type?.toLowerCase() === filters.propertyType?.toLowerCase()
+          (p) => p.type?.toLowerCase() === filters.propertyType?.toLowerCase()
         );
       }
 
       if (filters.bhk && filters.bhk !== "all") {
-        filtered = filtered.filter((p) => String(p.property_details?.bed) === String(filters.bhk));
+        filtered = filtered.filter((p) => String(p.property_info?.bed) === String(filters.bhk));
       }
 
       if (filters.minPrice) {
