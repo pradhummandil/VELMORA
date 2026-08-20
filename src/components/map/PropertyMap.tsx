@@ -15,7 +15,7 @@ export interface MapMarkerItem {
   reraStatus?: string;
   locality?: string;
   city?: string;
-  thumb?: string | null;
+  thumb?: any;
 }
 
 interface PropertyMapProps {
