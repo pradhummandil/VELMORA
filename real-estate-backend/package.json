@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "ts-node src/server.ts",
     "build": "tsc",
-    "migrate": "sequelize-cli db:migrate --env production",
+    "migrate": "node ./node_modules/sequelize-cli/lib/sequelize db:migrate --env production",
+    "migration:status": "node ./node_modules/sequelize-cli/lib/sequelize db:migrate:status --env production",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
