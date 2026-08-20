@@ -21,38 +21,38 @@ const location_data: DataType[] = [
    {
       id: 1,
       flag: flag_1,
-      title: "United States",
-      desc: "32 link road, Mega Mall. California, USA",
+      title: "Mumbai",
+      desc: "Worli Sea Face & Bandra West, Mumbai",
    },
    {
       id: 2,
       flag: flag_2,
-      title: "Brazil",
-      desc: "32 link road, Mega Mall. California, USA",
+      title: "New Delhi",
+      desc: "Chanakyapuri & Golf Links, New Delhi",
    },
    {
       id: 3,
       flag: flag_3,
-      title: "Russia",
-      desc: "32 link road, Mega Mall. California, USA",
+      title: "Bengaluru",
+      desc: "Indiranagar & Koramangala, Bengaluru",
    },
    {
       id: 4,
       flag: flag_4,
-      title: "Congo",
-      desc: "32 link road, Mega Mall. California, USA",
+      title: "Hyderabad",
+      desc: "Jubilee Hills & Banjara Hills, Hyderabad",
    },
    {
       id: 5,
       flag: flag_5,
-      title: "India",
-      desc: "32 link road, Mega Mall. California, USA",
+      title: "Goa",
+      desc: "Assagao & Anjuna Private Villas, Goa",
    },
    {
       id: 6,
       flag: flag_6,
-      title: "Australia",
-      desc: "32 link road, Mega Mall. California, USA",
+      title: "Pune",
+      desc: "Koregaon Park & Boat Club Rd, Pune",
    },
 ]
 
@@ -64,22 +64,22 @@ interface CountryDataType {
 
 const country_data: CountryDataType[] = [
    {
-      title: "Asia Pacific",
+      title: "Tier 1 Metros",
       class_name: "d-flex flex-wrap",
-      country: ["Australia", "Dubai", "India", "Singapore", "Hong Kong"],
+      country: ["Mumbai", "New Delhi", "Bengaluru", "Hyderabad", "Kolkata", "Chennai"],
    },
    {
-      title: "South America",
-      country: ["United States", "Canada", "Argentina",],
+      title: "Emerging Markets",
+      country: ["Indore", "Bhopal", "Pune", "Ahmedabad", "Jaipur", "Chandigarh"],
    },
    {
-      title: "European",
+      title: "Luxury Holiday Havens",
       class_name: "d-flex flex-wrap",
-      country: ["Germany", "France", "Italy", "Netherlands", "Switzerland", "Spain"],
+      country: ["North Goa", "South Goa", "Alibaug", "Kasauli", "Udaipur"],
    },
    {
-      title: "South America",
-      country: ["Morocco", "South Africa"],
+      title: "Global Advisory Desks",
+      country: ["Dubai (UAE)", "London (UK)", "Singapore"],
    },
 ]
 
@@ -125,10 +125,10 @@ const FancyBannerOne = () => {
                <div className="text-slide-wrapper">
 						<div className="marquee">
 						  <p>
-							Dubai . America . Canada .
+							Mumbai . New Delhi . Bengaluru . Hyderabad . Goa . Pune .
 						  </p>
 						  <p>
-							Dubai . America . Canada .
+							Mumbai . New Delhi . Bengaluru . Hyderabad . Goa . Pune .
 						  </p>
 						</div>
 					</div>

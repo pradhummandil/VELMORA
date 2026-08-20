@@ -39,24 +39,29 @@ const HeaderOne = ({ style }: any) => {
                         </div>
                      </nav>
 
-                     <div className="right-widget ms-auto ms-lg-3 ms-xl-4 me-3 me-lg-0 order-lg-2">
-                        <ul className="d-flex align-items-center style-none">
-                           <li>
-                              {isAuthenticated ? (
-                                 <Link href="/dashboard/dashboard-index" className="btn-one">
-                                    <i className="fa-regular fa-user"></i> <span>{user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}</span>
-                                 </Link>
-                              ) : (
-                                 <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="btn-one">
-                                    <i className="fa-regular fa-lock"></i> <span>Login</span>
-                                 </Link>
-                              )}
-                           </li>
-                           <li className="d-none d-md-inline-block ms-3">
-                              <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-two"><span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i></Link>
-                           </li>
-                        </ul>
-                     </div>
+                      <div className="right-widget ms-auto ms-lg-3 ms-xl-4 me-3 me-lg-0 order-lg-2">
+                         <ul className="d-flex align-items-center style-none m-0">
+                            <li>
+                               {isAuthenticated ? (
+                                  <Link href="/dashboard/dashboard-index" className="btn-one d-inline-flex align-items-center" title="Dashboard">
+                                     <i className="fa-regular fa-user me-1"></i>
+                                     <span className="text-truncate d-none d-sm-inline-block" style={{ maxWidth: "130px" }}>
+                                        {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
+                                     </span>
+                                  </Link>
+                               ) : (
+                                  <Link href="#" data-bs-toggle="modal" data-bs-target="#loginModal" className="btn-one d-inline-flex align-items-center">
+                                     <i className="fa-regular fa-lock me-1"></i> <span>Login</span>
+                                  </Link>
+                               )}
+                            </li>
+                            <li className="d-none d-md-inline-block ms-2 ms-xl-3">
+                               <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-two">
+                                  <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
+                                </Link>
+                            </li>
+                         </ul>
+                      </div>
                   </div>
 
                </div>

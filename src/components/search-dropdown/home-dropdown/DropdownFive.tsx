@@ -1,20 +1,49 @@
-"use client"
-import { useState } from "react";
+"use client";
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import NiceSelect from "@/ui/NiceSelect";
+import { INDIAN_LOCATION_SUGGESTIONS } from "@/data/home-data/LocationSuggestions";
 
-const tab_title: string[] = ["Buy", "Rent",];
+const tab_title: string[] = ["Buy", "Rent"];
 
 const DropdownFive = () => {
-
-   const selectHandler = (e: any) => { };
+   const router = useRouter();
    const [activeTab, setActiveTab] = useState(0);
+   const [locationInput, setLocationInput] = useState("");
+   const [propertyType, setPropertyType] = useState("apartments");
+   const [suggestions, setSuggestions] = useState<string[]>([]);
+   const [showSuggestions, setShowSuggestions] = useState(false);
+   const locationRef = useRef<HTMLDivElement>(null);
 
-   const handleTabClick = (index: any) => {
-      setActiveTab(index);
-   };
+   useEffect(() => {
+      if (locationInput.trim().length < 1) {
+         setSuggestions([]);
+         setShowSuggestions(false);
+         return;
+      }
+      const filtered = INDIAN_LOCATION_SUGGESTIONS.filter((city) =>
+         city.toLowerCase().includes(locationInput.toLowerCase())
+      );
+      setSuggestions(filtered.slice(0, 6));
+      setShowSuggestions(filtered.length > 0);
+   }, [locationInput]);
 
-   const searchHandler = () => {
-      window.location.href = '/listing_05';
+   useEffect(() => {
+      const handleClickOutside = (e: MouseEvent) => {
+         if (locationRef.current && !locationRef.current.contains(e.target as Node)) {
+            setShowSuggestions(false);
+         }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+   }, []);
+
+   const searchHandler = (e: React.FormEvent) => {
+      e.preventDefault();
+      const params = new URLSearchParams();
+      if (locationInput.trim()) params.set("location", locationInput.trim());
+      if (propertyType) params.set("type", propertyType);
+      router.push(`/listing_01?${params.toString()}`);
    };
 
    return (
@@ -22,15 +51,15 @@ const DropdownFive = () => {
          <nav className="search-filter-nav-one d-flex">
             <div className="nav nav-tabs border-0" role="tablist">
                {tab_title.map((tab, index) => (
-                  <button key={index} onClick={() => handleTabClick(index)} className={`nav-link ${activeTab === index ? "active" : ""}`} id="buy-tab" type="button">{tab}</button>
+                  <button key={index} onClick={() => setActiveTab(index)} className={`nav-link ${activeTab === index ? "active" : ""}`} id="buy-tab" type="button">{tab}</button>
                ))}
             </div>
          </nav>
 
          <div className="bg-wrapper p0 border-0 rounded-0">
             <div className="tab-content">
-               <div className={`tab-pane show ${activeTab === 0 ? "active" : ""}`} id="buy">
-                  <form onSubmit={(e) => { e.preventDefault(); searchHandler(); }} className="md-pt-20">
+               <div className="tab-pane show active">
+                  <form onSubmit={searchHandler} className="md-pt-20">
                      <div className="row gx-0 align-items-center">
                         <div className="col-lg-3">
                            <div className="input-box-one border-left">
@@ -40,11 +69,10 @@ const DropdownFive = () => {
                                     { value: "apartments", text: "Buy Apartments" },
                                     { value: "condos", text: "Rent Condos" },
                                     { value: "houses", text: "Sell Houses" },
-                                    { value: "industrial", text: "Rent Industrial" },
                                     { value: "villas", text: "Sell Villas" },
                                  ]}
                                  defaultCurrent={0}
-                                 onChange={selectHandler}
+                                 onChange={(e: any) => setPropertyType(e.target.value)}
                                  name=""
                                  placeholder="" />
                            </div>
@@ -52,20 +80,38 @@ const DropdownFive = () => {
                         <div className="col-lg-4">
                            <div className="input-box-one border-left">
                               <div className="label">Location</div>
-                              <NiceSelect className="nice-select location fw-normal"
-                                 options={[
-                                    { value: "germany", text: "Lucknow, India" },
-                                    { value: "mumbai", text: "Mumbai, Maharashtra" },
-                                    { value: "mexico", text: "Indore, India" },
-                                    { value: "france", text: "Gwalior, India" },
-                                    { value: "india", text: "Delhi, India" },
-                                    { value: "bhopal", text: "Bhopal, Madhya Pradesh" },
-                                    { value: "cuba", text: "Ujjain, India" },
-                                 ]}
-                                 defaultCurrent={0}
-                                 onChange={selectHandler}
-                                 name=""
-                                 placeholder="" />
+                              <div className="position-relative" ref={locationRef}>
+                                 <input
+                                    type="text"
+                                    value={locationInput}
+                                    onChange={(e) => setLocationInput(e.target.value)}
+                                    placeholder="Search city, area, or locality..."
+                                    className="nice-select border-0 bg-transparent w-100 fw-normal"
+                                    style={{ outline: "none", boxShadow: "none", fontSize: "15px", cursor: "text" }}
+                                    autoComplete="off"
+                                 />
+                                 {showSuggestions && suggestions.length > 0 && (
+                                    <ul
+                                       className="position-absolute start-0 end-0 bg-white border shadow-sm rounded list-unstyled m-0 py-1"
+                                       style={{ zIndex: 1050, top: "100%" }}
+                                    >
+                                       {suggestions.map((city) => (
+                                          <li
+                                             key={city}
+                                             className="px-3 py-2 fs-14 cursor-pointer hover-bg-light"
+                                             style={{ cursor: "pointer" }}
+                                             onMouseDown={() => {
+                                                setLocationInput(city);
+                                                setShowSuggestions(false);
+                                             }}
+                                          >
+                                             <i className="bi bi-geo-alt-fill text-muted me-2 fs-12"></i>
+                                             {city}
+                                          </li>
+                                       ))}
+                                    </ul>
+                                 )}
+                              </div>
                            </div>
                         </div>
                         <div className="col-xl-3 col-lg-4">
@@ -74,83 +120,19 @@ const DropdownFive = () => {
                               <NiceSelect
                                  className="nice-select fw-normal"
                                  options={[
-                                    { value: "1", text: "₹10,000 - ₹200,000" },
-                                    { value: "2", text: "₹20,000 - ₹300,000" },
-                                    { value: "3", text: "₹30,000 - ₹400,000" },
+                                    { value: "1", text: "₹50 Lakh – ₹1.5 Cr" },
+                                    { value: "2", text: "₹1.5 Cr – ₹3.5 Cr" },
+                                    { value: "3", text: "₹3.5 Cr – ₹10 Cr+" },
                                  ]}
                                  defaultCurrent={0}
-                                 onChange={selectHandler}
+                                 onChange={() => {}}
                                  name=""
                                  placeholder="" />
                            </div>
                         </div>
                         <div className="col-xl-2 col-lg-1">
                            <div className="input-box-one p0 ms-xl-5 md-mt-20">
-                              <button className="fw-500 text-uppercase tran3s search-btn-two w-100 h-100 pt-45 lg-pt-30 md-pt-20 pb-45 lg-pb-30 md-pb-20 fs-2"><i className="fa-light fa-magnifying-glass"></i></button>
-                           </div>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-
-               <div className={`tab-pane show ${activeTab === 1 ? "active" : ""}`} id="buy">
-                  <form onSubmit={(e) => { e.preventDefault(); searchHandler(); }} className="md-pt-20">
-                     <div className="row gx-0 align-items-center">
-                        <div className="col-lg-3">
-                           <div className="input-box-one border-left">
-                              <div className="label">I’m looking to...</div>
-                              <NiceSelect className="nice-select fw-normal"
-                                 options={[
-                                    { value: "industrial", text: "Rent Industrial" },
-                                    { value: "apartments", text: "Buy Apartments" },
-                                    { value: "condos", text: "Rent Condos" },
-                                    { value: "houses", text: "Sell Houses" },
-                                    { value: "villas", text: "Sell Villas" },
-                                 ]}
-                                 defaultCurrent={0}
-                                 onChange={selectHandler}
-                                 name=""
-                                 placeholder="" />
-                           </div>
-                        </div>
-                        <div className="col-lg-4">
-                           <div className="input-box-one border-left">
-                              <div className="label">Location</div>
-                              <NiceSelect className="nice-select location fw-normal"
-                                 options={[
-                                    { value: "france", text: "Lucknow, India" },
-                                    { value: "germany", text: "Gwalior, India" },
-                                    { value: "indore", text: "Indore, Madhya Pradesh" },
-                                    { value: "mexico", text: "Mumbai, India" },
-                                    { value: "india", text: "Delhi, India" },
-                                    { value: "ujjain", text: "Ujjain, Madhya Pradesh" },
-                                    { value: "cuba", text: "Bhopal, India" },
-                                 ]}
-                                 defaultCurrent={0}
-                                 onChange={selectHandler}
-                                 name=""
-                                 placeholder="" />
-                           </div>
-                        </div>
-                        <div className="col-xl-3 col-lg-4">
-                           <div className="input-box-one">
-                              <div className="label">Price Range</div>
-                              <NiceSelect
-                                 className="nice-select fw-normal"
-                                 options={[
-                                    { value: "1", text: "₹10,000 - ₹200,000" },
-                                    { value: "2", text: "₹20,000 - ₹300,000" },
-                                    { value: "3", text: "₹30,000 - ₹400,000" },
-                                 ]}
-                                 defaultCurrent={0}
-                                 onChange={selectHandler}
-                                 name=""
-                                 placeholder="" />
-                           </div>
-                        </div>
-                        <div className="col-xl-2 col-lg-1">
-                           <div className="input-box-one p0 ms-xl-5 md-mt-20">
-                              <button className="fw-500 text-uppercase tran3s search-btn-two w-100 h-100 pt-45 lg-pt-30 md-pt-20 pb-45 lg-pb-30 md-pb-20 fs-2"><i className="fa-light fa-magnifying-glass"></i></button>
+                              <button type="submit" aria-label="Search" className="fw-500 text-uppercase tran3s search-btn-two w-100 h-100 pt-45 lg-pt-30 md-pt-20 pb-45 lg-pb-30 md-pb-20 fs-2"><i className="fa-light fa-magnifying-glass"></i></button>
                            </div>
                         </div>
                      </div>
@@ -162,4 +144,4 @@ const DropdownFive = () => {
    )
 }
 
-export default DropdownFive
+export default DropdownFive;

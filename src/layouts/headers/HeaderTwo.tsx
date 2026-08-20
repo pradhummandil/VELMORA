@@ -46,9 +46,9 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                         <ul className="d-flex align-items-center style-none">
                            {!style_2 ? (<>
                               <li className="d-flex align-items-center login-btn-one">
-                                 <i className={`fa-regular ${isAuthenticated ? "fa-user" : "fa-lock"}`}></i>
+                                 <i className={`fa-regular ${isAuthenticated ? "fa-user" : "fa-lock"} me-1`}></i>
                                  {isAuthenticated ? (
-                                    <Link href="/dashboard/dashboard-index" className="fw-500 tran3s">
+                                    <Link href="/dashboard/dashboard-index" className="fw-500 tran3s text-truncate d-inline-block" style={{ maxWidth: "140px", verticalAlign: "middle" }} title="Dashboard">
                                        {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
                                     </Link>
                                  ) : (
@@ -57,7 +57,7 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                                     </Link>
                                  )}
                               </li>
-                              <li className="d-none d-md-inline-block ms-3 ms-xl-4 me-xl-4">
+                              <li className="d-none d-md-inline-block ms-2 ms-xl-3 me-xl-3">
                                  <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className={style_1 ? "btn-ten" : "btn-two rounded-0"}>
                                     <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
                                  </Link>

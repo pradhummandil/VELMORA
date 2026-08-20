@@ -4,8 +4,7 @@ const CommonAmenities = () => {
    return (
       <>
          <h4 className="mb-20">Amenities</h4>
-         <p className="fs-20 lh-lg pb-25">Risk management & compliance, when approached strategically, have the
-            potential</p>
+         <p className="fs-20 lh-lg pb-25">Curated private club amenities, bespoke wellness suites, and dedicated concierge services.</p>
          <ul className="style-none d-flex flex-wrap justify-content-between list-style-two">
             {ammenities_data.map((list, i) => (
                <li key={i}>{list}</li>

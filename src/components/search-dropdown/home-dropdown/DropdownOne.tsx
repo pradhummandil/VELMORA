@@ -3,26 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import NiceSelect from "@/ui/NiceSelect";
 
-const INDIAN_CITIES = [
-  "Mumbai, Maharashtra",
-  "New Delhi, Delhi",
-  "Bengaluru, Karnataka",
-  "Hyderabad, Telangana",
-  "Chennai, Tamil Nadu",
-  "Pune, Maharashtra",
-  "Bhopal, Madhya Pradesh",
-  "Indore, Madhya Pradesh",
-  "Gwalior, Madhya Pradesh",
-  "Lucknow, Uttar Pradesh",
-  "Ujjain, Madhya Pradesh",
-  "Jaipur, Rajasthan",
-  "Ahmedabad, Gujarat",
-  "Goa, Goa",
-  "Kolkata, West Bengal",
-  "Gurugram, Haryana",
-  "Noida, Uttar Pradesh",
-  "Chandigarh, Punjab",
-];
+import { INDIAN_LOCATION_SUGGESTIONS } from "@/data/home-data/LocationSuggestions";
 
 const DropdownOne = ({ style }: any) => {
   const router = useRouter();
@@ -39,7 +20,7 @@ const DropdownOne = ({ style }: any) => {
       setShowSuggestions(false);
       return;
     }
-    const filtered = INDIAN_CITIES.filter((city) =>
+    const filtered = INDIAN_LOCATION_SUGGESTIONS.filter((city) =>
       city.toLowerCase().includes(locationInput.toLowerCase())
     );
     setSuggestions(filtered.slice(0, 6));

@@ -35,14 +35,11 @@ const ListingDetailsFourArea = () => {
                   <div className="col-xl-8">
 						<div className="property-overview bottom-line-dark pb-40 mb-60">
 							<h4 className="mb-20">Overview</h4>
-							<p className="fs-20 lh-lg">Risk management and compliance, when approached strategically, have the
-								potential to go beyond mitigating threats and protecting a company’s operations &
-								reputation.They can actually generate value and create opportunities. </p>
+							<p className="fs-20 lh-lg">Perched above the city with expansive open vistas, this luxury residence combines timeless architectural grandeur with refined modern finishes, floor-to-ceiling glass facades, and exceptional spatial proportion tailored for distinguished living.</p>
 						</div>
 						<div className="property-feature-accordion bottom-line-dark pb-40 mb-60">
 							<h4 className="mb-20">Property Features</h4>
-							<p className="fs-20 lh-lg">Risk management and compliance, when approached strategically, have the
-								potential to go beyond mitigating threats.</p>
+							<p className="fs-20 lh-lg">Meticulously engineered structural specifications and curated lifestyle amenities designed to elevate everyday comfort.</p>
 
 							<div className="accordion-style-two mt-45">
                      <CommonPropertyFeatureList />

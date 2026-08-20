@@ -1,3 +1,4 @@
+"use client";
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
@@ -9,6 +10,8 @@ import projectDetailsThumb_4 from '@/assets/images/project/img_28.jpg'
 import projectDetailsIcon_1 from '@/assets/images/icon/icon_43.svg'
 import projectDetailsIcon_2 from '@/assets/images/icon/icon_44.svg'
 import projectDetailsIcon_3 from '@/assets/images/icon/icon_45.svg'
+
+import { shareProperty } from '@/utils/share'
 
 interface ContentType {
    title_1: string;
@@ -32,8 +35,8 @@ const content_data: ContentType = {
       {
          count: "01",
          icon: projectDetailsIcon_1,
-         title: "Completion",
-         desc: "December 2025",
+         title: "Possession Status",
+         desc: "Ready to Move",
       },
       {
          count: "02",
@@ -53,6 +56,13 @@ const content_data: ContentType = {
 const { title_1, title_2, desc_1, desc_2, project_details } = content_data;
 
 const ProjectDetailsArea = () => {
+   const handleShare = () => {
+      shareProperty({
+         title: title_1,
+         text: `Explore ${title_1} — ${desc_1}`,
+      });
+   };
+
    return (
       <div className="project-details-one mt-150 xl-mt-100 mb-170 xl-mb-100">
          <div className="container">
@@ -91,12 +101,17 @@ const ProjectDetailsArea = () => {
                      </div>
                      
                      <p className="fs-20 pt-50 pb-35">{desc_2}</p>
-                     <ul className="style-none d-flex align-items-center social-icon">
-                        <li>Share :</li>
-                        <li><Link href="#"><i className="fa-brands fa-facebook-f"></i></Link></li>
-                        <li><Link href="#"><i className="bi bi-twitter-x"></i></Link></li>
-                        <li><Link href="#"><i className="bi bi-instagram"></i></Link></li>
-                     </ul>
+                     <div className="d-flex align-items-center mb-30">
+                        <span className="me-3 fs-15 fw-500 color-dark">Share Project:</span>
+                        <button
+                           type="button"
+                           onClick={handleShare}
+                           className="btn btn-sm btn-outline-dark rounded-pill px-3 py-1 d-flex align-items-center gap-2"
+                        >
+                           <i className="fa-sharp fa-regular fa-share-nodes"></i>
+                           <span>Share</span>
+                        </button>
+                     </div>
 
                      <div className="page-pagination mt-45 pt-50">
                         <div className="d-flex align-items-center justify-content-between">

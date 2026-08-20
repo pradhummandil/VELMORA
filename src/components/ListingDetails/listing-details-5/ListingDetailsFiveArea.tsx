@@ -40,7 +40,7 @@ const ListingDetailsFiveArea = () => {
                   </h2>
                   <div id="collapseOneA" className="accordion-collapse collapse show">
                     <div className="accordion-body">
-                      <p className="fs-20 lh-lg m0">Risk management and compliance, when approached strategically, have the potential to go beyond mitigating threats and protecting a company’s operations &amp; reputation.They can actually generate value and create opportunities. </p>
+                      <p className="fs-20 lh-lg m0">A premier sanctuary featuring expansive proportions, private sun-drenched terraces, and handcrafted interior architectural detailing situated in one of India&apos;s most sought-after luxury enclaves.</p>
                     </div>
                   </div>
                 </div>
@@ -53,7 +53,7 @@ const ListingDetailsFiveArea = () => {
                   </h2>
                   <div id="collapseTwoA" className="accordion-collapse collapse">
                     <div className="accordion-body">
-                      <p className="fs-20 lh-lg">Risk management and compliance, when approached strategically, have the potential to go beyond mitigating threats.</p>
+                      <p className="fs-20 lh-lg">Engineered with high acoustic insulation, premium Italian marble, and climate-controlled living zones.</p>
                       <h5 className="pt-30 pb-25">Property Details</h5>
                       {property_feature_list.slice(0, 1).map((item) => (
                         <div key={item.id} className="feature-list-two">
@@ -76,7 +76,7 @@ const ListingDetailsFiveArea = () => {
                   </h2>
                   <div id="collapseThreeA" className="accordion-collapse collapse">
                     <div className="accordion-body">
-                      <p className="fs-20 lh-lg pb-25">Risk management & compliance, when approached strategically, have the potential</p>
+                      <p className="fs-20 lh-lg pb-25">Curated club amenities, private wellness facilities, and round-the-clock concierge services.</p>
                       <ul className="style-none d-flex flex-wrap justify-content-between list-style-two">
                         {ammenities_data.map((list, i) => (
                           <li key={i}>{list}</li>

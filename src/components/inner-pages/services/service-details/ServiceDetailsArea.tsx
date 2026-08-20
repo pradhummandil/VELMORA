@@ -29,10 +29,10 @@ const content_data: ContentType = {
    title_1: "We help you to buy your dream home.",
    title_2: "Quick Processing.",
    title_3: "Benefit you will get.",
-   desc_1: (<>Risk management and compliance, when approached strategically, have the potential to go beyond mitigating threats and protecting a company’s operations & reputation.They can actually generate value and create opportunities.</>),
-   desc_2: (<>Our dedicated risk and compliance consulting team assists clients in transforming uncertainty into advantageous prospects. We work collaboratively with organizations to identify & leverage the potential within their risk and compliance functions, enabling them to thrive in ever-changing business landscape.</>),
-   desc_3: (<>Your leading real estate advocate, transforming houses into dreams. Trust us to expertly guide you home.</>),
-   desc_4: (<>Our dedicated risk and compliance consulting team assists clients in transforming uncertainty into advantageous prospects.</>),
+   desc_1: (<>VELMORA provides bespoke real estate advisory services tailored for high-net-worth individuals, institutional investors, and discerning homebuyers seeking premier luxury residences across India.</>),
+   desc_2: (<>Our dedicated private property desk assists clients in identifying exceptional acquisitions, managing transaction confidentiality, and structuring seamless possession transitions with complete legal diligence.</>),
+   desc_3: (<>Your trusted luxury real estate partner, guiding you to India&apos;s most prestigious addresses with absolute transparency and unmatched market intelligence.</>),
+   desc_4: (<>Our senior property advisors deliver comprehensive portfolio guidance, market valuation analysis, and exclusive early access to ultra-luxury developments.</>),
    service_features: [
       {
          icon: seviceDetailsIcon_1,

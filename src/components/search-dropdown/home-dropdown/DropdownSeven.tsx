@@ -1,22 +1,51 @@
-"use client"
-import { useState } from "react";
+"use client";
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import NiceSelect from "@/ui/NiceSelect";
 import Link from "next/link";
 import DropdownModal from "./DropdownModal";
+import { INDIAN_LOCATION_SUGGESTIONS } from "@/data/home-data/LocationSuggestions";
 
 const tab_title: string[] = ["Buy", "Rent", "SELL"];
 
 const DropdownSeven = () => {
-
-   const selectHandler = (e: any) => { };
+   const router = useRouter();
    const [activeTab, setActiveTab] = useState(0);
+   const [locationInput, setLocationInput] = useState("");
+   const [propertyType, setPropertyType] = useState("apartments");
+   const [suggestions, setSuggestions] = useState<string[]>([]);
+   const [showSuggestions, setShowSuggestions] = useState(false);
+   const locationRef = useRef<HTMLDivElement>(null);
 
-   const handleTabClick = (index: any) => {
-      setActiveTab(index);
-   };
+   useEffect(() => {
+      if (locationInput.trim().length < 1) {
+         setSuggestions([]);
+         setShowSuggestions(false);
+         return;
+      }
+      const filtered = INDIAN_LOCATION_SUGGESTIONS.filter((city) =>
+         city.toLowerCase().includes(locationInput.toLowerCase())
+      );
+      setSuggestions(filtered.slice(0, 6));
+      setShowSuggestions(filtered.length > 0);
+   }, [locationInput]);
 
-   const searchHandler = () => {
-      window.location.href = '/listing_01';
+   useEffect(() => {
+      const handleClickOutside = (e: MouseEvent) => {
+         if (locationRef.current && !locationRef.current.contains(e.target as Node)) {
+            setShowSuggestions(false);
+         }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+   }, []);
+
+   const searchHandler = (e: React.FormEvent) => {
+      e.preventDefault();
+      const params = new URLSearchParams();
+      if (locationInput.trim()) params.set("location", locationInput.trim());
+      if (propertyType) params.set("type", propertyType);
+      router.push(`/listing_01?${params.toString()}`);
    };
 
    return (
@@ -25,15 +54,15 @@ const DropdownSeven = () => {
             <nav className="search-filter-nav-one d-flex">
                <div className="nav nav-tabs border-0" role="tablist">
                   {tab_title.map((tab, index) => (
-                     <button key={index} onClick={() => handleTabClick(index)} className={`nav-link ${activeTab === index ? "active" : ""}`} id="buy-tab" type="button">{tab}</button>
+                     <button key={index} onClick={() => setActiveTab(index)} className={`nav-link ${activeTab === index ? "active" : ""}`} id="buy-tab" type="button">{tab}</button>
                   ))}
                </div>
             </nav>
 
             <div className="bg-wrapper border-0">
                <div className="tab-content">
-                  <div className={`tab-pane show ${activeTab === 0 ? "active" : ""}`} id="buy">
-                     <form onSubmit={(e) => { e.preventDefault(); searchHandler(); }}>
+                  <div className="tab-pane show active">
+                     <form onSubmit={searchHandler}>
                         <div className="row gx-0 align-items-center">
                            <div className="col-xxl-2 col-xl-3 col-lg-4">
                               <div className="input-box-one border-left">
@@ -43,11 +72,10 @@ const DropdownSeven = () => {
                                        { value: "apartments", text: "Buy Apartments" },
                                        { value: "condos", text: "Rent Condos" },
                                        { value: "houses", text: "Sell Houses" },
-                                       { value: "industrial", text: "Rent Industrial" },
                                        { value: "villas", text: "Sell Villas" },
                                     ]}
                                     defaultCurrent={0}
-                                    onChange={selectHandler}
+                                    onChange={(e: any) => setPropertyType(e.target.value)}
                                     name=""
                                     placeholder="" />
                               </div>
@@ -55,20 +83,38 @@ const DropdownSeven = () => {
                            <div className="col-xl-3 col-lg-4">
                               <div className="input-box-one border-left">
                                  <div className="label">Location</div>
-                                 <NiceSelect className="nice-select location fw-normal"
-                                    options={[
-                                       { value: "germany", text: "Lucknow, India" },
-                                       { value: "mumbai", text: "Mumbai, Maharashtra" },
-                                       { value: "mexico", text: "Gwalior, India" },
-                                       { value: "france", text: "Indore, India" },
-                                       { value: "india", text: "Delhi, India" },
-                                       { value: "bhopal", text: "Bhopal, Madhya Pradesh" },
-                                       { value: "cuba", text: "Ujjain, India" },
-                                    ]}
-                                    defaultCurrent={0}
-                                    onChange={selectHandler}
-                                    name=""
-                                    placeholder="" />
+                                 <div className="position-relative" ref={locationRef}>
+                                    <input
+                                       type="text"
+                                       value={locationInput}
+                                       onChange={(e) => setLocationInput(e.target.value)}
+                                       placeholder="Search city, area, or locality..."
+                                       className="nice-select border-0 bg-transparent w-100 fw-normal"
+                                       style={{ outline: "none", boxShadow: "none", fontSize: "15px", cursor: "text" }}
+                                       autoComplete="off"
+                                    />
+                                    {showSuggestions && suggestions.length > 0 && (
+                                       <ul
+                                          className="position-absolute start-0 end-0 bg-white border shadow-sm rounded list-unstyled m-0 py-1"
+                                          style={{ zIndex: 1050, top: "100%" }}
+                                       >
+                                          {suggestions.map((city) => (
+                                             <li
+                                                key={city}
+                                                className="px-3 py-2 fs-14 cursor-pointer hover-bg-light"
+                                                style={{ cursor: "pointer" }}
+                                                onMouseDown={() => {
+                                                   setLocationInput(city);
+                                                   setShowSuggestions(false);
+                                                }}
+                                             >
+                                                <i className="bi bi-geo-alt-fill text-muted me-2 fs-12"></i>
+                                                {city}
+                                             </li>
+                                          ))}
+                                       </ul>
+                                    )}
+                                 </div>
                               </div>
                            </div>
                            <div className="col-xl-3 col-lg-4">
@@ -77,12 +123,12 @@ const DropdownSeven = () => {
                                  <NiceSelect
                                     className="nice-select fw-normal"
                                     options={[
-                                       { value: "1", text: "₹10,000 - ₹200,000" },
-                                       { value: "2", text: "₹20,000 - ₹300,000" },
-                                       { value: "3", text: "₹30,000 - ₹400,000" },
+                                       { value: "1", text: "₹50 Lakh – ₹1.5 Cr" },
+                                       { value: "2", text: "₹1.5 Cr – ₹3.5 Cr" },
+                                       { value: "3", text: "₹3.5 Cr – ₹10 Cr+" },
                                     ]}
                                     defaultCurrent={0}
-                                    onChange={selectHandler}
+                                    onChange={() => {}}
                                     name=""
                                     placeholder="" />
                               </div>
@@ -94,154 +140,7 @@ const DropdownSeven = () => {
                                        <span className="d-xl-none d-xxl-block">ADVANCE Search</span>
                                        <i className="fa-light fa-sliders-up"></i>
                                     </Link>
-                                    <button className="fw-500 text-uppercase tran3s search-btn-four rounded-3">
-                                       <span>Search</span>
-                                       <i className="fa-light fa-magnifying-glass"></i>
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </form>
-                  </div>
-
-                  <div className={`tab-pane show ${activeTab === 1 ? "active" : ""}`} id="buy">
-                     <form onSubmit={(e) => { e.preventDefault(); searchHandler(); }}>
-                        <div className="row gx-0 align-items-center">
-                           <div className="col-xxl-2 col-xl-3 col-lg-4">
-                              <div className="input-box-one border-left">
-                                 <div className="label">I’m looking to...</div>
-                                 <NiceSelect className="nice-select fw-normal"
-                                    options={[
-                                       { value: "industrial", text: "Rent Industrial" },
-                                       { value: "apartments", text: "Buy Apartments" },
-                                       { value: "condos", text: "Rent Condos" },
-                                       { value: "houses", text: "Sell Houses" },
-                                       { value: "villas", text: "Sell Villas" },
-                                    ]}
-                                    defaultCurrent={0}
-                                    onChange={selectHandler}
-                                    name=""
-                                    placeholder="" />
-                              </div>
-                           </div>
-                           <div className="col-xl-3 col-lg-4">
-                              <div className="input-box-one border-left">
-                                 <div className="label">Location</div>
-                                 <NiceSelect className="nice-select location fw-normal"
-                                    options={[
-                                       { value: "mumbai", text: "Worli, Mumbai" },
-                                       { value: "mumbai", text: "Worli, Mumbai" },
-                                       { value: "gurugram", text: "Golf Course Rd, Gurugram" },
-                                       { value: "bengaluru", text: "Indiranagar, Bengaluru" },
-                                       { value: "india", text: "Delhi, India" },
-                                       { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                                       { value: "goa", text: "Assagao, Goa" },
-                                    ]}
-                                    defaultCurrent={0}
-                                    onChange={selectHandler}
-                                    name=""
-                                    placeholder="" />
-                              </div>
-                           </div>
-                           <div className="col-xl-3 col-lg-4">
-                              <div className="input-box-one border-left border-lg-0">
-                                 <div className="label">Price Range</div>
-                                 <NiceSelect
-                                    className="nice-select fw-normal"
-                                    options={[
-                                       { value: "1", text: "₹10,000 - ₹200,000" },
-                                       { value: "2", text: "₹20,000 - ₹300,000" },
-                                       { value: "3", text: "₹30,000 - ₹400,000" },
-                                    ]}
-                                    defaultCurrent={0}
-                                    onChange={selectHandler}
-                                    name=""
-                                    placeholder="" />
-                              </div>
-                           </div>
-                           <div className="col-xxl-4 col-xl-3">
-                              <div className="input-box-one lg-mt-10">
-                                 <div className="d-flex align-items-center justify-content-center">
-                                    <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal" className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center rounded-3 me-3">
-                                       <span className="d-xl-none d-xxl-block">ADVANCE Search</span>
-                                       <i className="fa-light fa-sliders-up"></i>
-                                    </Link>
-                                    <button className="fw-500 text-uppercase tran3s search-btn-four rounded-3">
-                                       <span>Search</span>
-                                       <i className="fa-light fa-magnifying-glass"></i>
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </form>
-                  </div>
-
-                  <div className={`tab-pane show ${activeTab === 2 ? "active" : ""}`} id="buy">
-                     <form onSubmit={(e) => { e.preventDefault(); searchHandler(); }}>
-                        <div className="row gx-0 align-items-center">
-                           <div className="col-xxl-2 col-xl-3 col-lg-4">
-                              <div className="input-box-one border-left">
-                                 <div className="label">I’m looking to...</div>
-                                 <NiceSelect className="nice-select fw-normal"
-                                    options={[
-                                       { value: "houses", text: "Sell Houses" },
-                                       { value: "apartments", text: "Buy Apartments" },
-                                       { value: "condos", text: "Rent Condos" },
-                                       { value: "industrial", text: "Rent Industrial" },
-                                       { value: "villas", text: "Sell Villas" },
-                                    ]}
-                                    defaultCurrent={0}
-                                    onChange={selectHandler}
-                                    name=""
-                                    placeholder="" />
-                              </div>
-                           </div>
-                           <div className="col-xl-3 col-lg-4">
-                              <div className="input-box-one border-left">
-                                 <div className="label">Location</div>
-                                 <NiceSelect className="nice-select location fw-normal"
-                                    options={[
-                                       { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                                       { value: "bengaluru", text: "Indiranagar, Bengaluru" },
-                                       { value: "mumbai", text: "Worli, Mumbai" },
-                                       { value: "gurugram", text: "Golf Course Rd, Gurugram" },
-                                       { value: "india", text: "Delhi, India" },
-                                       { value: "pune", text: "Koregaon Park, Pune" },
-                                       { value: "goa", text: "Assagao, Goa" },
-                                    ]}
-                                    defaultCurrent={0}
-                                    onChange={selectHandler}
-                                    name=""
-                                    placeholder="" />
-                              </div>
-                           </div>
-                           <div className="col-xl-3 col-lg-4">
-                              <div className="input-box-one border-left border-lg-0">
-                                 <div className="label">Price Range</div>
-                                 <NiceSelect
-                                    className="nice-select fw-normal"
-                                    options={[
-                                       { value: "1", text: "₹10,000 - ₹200,000" },
-                                       { value: "2", text: "₹20,000 - ₹300,000" },
-                                       { value: "3", text: "₹30,000 - ₹400,000" },
-                                    ]}
-                                    defaultCurrent={0}
-                                    onChange={selectHandler}
-                                    name=""
-                                    placeholder="" />
-                              </div>
-                           </div>
-                           <div className="col-xxl-4 col-xl-3">
-                              <div className="input-box-one lg-mt-10">
-                                 <div className="d-flex align-items-center justify-content-center">
-                                    <Link href="#" data-bs-toggle="modal" data-bs-target="#advanceFilterModal"
-                                       className="search-modal-btn tran3s text-uppercase fw-500 d-inline-flex align-items-center">
-                                       <span className="me-3 d-xl-none d-xxl-block">ADVANCE Search</span>
-                                       <i className="fa-light fa-sliders-up"></i>
-                                    </Link>
-                                    <button className="fw-500 text-uppercase tran3s search-btn-four rounded-3">
+                                    <button type="submit" className="fw-500 text-uppercase tran3s search-btn-four rounded-3">
                                        <span>Search</span>
                                        <i className="fa-light fa-magnifying-glass"></i>
                                     </button>
@@ -259,4 +158,4 @@ const DropdownSeven = () => {
    )
 }
 
-export default DropdownSeven
+export default DropdownSeven;

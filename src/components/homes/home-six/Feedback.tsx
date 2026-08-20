@@ -17,23 +17,23 @@ interface DataType {
 const feedback_data: DataType[] = [
    {
       id: 1,
-      blockquote: (<>Quick solutions coupled with extraordinary <span>performance</span> a recommendation that&apos;s unequivocal.</>),
-      name: "Musa Delimuza",
-      country: "Miami, USA",
+      blockquote: (<>VELMORA made our home search remarkably focused. The curated shortlist in Worli was precise and the advisory guidance was <span>extraordinary</span>.</>),
+      name: "Vikram Singhania",
+      country: "Worli, Mumbai",
       img: feedbackImg_1,
    },
    {
       id: 2,
-      blockquote: (<>Found our dream home. Great <span>Business</span> with them. To thank you for excellent service. Will take again sure.</>),
-      name: "Alina Cruse",
-      country: "Miami, USA",
+      blockquote: (<>Found our dream residence in Indiranagar. Transparent documentation and professional guidance made the acquisition <span>seamless</span>.</>),
+      name: "Ananya Deshmukh",
+      country: "Indiranagar, Bengaluru",
       img: feedbackImg_2,
    },
    {
       id: 3,
-      blockquote: (<>Efficient and friendly service, guided us <span>perfectly</span> I am satisfied with our new home.Give a try. Thank you!</>),
-      name: "Musa Delimuza",
-      country: "Rashed Ka.",
+      blockquote: (<>The team&apos;s deep understanding of Golf Course Road developments helped us secure an <span>exceptional</span> property with total confidence.</>),
+      name: "Rohan Malhotra",
+      country: "Golf Course Rd, Gurugram",
       img: feedbackImg_3,
    },
 ]

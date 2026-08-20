@@ -82,10 +82,12 @@ const UseShortedProperty = ({ itemsPerPage, page }: DataType) => {
          });
       }
 
-      // Location filtering
-      if (location !== null) {
+      // Location filtering (supports arbitrary city, locality, neighborhood, area)
+      if (location !== null && location.trim() !== "") {
+         const normLoc = location.trim().toLowerCase();
          filtered = filtered.filter((item) => {
-            return item.location.toLowerCase().includes(location.toLowerCase());
+            const searchableLocation = `${item.location || ""} ${item.address || ""} ${item.title || ""}`.toLowerCase();
+            return searchableLocation.includes(normLoc);
          });
       }
 
@@ -208,6 +210,8 @@ const UseShortedProperty = ({ itemsPerPage, page }: DataType) => {
       maxPrice,
       priceValue,
       resetFilters,
+      location,
+      setLocation,
       selectedAmenities,
       handleAmenityChange,
       pageCount,

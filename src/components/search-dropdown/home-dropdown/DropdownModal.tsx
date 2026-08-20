@@ -1,11 +1,54 @@
-import NiceSelect from "@/ui/NiceSelect"
-import Link from "next/link"
+"use client";
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import NiceSelect from "@/ui/NiceSelect";
+import Link from "next/link";
+import { INDIAN_LOCATION_SUGGESTIONS } from "@/data/home-data/LocationSuggestions";
 
-const ammenities_data: string[] = ["A/C & Heating", "Garages", "Garden", "Disabled Access", "Swimming Pool", "Parking", "Wifi", "Pet Friendly", "Ceiling Height", "Fireplace", "Play Ground", "Elevator"]
+const ammenities_data: string[] = ["A/C & Heating", "Garages", "Garden", "Disabled Access", "Swimming Pool", "Parking", "Wifi", "Pet Friendly", "Ceiling Height", "Fireplace", "Play Ground", "Elevator"];
 
 const DropdownModal = () => {
+   const router = useRouter();
+   const [propertyType, setPropertyType] = useState("apartments");
+   const [locationInput, setLocationInput] = useState("");
+   const [keyword, setKeyword] = useState("");
+   const [bedroom, setBedroom] = useState("");
+   const [bathroom, setBathroom] = useState("");
+   const [suggestions, setSuggestions] = useState<string[]>([]);
+   const [showSuggestions, setShowSuggestions] = useState(false);
+   const locationRef = useRef<HTMLDivElement>(null);
 
-   const selectHandler = (e: any) => { };
+   useEffect(() => {
+      if (locationInput.trim().length < 1) {
+         setSuggestions([]);
+         setShowSuggestions(false);
+         return;
+      }
+      const filtered = INDIAN_LOCATION_SUGGESTIONS.filter((city) =>
+         city.toLowerCase().includes(locationInput.toLowerCase())
+      );
+      setSuggestions(filtered.slice(0, 6));
+      setShowSuggestions(filtered.length > 0);
+   }, [locationInput]);
+
+   useEffect(() => {
+      const handleClickOutside = (e: MouseEvent) => {
+         if (locationRef.current && !locationRef.current.contains(e.target as Node)) {
+            setShowSuggestions(false);
+         }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+   }, []);
+
+   const handleSearch = (e: React.FormEvent) => {
+      e.preventDefault();
+      const params = new URLSearchParams();
+      if (locationInput.trim()) params.set("location", locationInput.trim());
+      if (propertyType) params.set("type", propertyType);
+      if (keyword.trim()) params.set("search", keyword.trim());
+      router.push(`/listing_01?${params.toString()}`);
+   };
 
    return (
       <div className="home-dropdown modal fade" id="advanceFilterModal" tabIndex={-1} aria-hidden="true">
@@ -18,7 +61,7 @@ const DropdownModal = () => {
                            aria-label="Close"><i className="fa-regular fa-xmark"></i></button>
                         <div className="advance-search-panel">
                            <div className="main-bg border-0">
-                              <form onSubmit={(e) => e.preventDefault()}>
+                              <form onSubmit={handleSearch}>
                                  <div className="row gx-lg-5">
                                     <div className="col-md-6">
                                        <div className="input-box-one mb-35">
@@ -32,7 +75,7 @@ const DropdownModal = () => {
                                                 { value: "villas", text: "Sell Villas" },
                                              ]}
                                              defaultCurrent={0}
-                                             onChange={selectHandler}
+                                             onChange={(e: any) => setPropertyType(e.target.value)}
                                              name=""
                                              placeholder="" />
                                        </div>
@@ -40,26 +83,50 @@ const DropdownModal = () => {
                                     <div className="col-md-6">
                                        <div className="input-box-one mb-35">
                                           <div className="label">Location</div>
-                                          <NiceSelect className="nice-select location fw-normal"
-                                             options={[
-                                                { value: "mumbai", text: "Worli, Mumbai" },
-                                                { value: "gurugram", text: "Golf Course Rd, Gurugram" },
-                                                { value: "bengaluru", text: "Indiranagar, Bengaluru" },
-                                                { value: "delhi", text: "Chanakyapuri, New Delhi" },
-                                                { value: "hyderabad", text: "Jubilee Hills, Hyderabad" },
-                                                { value: "pune", text: "Koregaon Park, Pune" },
-                                                { value: "goa", text: "Assagao, Goa" },
-                                             ]}
-                                             defaultCurrent={0}
-                                             onChange={selectHandler}
-                                             name=""
-                                             placeholder="" />
+                                          <div className="position-relative" ref={locationRef}>
+                                             <input
+                                                type="text"
+                                                value={locationInput}
+                                                onChange={(e) => setLocationInput(e.target.value)}
+                                                placeholder="Search city, locality, or area..."
+                                                className="nice-select border-0 bg-transparent w-100 fw-normal"
+                                                style={{ outline: "none", boxShadow: "none", fontSize: "15px", cursor: "text" }}
+                                                autoComplete="off"
+                                             />
+                                             {showSuggestions && suggestions.length > 0 && (
+                                                <ul
+                                                   className="position-absolute start-0 end-0 bg-white border shadow-sm rounded list-unstyled m-0 py-1"
+                                                   style={{ zIndex: 1050, top: "100%" }}
+                                                >
+                                                   {suggestions.map((city) => (
+                                                      <li
+                                                         key={city}
+                                                         className="px-3 py-2 fs-14 cursor-pointer hover-bg-light"
+                                                         style={{ cursor: "pointer" }}
+                                                         onMouseDown={() => {
+                                                            setLocationInput(city);
+                                                            setShowSuggestions(false);
+                                                         }}
+                                                      >
+                                                         <i className="bi bi-geo-alt-fill text-muted me-2 fs-12"></i>
+                                                         {city}
+                                                      </li>
+                                                   ))}
+                                                </ul>
+                                             )}
+                                          </div>
                                        </div>
                                     </div>
                                     <div className="col-md-6">
                                        <div className="input-box-one mb-35">
                                           <div className="label">Keyword</div>
-                                          <input type="text" placeholder="Sea Face, Penthouse, Duplex" className="type-input" />
+                                          <input
+                                             type="text"
+                                             value={keyword}
+                                             onChange={(e) => setKeyword(e.target.value)}
+                                             placeholder="Sea Face, Penthouse, Duplex"
+                                             className="type-input"
+                                          />
                                        </div>
                                     </div>
                                     <div className="col-md-6">
@@ -80,7 +147,7 @@ const DropdownModal = () => {
                                                 { value: "4", text: "4+" },
                                              ]}
                                              defaultCurrent={0}
-                                             onChange={selectHandler}
+                                             onChange={(e: any) => setBedroom(e.target.value)}
                                              name=""
                                              placeholder="" />
                                        </div>
@@ -96,7 +163,7 @@ const DropdownModal = () => {
                                                 { value: "4", text: "4+" },
                                              ]}
                                              defaultCurrent={0}
-                                             onChange={selectHandler}
+                                             onChange={(e: any) => setBathroom(e.target.value)}
                                              name=""
                                              placeholder="" />
                                        </div>

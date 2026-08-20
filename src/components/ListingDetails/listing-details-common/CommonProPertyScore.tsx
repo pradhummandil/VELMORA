@@ -43,7 +43,7 @@ const CommonProPertyScore = () => {
    return (
       <>
          <h4 className="mb-20">Walk Score</h4>
-         <p className="fs-20 lh-lg pb-30">Risk management and compliance, when approached strategically, have the potential</p>
+         <p className="fs-20 lh-lg pb-30">Prime urban connectivity with easy access to high-end retail, international schools, and transit nodes.</p>
          <div className="row">
             {score_data.map((item) => (
                <div key={item.id} className="col-md-6">

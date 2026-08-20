@@ -32,14 +32,11 @@ const ListingDetailsSixArea = () => {
                   <div className="col-xl-8">
                      <div className="property-overview bottom-line-dark pb-40 mb-60">
                         <h4 className="mb-20">Overview</h4>
-                        <p className="fs-20 lh-lg">Risk management and compliance, when approached strategically, have the
-                           potential to go beyond mitigating threats and protecting a company’s operations &
-                           reputation.They can actually generate value and create opportunities. </p>
+                        <p className="fs-20 lh-lg">An exquisite luxury residence featuring bespoke architectural detailing, panoramic sea and city vistas, grand ceiling heights, and superior craftsmanship throughout every living space.</p>
                      </div>
                      <div className="property-feature-accordion bottom-line-dark pb-40 mb-60">
                         <h4 className="mb-20">Property Features</h4>
-                        <p className="fs-20 lh-lg">Risk management and compliance, when approached strategically, have the
-                           potential to go beyond mitigating threats.</p>
+                        <p className="fs-20 lh-lg">Engineered for timeless longevity with world-class fittings, acoustic dampening, and advanced smart-home integrations.</p>
 
                         <div className="accordion-style-two grey-bg mt-45">
                            <CommonPropertyFeatureList />

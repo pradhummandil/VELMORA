@@ -21,8 +21,7 @@ const CommonNearbyList = () => {
    return (
       <>
          <h4 className="mb-20">What’s Nearby</h4>
-         <p className="fs-20 lh-lg pb-30">Risk management and compliance, when approached strategically, have th
-            potential to go beyond mitigating threats.</p>
+         <p className="fs-20 lh-lg pb-30">Strategically located with premier educational institutions, healthcare centers, and lifestyle hubs nearby.</p>
          <ul className="style-none d-flex flex-wrap justify-content-between nearby-list-item">
             {list_data.map((list, i) => (
                <li key={i}>{list.title}<span className="fw-500 color-dark">{list.count}</span></li>
