@@ -289,12 +289,12 @@ export const getPropertyById = async (req: any, res: Response): Promise<void> =>
         {
           model: User,
           as: "owner",
-          attributes: ["id", "name", "email", "phoneNumber", "about"],
+          attributes: ["id", "name"],
         },
         {
           model: User,
           as: "agent",
-          attributes: ["id", "name", "email", "phoneNumber", "about"],
+          attributes: ["id", "name", "phoneNumber", "about"],
         },
       ],
     });
