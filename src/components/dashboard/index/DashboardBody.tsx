@@ -226,10 +226,10 @@ const DashboardBody = () => {
                   <p className="fs-15 text-muted mb-3">
                     As a VELMORA Property Owner, you have direct control over your listed residences and viewing schedules.
                   </p>
-                  <div className="d-flex flex-wrap gap-2">
-                    <Link href="/dashboard/add-property" className="btn-two sm">List New Residence</Link>
-                    <Link href="/dashboard/properties-list" className="btn-four sm">Manage Properties ({stats.myProperties})</Link>
-                    <Link href="/dashboard/message" className="btn-four sm">Inquiries ({stats.activeInquiries})</Link>
+                  <div className="quick-actions">
+                    <Link href="/dashboard/add-property" className="quick-action-btn primary">List New Residence</Link>
+                    <Link href="/dashboard/properties-list" className="quick-action-btn secondary">Manage Properties ({stats.myProperties})</Link>
+                    <Link href="/dashboard/message" className="quick-action-btn secondary">Inquiries ({stats.activeInquiries})</Link>
                   </div>
                 </div>
               ) : role === "agent" ? (
@@ -237,10 +237,10 @@ const DashboardBody = () => {
                   <p className="fs-15 text-muted mb-3">
                     Manage client leads, inquiries, and scheduled tours for your assigned luxury residences.
                   </p>
-                  <div className="d-flex flex-wrap gap-2">
-                    <Link href="/dashboard/properties-list" className="btn-two sm">View Listings ({stats.myProperties})</Link>
-                    <Link href="/dashboard/message" className="btn-four sm">Client Inquiries ({stats.activeInquiries})</Link>
-                    <Link href="/dashboard/add-property" className="btn-four sm">+ Add Listing</Link>
+                  <div className="quick-actions">
+                    <Link href="/dashboard/properties-list" className="quick-action-btn primary">View Listings ({stats.myProperties})</Link>
+                    <Link href="/dashboard/message" className="quick-action-btn secondary">Client Inquiries ({stats.activeInquiries})</Link>
+                    <Link href="/dashboard/add-property" className="quick-action-btn secondary">+ Add Listing</Link>
                   </div>
                 </div>
               ) : (
@@ -248,11 +248,11 @@ const DashboardBody = () => {
                   <p className="fs-15 text-muted mb-3">
                     Discover India&apos;s most prestigious properties, save your favourites, and request private guided tours with VELMORA luxury advisors.
                   </p>
-                  <div className="d-flex flex-wrap gap-2">
-                    <Link href="/listing_01" className="btn-two sm">Browse Residences</Link>
-                    <Link href="/dashboard/favourites" className="btn-four sm">Saved Favourites ({stats.savedFavourites})</Link>
-                    <Link href="/dashboard/message" className="btn-four sm">My Inquiries ({stats.activeInquiries})</Link>
-                    <Link href="/dashboard/add-property" className="btn-four sm">List a Property</Link>
+                  <div className="quick-actions">
+                    <Link href="/listing_01" className="quick-action-btn primary">Browse Residences</Link>
+                    <Link href="/dashboard/favourites" className="quick-action-btn secondary">Saved Favourites ({stats.savedFavourites})</Link>
+                    <Link href="/dashboard/message" className="quick-action-btn secondary">My Inquiries ({stats.activeInquiries})</Link>
+                    <Link href="/dashboard/add-property" className="quick-action-btn secondary">List a Property</Link>
                   </div>
                 </div>
               )}
