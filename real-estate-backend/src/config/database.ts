@@ -10,6 +10,8 @@ import { AdvisoryBooking } from "../models/AdvisoryBooking";
 import { PriceTrend } from "../models/PriceTrend";
 import { CommuteRouteCache } from "../models/CommuteRouteCache";
 import { LocationCache } from "../models/LocationCache";
+import { ReraVerificationAudit } from "../models/ReraVerificationAudit";
+import { ReraReport } from "../models/ReraReport";
 import dotenv from "dotenv";
 import path from "path";
 
@@ -29,6 +31,8 @@ const models = [
   PriceTrend,
   CommuteRouteCache,
   LocationCache,
+  ReraVerificationAudit,
+  ReraReport,
 ];
 
 export const sequelize = databaseUrl

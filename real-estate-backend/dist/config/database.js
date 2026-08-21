@@ -16,6 +16,8 @@ const AdvisoryBooking_1 = require("../models/AdvisoryBooking");
 const PriceTrend_1 = require("../models/PriceTrend");
 const CommuteRouteCache_1 = require("../models/CommuteRouteCache");
 const LocationCache_1 = require("../models/LocationCache");
+const ReraVerificationAudit_1 = require("../models/ReraVerificationAudit");
+const ReraReport_1 = require("../models/ReraReport");
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
@@ -32,6 +34,8 @@ const models = [
     PriceTrend_1.PriceTrend,
     CommuteRouteCache_1.CommuteRouteCache,
     LocationCache_1.LocationCache,
+    ReraVerificationAudit_1.ReraVerificationAudit,
+    ReraReport_1.ReraReport,
 ];
 exports.sequelize = databaseUrl
     ? new sequelize_typescript_1.Sequelize(databaseUrl, {

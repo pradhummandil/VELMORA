@@ -33,3 +33,21 @@ export const authenticateUser = (req: AuthRequest, res: Response, next: NextFunc
   }
 };
 
+export const requireAdmin = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+  if (!req.user) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+  try {
+    const { User } = await import("../models/User");
+    const user = await User.findByPk(req.user.id);
+    if (!user || user.role !== "admin") {
+      res.status(403).json({ error: "Access denied. Admin privileges required." });
+      return;
+    }
+    next();
+  } catch (error) {
+    res.status(500).json({ error: "Internal authorization check failed" });
+  }
+};
+

@@ -100,3 +100,32 @@ export const getPlaceDetails = async (req: Request, res: Response): Promise<void
     res.status(500).json({ error: "Error fetching place details" });
   }
 };
+
+export const getCommute = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { originLat, originLng, originAddress, destinationLat, destinationLng, destinationAddress, mode } = req.query;
+
+    const origin = (originLat && originLng) ? { lat: Number(originLat), lng: Number(originLng) } : (originAddress as string);
+    const destination = (destinationLat && destinationLng) ? { lat: Number(destinationLat), lng: Number(destinationLng) } : (destinationAddress as string);
+
+    if (!origin || !destination) {
+      res.status(400).json({ error: "Origin and destination are required" });
+      return;
+    }
+
+    const { GoogleRouteProvider } = await import("../services/providers/GoogleRouteProvider");
+    const routeProvider = new GoogleRouteProvider();
+    const result = await routeProvider.getRoute(origin, destination, (mode as any) || "driving");
+
+    if (!result) {
+      res.status(404).json({ error: "Commute route could not be calculated" });
+      return;
+    }
+
+    res.json(result);
+  } catch (error) {
+    console.error("Get Commute Error:", error);
+    res.status(500).json({ error: "Error calculating commute" });
+  }
+};
+

@@ -56,6 +56,51 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
   // Comparison state
   const [isCompared, setIsCompared] = useState(false);
 
+  // Market comparison state
+  const [marketComparison, setMarketComparison] = useState<any>(null);
+
+  // Commute Checker state
+  const [commuteDestination, setCommuteDestination] = useState<string>("");
+  const [commuteMode, setCommuteMode] = useState<string>("driving");
+  const [commuteLoading, setCommuteLoading] = useState<boolean>(false);
+  const [commuteResult, setCommuteResult] = useState<any>(null);
+  const [commuteError, setCommuteError] = useState<string | null>(null);
+
+  const handleCheckCommute = async () => {
+    if (!commuteDestination.trim()) {
+      toast.info("Please enter a destination address (e.g. workplace or school).");
+      return;
+    }
+
+    setCommuteLoading(true);
+    setCommuteError(null);
+
+    try {
+      const params: any = {
+        mode: commuteMode,
+        destinationAddress: commuteDestination.trim(),
+      };
+
+      if (property.latitude && property.longitude) {
+        params.originLat = property.latitude;
+        params.originLng = property.longitude;
+      } else {
+        params.originAddress = `${property.address || property.location}, ${property.city}`;
+      }
+
+      const res = await apiClient.getCommute(params);
+      if (res.data) {
+        setCommuteResult(res.data);
+      } else {
+        setCommuteError("Commute route could not be calculated for this destination.");
+      }
+    } catch {
+      setCommuteError("Estimated commute duration is currently unavailable for this destination.");
+    } finally {
+      setCommuteLoading(false);
+    }
+  };
+
   // Similar properties
   const [similarProperties, setSimilarProperties] = useState<any[]>([]);
 
@@ -142,6 +187,23 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
       isMounted = false;
     };
   }, [property.city, property.propertyType, property.id]);
+
+  // Fetch market comparison benchmark from backend
+  useEffect(() => {
+    let isMounted = true;
+    apiClient
+      .getPropertyComparison(property.id)
+      .then((res) => {
+        if (isMounted && res.data) {
+          setMarketComparison(res.data);
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      isMounted = false;
+    };
+  }, [property.id]);
 
   // Keyboard navigation for Lightbox
   useEffect(() => {
@@ -575,6 +637,64 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
               </div>
             )}
 
+            {/* Price Intelligence & Locality Benchmark */}
+            <div className="bg-white border-20 p-4 p-lg-5 shadow-sm mb-40">
+              <div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3 flex-wrap gap-2">
+                <h4 className="fw-700 fs-22 color-dark mb-0">Price Intelligence & Market Benchmark</h4>
+                {marketComparison?.localitySlug ? (
+                  <Link
+                    href={`/locality/${marketComparison.localitySlug}`}
+                    className="fs-13 text-decoration-underline text-warning fw-500"
+                  >
+                    View {marketComparison.localityName || property.locality || property.city} Market Intelligence <i className="bi bi-arrow-up-right"></i>
+                  </Link>
+                ) : property.locality ? (
+                  <Link
+                    href={`/locality/${property.locality.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                    className="fs-13 text-decoration-underline text-warning fw-500"
+                  >
+                    Explore Locality Overview <i className="bi bi-arrow-up-right"></i>
+                  </Link>
+                ) : null}
+              </div>
+
+              <div className="row g-4">
+                <div className="col-md-6">
+                  <div className="p-4 rounded-4 bg-light border h-100">
+                    <div className="text-muted fs-13 mb-1">Residence Valuation Rate</div>
+                    <div className="fw-700 color-dark fs-28">
+                      {property.pricePerSqft && property.pricePerSqft > 0
+                        ? `₹${property.pricePerSqft.toLocaleString("en-IN")} / sq.ft`
+                        : property.price && property.area && property.area > 0
+                        ? `₹${Math.round(property.price / property.area).toLocaleString("en-IN")} / sq.ft`
+                        : "Rate per sq.ft on request"}
+                    </div>
+                    <div className="text-muted fs-12 mt-1">Based on listed price and carpet area</div>
+                  </div>
+                </div>
+
+                <div className="col-md-6">
+                  <div className="p-4 rounded-4 bg-light border h-100">
+                    <div className="text-muted fs-13 mb-1">Locality Pricing Benchmark</div>
+                    {marketComparison?.benchmarkAvailable ? (
+                      <>
+                        <div className="fw-700 text-warning fs-28">
+                          ₹{marketComparison.localityBenchmark?.toLocaleString("en-IN")} / sq.ft
+                        </div>
+                        <div className="fs-13 fw-500 color-dark mt-1">
+                          {marketComparison.comparativeNarrative}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-muted fs-14 py-2">
+                        Verified locality pricing data is not available yet.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Address Score Section */}
             <div className="bg-white border-20 p-4 p-lg-5 shadow-sm mb-40">
               <div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4 flex-wrap gap-2">
@@ -639,12 +759,18 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
 
             {/* RERA Trust & Governance */}
             <div className="bg-white border-20 p-4 p-lg-5 shadow-sm mb-40">
-              <h4 className="fw-700 fs-22 color-dark mb-3 border-bottom pb-3">RERA Compliance & Verification</h4>
+              <div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3 flex-wrap gap-2">
+                <h4 className="fw-700 fs-22 color-dark mb-0">RERA Compliance & Trust</h4>
+                <Link href="/rera-trust" className="fs-13 text-decoration-underline text-warning fw-500">
+                  Trust Center & Verification Rules <i className="bi bi-arrow-up-right"></i>
+                </Link>
+              </div>
+
               <div className="p-4 rounded-4 bg-light">
-                <div className="d-flex align-items-center gap-2 mb-3">
+                <div className="d-flex align-items-center gap-2 mb-3 flex-wrap">
                   {property.reraStatus === "verified" ? (
                     <span className="badge bg-success text-white fs-14 px-3 py-2">
-                      <i className="bi bi-shield-check me-1"></i> RERA Verified Residence
+                      <i className="bi bi-shield-check me-1"></i> ✓ RERA Verified
                     </span>
                   ) : property.reraStatus === "exempt" ? (
                     <span className="badge bg-secondary text-white fs-14 px-3 py-2">
@@ -656,16 +782,26 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
                     </span>
                   ) : (
                     <span className="badge bg-warning text-dark fs-14 px-3 py-2">
-                      RERA Verification Pending
+                      <i className="bi bi-hourglass-split me-1"></i> RERA Verification Pending
+                    </span>
+                  )}
+                  {property.reraStatus === "verified" && property.reraVerifiedAt && (
+                    <span className="text-muted fs-12 ms-2">
+                      Audited on {new Date(property.reraVerifiedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
                     </span>
                   )}
                 </div>
 
                 <div className="row g-3 fs-14">
-                  {property.reraNumber && (
+                  {property.reraNumber ? (
                     <div className="col-sm-6">
                       <div className="text-muted">Registration Number</div>
                       <div className="fw-600 color-dark font-monospace">{property.reraNumber}</div>
+                    </div>
+                  ) : (
+                    <div className="col-sm-6">
+                      <div className="text-muted">Registration Status</div>
+                      <div className="fw-500 text-muted">No registration number submitted</div>
                     </div>
                   )}
                   {property.reraAuthority && (
@@ -687,6 +823,20 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
                     </div>
                   )}
                 </div>
+
+                <div className="mt-3 pt-3 border-top text-muted fs-12 leading-relaxed">
+                  {property.reraStatus === "verified" ? (
+                    <span>
+                      <i className="bi bi-shield-check text-success me-1"></i>
+                      VELMORA displays RERA information provided by the listing and verified through its recorded verification workflow.
+                    </span>
+                  ) : (
+                    <span>
+                      <i className="bi bi-info-circle text-warning me-1"></i>
+                      RERA registration details submitted by listing owner and currently under authoritative verification review.
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -699,7 +849,7 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
               </p>
 
               {property.latitude && property.longitude ? (
-                <div className="rounded-4 overflow-hidden border" style={{ height: "380px" }}>
+                <div className="rounded-4 overflow-hidden border mb-4" style={{ height: "380px" }}>
                   <PropertyMap
                     markers={[
                       {
@@ -717,10 +867,77 @@ export const PropertyDecisionClient: React.FC<PropertyDecisionClientProps> = ({ 
                   />
                 </div>
               ) : (
-                <div className="bg-light p-4 rounded-4 text-center text-muted fs-14">
+                <div className="bg-light p-4 rounded-4 text-center text-muted fs-14 mb-4">
                   Location map unavailable for this micro-market.
                 </div>
               )}
+
+              {/* Interactive Commute Checker */}
+              <div className="p-4 bg-light rounded-4 border">
+                <div className="d-flex align-items-center gap-2 mb-2">
+                  <i className="bi bi-compass-fill text-warning fs-18"></i>
+                  <h5 className="fw-600 color-dark fs-16 mb-0">Door-to-Door Commute Intelligence</h5>
+                </div>
+                <p className="text-muted fs-13 mb-3">
+                  Calculate estimated travel duration from this residence to your workplace or daily destination.
+                </p>
+
+                <div className="row g-2 mb-3">
+                  <div className="col-md-7">
+                    <input
+                      type="text"
+                      placeholder="Enter destination (e.g. Bandra Kurla Complex, Cyber City)..."
+                      value={commuteDestination}
+                      onChange={(e) => setCommuteDestination(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleCheckCommute()}
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="col-md-3">
+                    <select
+                      value={commuteMode}
+                      onChange={(e) => setCommuteMode(e.target.value)}
+                      className="form-select"
+                    >
+                      <option value="driving">Driving</option>
+                      <option value="transit">Public Transit</option>
+                      <option value="walking">Walking</option>
+                    </select>
+                  </div>
+                  <div className="col-md-2">
+                    <button
+                      type="button"
+                      onClick={handleCheckCommute}
+                      disabled={commuteLoading}
+                      className="btn btn-dark w-100 fs-13"
+                    >
+                      {commuteLoading ? "Checking..." : "Calculate"}
+                    </button>
+                  </div>
+                </div>
+
+                {commuteResult && (
+                  <div className="p-3 bg-white rounded-3 border d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div>
+                      <div className="fw-700 text-warning fs-20">
+                        ~{commuteResult.durationMinutes} min ({commuteResult.distanceKm} km)
+                      </div>
+                      <div className="text-muted fs-12">
+                        Estimated {commuteMode} duration to {commuteDestination}
+                      </div>
+                    </div>
+                    <span className="badge bg-light text-dark border fs-12 px-2 py-1">
+                      <i className="bi bi-clock-history me-1"></i> Cached route
+                    </span>
+                  </div>
+                )}
+
+                {commuteError && (
+                  <div className="p-3 bg-white rounded-3 border text-danger fs-13">
+                    <i className="bi bi-exclamation-triangle me-1"></i> {commuteError}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Mortgage & EMI Reducing-Balance Calculator */}

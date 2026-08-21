@@ -3,7 +3,21 @@
 ::-webkit-scrollbar{ width: 5px; }
 ::-webkit-scrollbar-track { background: #fff;}
 ::-webkit-scrollbar-thumb { background: #000; border-radius: 0;}
-.main-page-wrapper {overflow-x: hidden;}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.main-page-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
 body {
   font-family: $main-font;
   font-weight: normal;

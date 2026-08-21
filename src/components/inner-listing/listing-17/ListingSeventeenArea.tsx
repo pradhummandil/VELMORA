@@ -1,11 +1,14 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import NiceSelect from "@/ui/NiceSelect";
 import PropertyMap from "@/components/map/PropertyMap";
 import { usePropertyDiscovery } from "@/hooks/usePropertyDiscovery";
 import DropdownSeven from "@/components/search-dropdown/inner-dropdown/DropdownSeven";
+import SaveSearchModal from "@/modals/SaveSearchModal";
+import ComparisonTray from "@/components/compare/ComparisonTray";
+import { toast } from "react-toastify";
 
 const select_type: string[] = ["All", "Apartments", "Villa", "Penthouse", "Independent House", "Commercial"];
 
@@ -37,7 +40,31 @@ const ListingSeventeenArea = () => {
     resetFilters,
   } = usePropertyDiscovery(10);
 
+  const [saveModalOpen, setSaveModalOpen] = useState(false);
   const cardRefs = useRef<Record<string | number, HTMLDivElement | null>>({});
+
+  const handleToggleCompare = (propertyId: number) => {
+    if (typeof window === "undefined") return;
+    try {
+      const stored = localStorage.getItem("velmora_compare_ids");
+      let ids: number[] = stored ? JSON.parse(stored) : [];
+      if (!Array.isArray(ids)) ids = [];
+
+      if (ids.includes(propertyId)) {
+        ids = ids.filter((id) => id !== propertyId);
+        toast.info("Removed from compare list.");
+      } else {
+        if (ids.length >= 4) {
+          toast.warning("You can compare up to 4 residences simultaneously.");
+          return;
+        }
+        ids.push(propertyId);
+        toast.success("Added to comparison tray!");
+      }
+      localStorage.setItem("velmora_compare_ids", JSON.stringify(ids));
+      window.dispatchEvent(new Event("velmora_compare_updated"));
+    } catch {}
+  };
 
   const handleMarkerSelect = (id: string | number) => {
     setSelectedPropertyId(id);
@@ -222,6 +249,13 @@ const ListingSeventeenArea = () => {
                     placeholder=""
                   />
                 </div>
+                <button
+                  type="button"
+                  onClick={() => setSaveModalOpen(true)}
+                  className="btn btn-outline-dark btn-sm rounded-pill ms-2 d-none d-sm-inline-flex align-items-center gap-1 fs-13 px-3 py-1"
+                >
+                  <i className="bi bi-bookmark-plus"></i> Save Search
+                </button>
                 <Link
                   href="/listing_16"
                   className="tran3s layout-change rounded-circle ms-auto ms-sm-3"
@@ -282,7 +316,16 @@ const ListingSeventeenArea = () => {
                             <div className="tag fw-500 position-absolute top-0 start-0 m-2 z-2 badge bg-dark text-white">
                               {item.listingPurpose || item.tag || "FOR SALE"}
                             </div>
-                            <Link href={`/listing_details_01?id=${item.id}`} className="d-block w-100 h-100">
+                            {item.reraStatus === "verified" ? (
+                              <div className="badge bg-success position-absolute top-0 end-0 m-2 z-2 px-2 py-1 fs-12">
+                                <i className="bi bi-shield-check me-1"></i> RERA Verified
+                              </div>
+                            ) : item.reraStatus === "pending" && item.reraNumber ? (
+                              <div className="badge bg-warning text-dark position-absolute top-0 end-0 m-2 z-2 px-2 py-1 fs-12">
+                                <i className="bi bi-hourglass-split me-1"></i> RERA Pending
+                              </div>
+                            ) : null}
+                            <Link href={`/properties/${item.id}`} className="d-block w-100 h-100">
                               <Image
                                 src={thumbImg}
                                 width={320}
@@ -297,7 +340,7 @@ const ListingSeventeenArea = () => {
                           <div className="d-flex justify-content-between align-items-start">
                             <div>
                               <Link
-                                href={`/listing_details_01?id=${item.id}`}
+                                href={`/properties/${item.id}`}
                                 className="title tran3s fw-600 fs-16 d-block mb-1 text-truncate"
                                 style={{ maxWidth: "260px" }}
                               >
@@ -327,9 +370,20 @@ const ListingSeventeenArea = () => {
                             <span className="badge bg-light text-dark fs-12 border">
                               {item.propertyType || "Luxury Residence"}
                             </span>
-                            <Link href={`/listing_details_01?id=${item.id}`} className="btn btn-sm btn-dark rounded-pill px-3">
-                              Explore
-                            </Link>
+                            <div className="d-flex align-items-center gap-2">
+                              <button
+                                type="button"
+                                onClick={() => handleToggleCompare(item.id)}
+                                className="btn btn-outline-dark btn-sm rounded-circle p-2"
+                                title="Compare residence"
+                                style={{ width: "32px", height: "32px", display: "inline-flex", alignItems: "center", justifyContent: "center" }}
+                              >
+                                <i className="bi bi-arrow-left-right fs-12"></i>
+                              </button>
+                              <Link href={`/properties/${item.id}`} className="btn btn-sm btn-dark rounded-pill px-3">
+                                Explore
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -341,6 +395,17 @@ const ListingSeventeenArea = () => {
           </div>
         </div>
       </div>
+
+      {/* Save Search Modal */}
+      <SaveSearchModal
+        isOpen={saveModalOpen}
+        onClose={() => setSaveModalOpen(false)}
+        criteria={filters}
+        defaultName={filters.city ? `${filters.city} Luxury Search` : "My Custom Search"}
+      />
+
+      {/* Floating Comparison Tray */}
+      <ComparisonTray />
     </div>
   );
 };

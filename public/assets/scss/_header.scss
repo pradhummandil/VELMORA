@@ -64,13 +64,20 @@
 .theme-main-menu {
     position: relative;
     z-index: 999;
-    // box-shadow: 0 13px 35px -12px rgb(35 35 35 / 10%);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     @include transition(0.4s);
+    .inner-content {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
     .gap-one {
-        padding: 33px 40px;
+        padding: 22px 28px;
     }
     .gap-two {
-        padding: 24px 40px;
+        padding: 18px 28px;
     }
     &.menu-overlay {
         position: absolute;
@@ -188,11 +195,11 @@
     .nav-item .nav-link {
         font-family: $main-font;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 15px;
         line-height: initial;
         color: $text-dark;
         padding: 10px 0;
-        margin: 0 10px;
+        margin: 0 7px;
         position: relative;
         white-space: nowrap;
         @include transition(0.2s);

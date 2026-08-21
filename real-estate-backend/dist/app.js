@@ -14,6 +14,10 @@ const viewingRoutes_1 = __importDefault(require("./routes/viewingRoutes"));
 const favoriteRoutes_1 = __importDefault(require("./routes/favoriteRoutes"));
 const locationRoutes_1 = __importDefault(require("./routes/locationRoutes"));
 const searchRoutes_1 = __importDefault(require("./routes/searchRoutes"));
+const reraRoutes_1 = __importDefault(require("./routes/reraRoutes"));
+const adminReraRoutes_1 = __importDefault(require("./routes/adminReraRoutes"));
+const marketRoutes_1 = __importDefault(require("./routes/marketRoutes"));
+const savedSearchRoutes_1 = __importDefault(require("./routes/savedSearchRoutes"));
 exports.app = (0, express_1.default)();
 const allowedOrigins = process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
@@ -43,9 +47,13 @@ exports.app.get("/health", (req, res) => {
 // Application API routes
 exports.app.use("/api/auth", authRoutes_1.default);
 exports.app.use("/api/locations", locationRoutes_1.default);
+exports.app.use("/api/market", marketRoutes_1.default);
 exports.app.use("/api/search", searchRoutes_1.default);
+exports.app.use("/api/rera", reraRoutes_1.default);
+exports.app.use("/api/admin/rera", adminReraRoutes_1.default);
 exports.app.use("/api/properties", propertyRoutes_1.default);
 exports.app.use("/api/inquiries", inquiryRoutes_1.default);
 exports.app.use("/api/viewings", viewingRoutes_1.default);
 exports.app.use("/api/favorites", favoriteRoutes_1.default);
+exports.app.use("/api/saved-searches", savedSearchRoutes_1.default);
 exports.app.use("/api", protectedRoutes_1.default);

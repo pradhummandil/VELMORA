@@ -38,12 +38,12 @@ const HeaderThree = () => {
                         </div>
                      </nav>
 
-                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 me-2 me-lg-0 order-lg-2 flex-shrink-0">
-                        <ul className="d-flex align-items-center style-none">
+                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 order-lg-2 flex-shrink-0">
+                        <ul className="d-flex align-items-center style-none gap-2 gap-xl-3 m-0 p-0">
                             <li className="d-flex align-items-center login-btn-one">
                                <i className={`fa-regular ${isAuthenticated ? "fa-user" : "fa-lock"} me-1`}></i>
                                {isAuthenticated ? (
-                                  <Link href="/dashboard/dashboard-index" className="fw-500 tran3s text-truncate d-inline-block" style={{ maxWidth: "140px", verticalAlign: "middle" }} title="Dashboard">
+                                  <Link href="/dashboard/dashboard-index" className="fw-500 tran3s text-truncate d-inline-block" style={{ maxWidth: "110px", verticalAlign: "middle" }} title="Dashboard">
                                      {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
                                   </Link>
                                ) : (
@@ -52,12 +52,12 @@ const HeaderThree = () => {
                                   </Link>
                                )}
                             </li>
-                            <li className="d-none d-md-inline-block ms-2 ms-xl-3 me-xl-3">
+                            <li className="d-none d-md-inline-block">
                                <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-five md rounded-0">
                                   <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
                                </Link>
                             </li>
-                           <li className="d-none d-xl-block"><button onClick={() => setOffCanvas(true)} style={{ cursor: "pointer" }} className="sidenavbtn rounded-circle tran3s" type="button" aria-label="Open Menu"><i className="fa-sharp fa-light fa-bars-filter"></i></button></li>
+                           <li className="d-none d-xxl-block"><button onClick={() => setOffCanvas(true)} style={{ cursor: "pointer" }} className="sidenavbtn rounded-circle tran3s" type="button" aria-label="Open Menu"><i className="fa-sharp fa-light fa-bars-filter"></i></button></li>
                         </ul>
                      </div>
                   </div>

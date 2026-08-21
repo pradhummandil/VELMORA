@@ -17,6 +17,7 @@ interface DashboardStats {
   activeInquiries: number;
   scheduledTours: number;
   savedFavourites: number;
+  savedSearches?: number;
   portfolioViews: number;
 }
 
@@ -29,6 +30,7 @@ const DashboardBody = () => {
     activeInquiries: 0,
     scheduledTours: 0,
     savedFavourites: 0,
+    savedSearches: 0,
     portfolioViews: 0,
   });
   const [loading, setLoading] = useState<boolean>(true);
@@ -154,9 +156,9 @@ const DashboardBody = () => {
         {
           id: 4,
           icon: icon_1,
-          title: "Listed Properties",
-          value: loading ? "..." : String(stats.myProperties),
-          link: "/dashboard/add-property",
+          title: "Saved Searches",
+          value: loading ? "..." : String(stats.savedSearches || 0),
+          link: "/dashboard/saved-search",
         },
       ];
     }

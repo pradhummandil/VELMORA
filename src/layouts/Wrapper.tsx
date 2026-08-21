@@ -20,11 +20,13 @@ const Wrapper = ({ children }: any) => {
     }, []);
 
 
-    return <>
-        {children}
-        <ScrollToTop />
-        <ToastContainer position="top-center" />
-    </>;
+    return (
+        <div className="main-page-wrapper">
+            {children}
+            <ScrollToTop />
+            <ToastContainer position="top-center" />
+        </div>
+    );
 }
 
-export default Wrapper
+export default Wrapper;

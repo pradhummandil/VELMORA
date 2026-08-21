@@ -66,4 +66,47 @@ export const apiClient = {
   addFavorite: (propertyId: number, propertyData?: any) =>
     api.post("/api/favorites", { propertyId, propertyData }),
   removeFavorite: (propertyId: number) => api.delete(`/api/favorites/${propertyId}`),
+
+  // RERA Trust & Verification
+  getReraInfo: (propertyId: number | string) => api.get(`/api/rera/property/${propertyId}`),
+  submitReraInfo: (propertyId: number | string, data: any) =>
+    api.patch(`/api/properties/${propertyId}/rera`, data),
+  reportReraDiscrepancy: (data: any) => api.post("/api/rera/report", data),
+  getPendingReraModerations: () => api.get("/api/admin/rera/pending"),
+  getReraModerationDetail: (propertyId: number | string) =>
+    api.get(`/api/admin/rera/${propertyId}`),
+  verifyRera: (propertyId: number | string, data: any) =>
+    api.patch(`/api/admin/rera/${propertyId}/verify`, data),
+  rejectRera: (propertyId: number | string, data: any) =>
+    api.patch(`/api/admin/rera/${propertyId}/reject`, data),
+
+  // Locality & Price Intelligence
+  getLocalities: (params?: any) => api.get("/api/locations/localities", { params }),
+  getLocality: (slug: string) => api.get(`/api/locations/localities/${slug}`),
+  getPriceTrends: (localityId: number | string) =>
+    api.get(`/api/market/price-trends/${localityId}`),
+  getPropertyComparison: (propertyId: number | string) =>
+    api.get(`/api/market/property/${propertyId}`),
+
+  // VELMORA Match & Commute Intelligence
+  calculateMatch: (criteria: any) => api.post("/api/search/match", criteria),
+  getCommute: (params: any) => api.get("/api/locations/commute", { params }),
+
+  // Dynamic Property Comparison
+  compareProperties: (ids: number[] | string) =>
+    api.get("/api/properties/compare", {
+      params: { ids: Array.isArray(ids) ? ids.join(",") : ids },
+    }),
+
+  // Saved Searches
+  getSavedSearches: () => api.get("/api/saved-searches"),
+  getSavedSearch: (id: number | string) => api.get(`/api/saved-searches/${id}`),
+  createSavedSearch: (data: any) => api.post("/api/saved-searches", data),
+  updateSavedSearch: (id: number | string, data: any) =>
+    api.put(`/api/saved-searches/${id}`, data),
+  deleteSavedSearch: (id: number | string) => api.delete(`/api/saved-searches/${id}`),
 };
+
+
+
+

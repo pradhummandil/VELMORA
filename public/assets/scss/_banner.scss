@@ -20,6 +20,10 @@
 // Hero Banner Two
 .hero-banner-two { 
     background: linear-gradient(178.61deg, #D7F7FF 1.17%, #B3F0F9 98.81%);
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     .line-bg:before {
         content: '';
         position: absolute;
@@ -39,6 +43,8 @@
         bottom: 0;
         right: 0;
         max-width: 57%;
+        max-height: 100%;
+        pointer-events: none;
     }
     .video-icon {
         i {

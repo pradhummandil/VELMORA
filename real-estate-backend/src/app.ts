@@ -8,6 +8,10 @@ import viewingRoutes from "./routes/viewingRoutes";
 import favoriteRoutes from "./routes/favoriteRoutes";
 import locationRoutes from "./routes/locationRoutes";
 import searchRoutes from "./routes/searchRoutes";
+import reraRoutes from "./routes/reraRoutes";
+import adminReraRoutes from "./routes/adminReraRoutes";
+import marketRoutes from "./routes/marketRoutes";
+import savedSearchRoutes from "./routes/savedSearchRoutes";
 
 export const app = express();
 
@@ -45,9 +49,13 @@ app.get("/health", (req: Request, res: Response) => {
 // Application API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/locations", locationRoutes);
+app.use("/api/market", marketRoutes);
 app.use("/api/search", searchRoutes);
+app.use("/api/rera", reraRoutes);
+app.use("/api/admin/rera", adminReraRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/viewings", viewingRoutes);
 app.use("/api/favorites", favoriteRoutes);
+app.use("/api/saved-searches", savedSearchRoutes);
 app.use("/api", protectedRoutes);

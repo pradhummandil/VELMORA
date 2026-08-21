@@ -34,20 +34,20 @@ const menu_data: MenuItem[] = [
     {
         id: 3,
         has_dropdown: false,
-        title: "Projects",
-        link: "/project_01",
+        title: "Match",
+        link: "/match",
     },
     {
         id: 4,
         has_dropdown: false,
-        title: "Agents",
-        link: "/agent",
+        title: "RERA Trust",
+        link: "/rera-trust",
     },
     {
         id: 5,
         has_dropdown: false,
-        title: "Agencies",
-        link: "/agency",
+        title: "Projects",
+        link: "/project_01",
     },
     {
         id: 6,

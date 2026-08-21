@@ -125,12 +125,17 @@ router.get("/dashboard/stats", authenticateUser, async (req: AuthRequest, res: R
     // 4. Saved Favorites count
     const savedFavouritesCount = await Favorite.count({ where: { userId } });
 
+    // 5. Saved Searches count
+    const { SavedSearch } = await import("../models/SavedSearch");
+    const savedSearchesCount = await SavedSearch.count({ where: { userId } });
+
     res.json({
       role,
       myProperties: myPropertiesCount,
       activeInquiries: activeInquiriesCount,
       scheduledTours: scheduledToursCount,
       savedFavourites: savedFavouritesCount,
+      savedSearches: savedSearchesCount,
       portfolioViews: 0,
     });
   } catch (error) {
