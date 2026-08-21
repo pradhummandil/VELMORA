@@ -76,10 +76,10 @@
         box-sizing: border-box;
     }
     .gap-one {
-        padding: 20px 32px;
+        padding: 20px clamp(20px, 3vw, 56px);
     }
     .gap-two {
-        padding: 16px 32px;
+        padding: 16px clamp(20px, 3vw, 56px);
     }
     .top-header {
         width: 100%;
@@ -90,6 +90,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            min-width: 0;
+            flex-wrap: nowrap;
         }
     }
     .navbar {
@@ -98,6 +100,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 0;
+        margin: 0;
+    }
+    .navbar-collapse {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
     .navbar-nav {
         display: flex;
@@ -106,6 +118,13 @@
         flex-wrap: nowrap;
         margin: 0;
         padding: 0;
+        gap: clamp(6px, 1.2vw, 24px);
+        width: auto;
+    }
+    .nav-item {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
     }
     &.menu-overlay {
         position: absolute;
@@ -200,6 +219,7 @@
         overflow: visible;
         display: flex;
         align-items: center;
+        margin-right: clamp(12px, 1.8vw, 32px);
         min-width: max-content;
 
         a {
@@ -212,7 +232,7 @@
         img, svg {
             flex-shrink: 0;
             display: block;
-            height: 42px;
+            height: 40px;
             width: auto;
             max-width: none;
             overflow: visible;
@@ -223,11 +243,11 @@
     .nav-item .nav-link {
         font-family: $main-font;
         font-weight: 500;
-        font-size: 15px;
+        font-size: clamp(13.5px, 0.95vw, 15.5px);
         line-height: initial;
         color: $text-dark;
-        padding: 10px 0;
-        margin: 0 7px;
+        padding: 8px 0;
+        margin: 0;
         position: relative;
         white-space: nowrap;
         @include transition(0.2s);
@@ -380,7 +400,7 @@
         white-space: nowrap;
         display: flex;
         align-items: center;
-        margin-left: auto;
+        margin-left: clamp(12px, 1.8vw, 32px);
         z-index: 2;
 
         ul {
@@ -389,7 +409,7 @@
             display: flex;
             align-items: center;
             flex-shrink: 0;
-            gap: 10px;
+            gap: clamp(8px, 0.9vw, 16px);
         }
 
         li {
@@ -407,10 +427,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0 16px;
-            height: 42px;
-            line-height: 42px;
+            padding: 0 clamp(12px, 1.1vw, 20px);
+            height: 44px;
+            line-height: 44px;
             font-size: 14px;
+            gap: 6px;
         }
 
         .btn-one {

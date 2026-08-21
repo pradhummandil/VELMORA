@@ -38,12 +38,12 @@ const HeaderThree = () => {
                         </div>
                      </nav>
 
-                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 order-lg-2 flex-shrink-0">
-                        <ul className="d-flex align-items-center style-none gap-2 gap-xl-3 m-0 p-0">
+                     <div className="right-widget order-lg-2 flex-shrink-0">
+                        <ul className="d-flex align-items-center style-none m-0 p-0">
                             <li className="d-flex align-items-center login-btn-one">
                                <i className={`fa-regular ${isAuthenticated ? "fa-user" : "fa-lock"} me-1`}></i>
                                {isAuthenticated ? (
-                                  <Link href="/dashboard/dashboard-index" className="fw-500 tran3s text-truncate d-inline-block" style={{ maxWidth: "110px", verticalAlign: "middle" }} title="Dashboard">
+                                  <Link href="/dashboard/dashboard-index" className="fw-500 tran3s text-truncate d-inline-block" style={{ maxWidth: "120px", verticalAlign: "middle" }} title="Dashboard">
                                      {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
                                   </Link>
                                ) : (

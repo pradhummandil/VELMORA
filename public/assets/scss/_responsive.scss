@@ -10,12 +10,7 @@
  @media (min-width: 1400px) {
   .container {max-width: 1420px;}
   .container.container-large {max-width: 1574px; padding: 0 12px;}
-  .theme-main-menu .nav-item .nav-link {margin: 0 6px; font-size: 15px;}
-  .theme-main-menu .right-widget .btn-one, .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten {padding: 0 18px; font-size: 14px;}
-  .theme-main-menu .gap-one {padding: 20px 32px;}
-  .theme-main-menu .gap-two {padding: 16px 32px;}
-  .theme-main-menu .sidenavbtn {width: 44px; height: 44px; min-width: 44px; min-height: 44px; flex: 0 0 44px; font-size: 18px;}
- }
+}
  /*(min-width: 1400px)*/
  
  /*Grid xl Start*/
@@ -123,15 +118,7 @@
  
  /*Between Grid xl*/
 @media (min-width: 1200px) and (max-width: 1399px) {
-  .theme-main-menu .nav-item .nav-link {margin: 0 4px; font-size: 14px;}
-  .theme-main-menu .right-widget .btn-one, .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten {max-width: 135px; font-size: 14px; padding: 0 14px;}
-  .theme-main-menu .gap-one {padding: 16px 20px;}
-  .theme-main-menu .gap-two {padding: 14px 20px;}
-  .theme-main-menu .right-widget ul {gap: 8px;}
-  .theme-main-menu .right-widget .login-btn-one a {max-width: 95px; font-size: 13.5px;}
-  .theme-main-menu .login-btn-two, .theme-main-menu .search-btn-one, .sidenavbtn {width: 40px; height: 40px; min-width: 40px; min-height: 40px; flex: 0 0 40px; font-size: 16px;}
-
-   .hero-banner-two .line-bg:before {top:112px;}
+  .hero-banner-two .line-bg:before {top:112px;}
    .layout-two .input-box-one {padding: 3px 0;}
    .search-wrapper-one.layout-two .bg-wrapper .search-btn-two {width: 100%; max-width: 80px; height: 70px; margin: 0 auto;}
    .hero-banner-three {margin: 116px 25px 0;}
@@ -164,15 +151,17 @@
  }
  /*(min-width: 1200px) and (max-width: 1399px)*/
 
- @media (min-width: 992px) and (max-width: 1199px) {
-    .theme-main-menu .gap-one {padding: 14px 16px;}
-    .theme-main-menu .gap-two {padding: 12px 16px;}
-    .theme-main-menu .nav-item .nav-link {margin: 0 2.5px; font-size: 13px;}
-    .theme-main-menu .right-widget ul {gap: 6px;}
-    .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten, .theme-main-menu .right-widget .btn-one {padding: 0 10px; font-size: 12.5px; line-height: 36px; height: 36px;}
-    .theme-main-menu .right-widget .login-btn-one a {max-width: 80px; font-size: 12.5px;}
-    .theme-main-menu .login-btn-two, .theme-main-menu .search-btn-one, .sidenavbtn {width: 36px; height: 36px; min-width: 36px; min-height: 36px; flex: 0 0 36px; font-size: 15px;}
-  }
+  @media (min-width: 992px) and (max-width: 1199px) {
+     .theme-main-menu .gap-one {padding: 14px 16px;}
+     .theme-main-menu .gap-two {padding: 12px 16px;}
+     .theme-main-menu .navbar-nav {gap: 6px;}
+     .theme-main-menu .nav-item .nav-link {font-size: 13px;}
+     .theme-main-menu .right-widget {margin-left: 12px;}
+     .theme-main-menu .right-widget ul {gap: 6px;}
+     .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten, .theme-main-menu .right-widget .btn-one {padding: 0 10px; font-size: 12.5px; line-height: 36px; height: 36px;}
+     .theme-main-menu .right-widget .login-btn-one a {max-width: 80px; font-size: 12.5px;}
+     .theme-main-menu .login-btn-two, .theme-main-menu .search-btn-one, .sidenavbtn {width: 38px; height: 38px; min-width: 38px; min-height: 38px; flex: 0 0 38px; font-size: 16px;}
+   }
  
  /* *** Important *** Breakpoint */
  @media (min-width: 992px) and (max-width: 1399px) {
@@ -269,10 +258,6 @@
  @media (max-width: 1199px) {
    body {font-size: 17px;}
    .fs-16 {font-size: 15px;}
-   .btn-thirteen {width: 55px; height: 55px;}
-   .theme-main-menu .gap-one {padding: 20px 12px;}
-   .theme-main-menu .gap-two {padding: 15px 12px;}
-   .theme-main-menu .nav-item .nav-link {font-size: 16px;}
    .justify-content-between .navbar {position: static; transform: none;}
    .input-box-one.border-left.border-lg-0 {border:0;}
    .search-wrapper-one .bg-wrapper .search-btn {width: 100%;}
@@ -377,14 +362,7 @@
  
  /*Between Grid lg*/
 @media (min-width: 992px) and (max-width: 1199px) {
-  .theme-main-menu .nav-item .nav-link {margin: 0 4px; font-size: 14px;}
-  .theme-main-menu .right-widget .btn-one {max-width: 120px; font-size: 14px; padding: 0 10px;}
-  .theme-main-menu .right-widget .btn-two, .theme-main-menu .right-widget .btn-ten {font-size: 14px; padding: 0 12px; line-height: 42px;}
-  .theme-main-menu .gap-one {padding: 15px 12px;}
-  .theme-main-menu .gap-two {padding: 12px 12px;}
-  .theme-main-menu .login-btn-two, .theme-main-menu .search-btn-one, .sidenavbtn {width: 40px; height: 40px; min-width: 40px; min-height: 40px; flex: 0 0 40px; font-size: 1em;}
-
-   .listing-card-three .wrapper .property-info .feature li:before {right: -25%;}
+  .listing-card-three .wrapper .property-info .feature li:before {right: -25%;}
    .card-style-seven,.location-card-three .image-bg {width: 222px; height: 222px;}
    .feedback-section-five .content-wrapper {max-width: 550px;}
    .feedback-section-five .bg-wrapper::before {width: 43%;}

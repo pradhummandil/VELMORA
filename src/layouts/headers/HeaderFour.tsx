@@ -38,8 +38,8 @@ const HeaderFour = () => {
                         </div>
                      </nav>
 
-                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 me-2 me-lg-0 order-lg-2 flex-shrink-0">
-                        <ul className="d-flex align-items-center style-none m-0">
+                     <div className="right-widget order-lg-2 flex-shrink-0">
+                        <ul className="d-flex align-items-center style-none m-0 p-0">
                            <li className="d-none d-md-inline-block me-3 me-xl-4 flex-shrink-0">
                               <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-ten rounded-0">
                                  <span>List Property</span> <i className="bi bi-arrow-up-right"></i>

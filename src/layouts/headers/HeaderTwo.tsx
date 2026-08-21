@@ -42,13 +42,13 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                         </div>
                      </nav>
 
-                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 order-lg-2 flex-shrink-0">
-                        <ul className="d-flex align-items-center style-none gap-2 gap-xl-3 m-0 p-0">
+                     <div className="right-widget order-lg-2 flex-shrink-0">
+                        <ul className="d-flex align-items-center style-none m-0 p-0">
                            {!style_2 ? (<>
                               <li className="d-flex align-items-center login-btn-one">
                                  <i className={`fa-regular ${isAuthenticated ? "fa-user" : "fa-lock"} me-1`}></i>
                                  {isAuthenticated ? (
-                                    <Link href="/dashboard/dashboard-index" className="fw-500 tran3s text-truncate d-inline-block" style={{ maxWidth: "110px", verticalAlign: "middle" }} title="Dashboard">
+                                    <Link href="/dashboard/dashboard-index" className="fw-500 tran3s text-truncate d-inline-block" style={{ maxWidth: "120px", verticalAlign: "middle" }} title="Dashboard">
                                        {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
                                     </Link>
                                  ) : (
@@ -58,7 +58,7 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                                  )}
                               </li>
                               <li className="d-none d-md-inline-block">
-                                 <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className={style_1 ? "btn-ten" : "btn-two rounded-0 px-3 py-1 fs-14"}>
+                                 <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className={style_1 ? "btn-ten" : "btn-two rounded-0"}>
                                     <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
                                  </Link>
                               </li>

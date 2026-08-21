@@ -18,7 +18,7 @@ const Feedback = () => {
                            <Image src={feedbackAvatar} alt="Pradhum Mandil" className="rounded-circle avatar" />
                            <div className="ps-4">
                               <h6 className="fs-22 text-white fw-normal mb-5">Pradhum Mandil</h6>
-                              <span className="text-white opacity-50 fw-light">Private Client, Mumbai</span>
+                              <span className="text-white opacity-50 fw-light">Private Client, Gwalior</span>
                            </div>
                         </div>
                      </div>
