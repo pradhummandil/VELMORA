@@ -39,13 +39,13 @@ const HeaderOne = ({ style }: any) => {
                         </div>
                      </nav>
 
-                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 me-2 me-lg-0 order-lg-2 flex-shrink-0">
-                         <ul className="d-flex align-items-center style-none m-0">
+                     <div className="right-widget ms-auto ms-lg-2 ms-xl-3 order-lg-2 flex-shrink-0">
+                         <ul className="d-flex align-items-center style-none gap-2 gap-xl-3 m-0 p-0">
                             <li>
                                {isAuthenticated ? (
                                   <Link href="/dashboard/dashboard-index" className="btn-one d-inline-flex align-items-center" title="Dashboard">
                                      <i className="fa-regular fa-user me-1"></i>
-                                     <span className="text-truncate d-none d-sm-inline-block" style={{ maxWidth: "130px" }}>
+                                     <span className="text-truncate d-none d-sm-inline-block" style={{ maxWidth: "110px" }}>
                                         {user?.firstName || user?.name?.split(" ")[0] || "Dashboard"}
                                      </span>
                                   </Link>
@@ -55,7 +55,7 @@ const HeaderOne = ({ style }: any) => {
                                   </Link>
                                )}
                             </li>
-                            <li className="d-none d-md-inline-block ms-2 ms-xl-3">
+                            <li className="d-none d-md-inline-block">
                                <Link href={isAuthenticated ? "/dashboard/add-property" : "#"} data-bs-toggle={!isAuthenticated ? "modal" : undefined} data-bs-target={!isAuthenticated ? "#loginModal" : undefined} className="btn-two">
                                   <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
                                 </Link>

@@ -1,10 +1,10 @@
 // Sidenav
 .sidenavbtn {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    min-height: 48px;
-    flex: 0 0 48px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    flex: 0 0 44px;
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
     display: inline-flex;
@@ -12,9 +12,10 @@
     justify-content: center;
     border-radius: 50%;
     border: 1px solid #000;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1;
     padding: 0;
+    margin: 0;
     transition: all 0.3s ease-in-out;
     &:hover {
         background: #000;
@@ -23,6 +24,7 @@
     i, svg {
         line-height: 1;
         flex-shrink: 0;
+        display: block;
     }
 }
 /*^^^^^^^^^^^^^^^^^^^^^ sidebar Menu ^^^^^^^^^^^^^^^^^^^^^^^^*/
@@ -74,10 +76,36 @@
         box-sizing: border-box;
     }
     .gap-one {
-        padding: 22px 28px;
+        padding: 20px 32px;
     }
     .gap-two {
-        padding: 18px 28px;
+        padding: 16px 32px;
+    }
+    .top-header {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        > .d-flex {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    .navbar {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin: 0;
+        padding: 0;
     }
     &.menu-overlay {
         position: absolute;
@@ -352,6 +380,7 @@
         white-space: nowrap;
         display: flex;
         align-items: center;
+        margin-left: auto;
         z-index: 2;
 
         ul {
@@ -360,7 +389,7 @@
             display: flex;
             align-items: center;
             flex-shrink: 0;
-            gap: 12px;
+            gap: 10px;
         }
 
         li {
@@ -372,6 +401,16 @@
         .btn-one, .btn-two, .btn-five, .btn-ten, .login-btn-one {
             white-space: nowrap;
             flex-shrink: 0;
+        }
+
+        .btn-two, .btn-ten, .btn-five {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            height: 42px;
+            line-height: 42px;
+            font-size: 14px;
         }
 
         .btn-one {
@@ -393,12 +432,13 @@
         color: #000;
         display: inline-flex;
         align-items: center;
-        max-width: 170px;
+        max-width: 140px;
         white-space: nowrap;
         flex-shrink: 0;
+        font-size: 14px;
         i {
             font-size: 1.05em;
-            margin-right: 8px;
+            margin-right: 6px;
             flex-shrink: 0;
         }
         a {
@@ -406,6 +446,9 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            max-width: 110px;
+            display: inline-block;
+            vertical-align: middle;
             
             &:hover {
                 color: $color-one;

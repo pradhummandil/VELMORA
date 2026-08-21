@@ -62,7 +62,7 @@ const HeaderTwo = ({ style_1, style_2 }: any) => {
                                     <span>List Property</span> <i className="fa-thin fa-arrow-up-right"></i>
                                  </Link>
                               </li>
-                              <li className="d-none d-xxl-block">
+                              <li className="d-none d-lg-block">
                                  <button onClick={() => setOffCanvas(true)} style={{ cursor: "pointer" }} className="sidenavbtn rounded-circle tran3s" type="button" aria-label="Open Menu">
                                     <i className="fa-sharp fa-light fa-bars-filter"></i>
                                  </button>
